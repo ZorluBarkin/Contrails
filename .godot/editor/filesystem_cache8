@@ -1,0 +1,38 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1698907242
+icon.svg::CompressedTexture2D::4305356733133293945::1696934636::1696934646::1::::<><>::
+::res://Assets/::1697183850
+::res://Assets/Models/::1698509788
+::res://Assets/Models/Aircraft/::1698509399
+A36.glb::PackedScene::4036526263119435763::1696939467::1698509399::1::::<><>::
+::res://Assets/Models/Ordinance/::1698509986
+MK82GLTF2.glb::PackedScene::7657042664727290988::1698509985::1698509986::1::::<><>::
+::res://Assets/Resources/::1697183850
+::res://Assets/Scripts/::1698927524
+::res://Assets/Scripts/Aircraft/::1698828977
+AircraftControls.cs::CSharpScript::-1::1698511564::0::1::::<><>::
+AircraftDamage.cs::CSharpScript::-1::1698498483::0::1::::<><>::
+AircraftFuelManager.cs::CSharpScript::-1::1698498490::0::1::::<><>::
+AircraftPistonEngine.cs::CSharpScript::-1::1698498501::0::1::::<><>::
+Flight.cs::CSharpScript::-1::1698498507::0::1::::<><>::
+LandingGear.cs::CSharpScript::-1::1698498474::0::1::::<><>::
+Mechanization.cs::CSharpScript::-1::1698511421::0::1::::<><>::
+Pylon.cs::CSharpScript::-1::1698841458::0::1::::<><>::
+WeaponControls.cs::CSharpScript::-1::1698868712::0::1::::<><>::
+::res://Assets/Scripts/Behaviour/::1698927524
+::res://Assets/Scripts/Game/::0
+::res://Assets/Scripts/GameScripts/::1696936244
+Settings.cs::CSharpScript::-1::1698498684::0::1::::<><>::
+::res://Assets/Scripts/Weapons/::1698833683
+Bomb.cs::CSharpScript::-1::1698836474::0::1::::<><>::
+Weapon.cs::CSharpScript::-1::1698835164::0::1::::<><>::
+::res://Assets/Subscenes/::1698510915
+Settings.tscn::PackedScene::8505535606396153229::1696938384::0::1::::<><>::res://Assets/Scripts/GameScripts/Settings.cs
+::res://Assets/Subscenes/Aircraft/::1696939834
+::res://Assets/Subscenes/Aircraft/USA/::1698927398
+B-26K.tscn::PackedScene::8621717367246528248::1698927398::0::1::::<><>::res://Assets/Scripts/Aircraft/Flight.cs<>res://Assets/Scripts/Aircraft/AircraftControls.cs<>res://Assets/Scripts/Aircraft/WeaponControls.cs<>res://Assets/Scripts/Aircraft/AircraftFuelManager.cs<>res://Assets/Scripts/Aircraft/Mechanization.cs<>res://Assets/Scripts/Aircraft/AircraftPistonEngine.cs<>res://Assets/Scripts/Aircraft/LandingGear.cs<>res://Assets/Scripts/Aircraft/Pylon.cs<>res://Assets/Scripts/Aircraft/AircraftDamage.cs<>uid://dkrrnoks0jonn::::res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn
+::res://Assets/Subscenes/Ordinance/::1698510986
+::res://Assets/Subscenes/Ordinance/USA/::1698919397
+MK-82 LDGP.tscn::PackedScene::7897301065102999319::1698919397::0::1::::<><>::uid://dhdemyk6dr4vw::::res://Assets/Models/Ordinance/MK82GLTF2.glb<>res://Assets/Scripts/Weapons/Bomb.cs
+::res://Scenes/::1698919397
+dev_scene.tscn::PackedScene::7380948666163426159::1698919397::0::1::::<><>::uid://dtge6twdqslwf::::res://Assets/Subscenes/Settings.tscn<>uid://du3oop0r2q05i::::res://Assets/Subscenes/Aircraft/USA/B-26K.tscn<>uid://dkrrnoks0jonn::::res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn

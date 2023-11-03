@@ -1,0 +1,68 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://bxrk86p6bho32"
+path="res://.godot/imported/A36.glb-7062e887c7450fbc9c052335b207b126.scn"
+
+[deps]
+
+source_file="res://Assets/Models/Aircraft/A36.glb"
+dest_files=["res://.godot/imported/A36.glb-7062e887c7450fbc9c052335b207b126.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:Cube_009": {
+"import/skip_import": true
+},
+"PATH:Cylinder_003": {
+"import/skip_import": true
+},
+"PATH:Cylinder_010": {
+"import/skip_import": true
+},
+"PATH:Cylinder_021": {
+"import/skip_import": true
+},
+"PATH:Cylinder_035": {
+"import/skip_import": true
+},
+"PATH:Cylinder_036": {
+"import/skip_import": true
+},
+"PATH:Cylinder_037": {
+"import/skip_import": true
+},
+"PATH:Plane": {
+"import/skip_import": true
+},
+"PATH:Plane_001": {
+"import/skip_import": true
+},
+"PATH:Plane_002": {
+"import/skip_import": true
+},
+"PATH:Plane_008": {
+"import/skip_import": true
+}
+}
+}
+gltf/embedded_image_handling=1

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtge6twdqslwf"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Game/Settings.cs" id="1_7tgo4"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_7tgo4")

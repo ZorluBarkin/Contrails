@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "olNJ6f15iGIr0KQNDfgyvCr57p3W83UZPh2UACDU32Nv1jhu88oiyxSb5DylOWHv295R1ZvILuEgHKCehKMj4A==",
+  "success": true,
+  "projectFilePath": "E:\\Programs\\Coding\\Godot Workspace\\Contrails\\Contrails.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\barki\\.nuget\\packages\\godot.sourcegenerators\\4.1.1\\godot.sourcegenerators.4.1.1.nupkg.sha512",
+    "C:\\Users\\barki\\.nuget\\packages\\godotsharp\\4.1.1\\godotsharp.4.1.1.nupkg.sha512",
+    "C:\\Users\\barki\\.nuget\\packages\\godotsharpeditor\\4.1.1\\godotsharpeditor.4.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}

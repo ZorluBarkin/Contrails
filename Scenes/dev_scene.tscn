@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddfne770a8m2b"]
+
+[ext_resource type="PackedScene" uid="uid://dtge6twdqslwf" path="res://Assets/Subscenes/Settings.tscn" id="1_0tgcp"]
+[ext_resource type="PackedScene" uid="uid://du3oop0r2q05i" path="res://Assets/Subscenes/Aircraft/USA/B-26K.tscn" id="2_qcfcg"]
+[ext_resource type="PackedScene" uid="uid://dkrrnoks0jonn" path="res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn" id="3_fl1pj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbvfu"]
+albedo_color = Color(0.45098, 0.403922, 0.219608, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hlkvy"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_73ued"]
+
+[node name="DevScene" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="Environment"]
+material_override = SubResource("StandardMaterial3D_tbvfu")
+mesh = SubResource("PlaneMesh_hlkvy")
+metadata/IsGround = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_73ued")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999345, 0.0361908, 0, -0.0361908, 0.999345, 4.66878, 1.892, 14.3844)
+metadata/MainCamera = true
+
+[node name="HUD" type="CanvasLayer" parent="Camera3D"]
+
+[node name="FPS Label" type="RichTextLabel" parent="Camera3D/HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+offset_right = 84.0
+grow_vertical = 0
+text = "FPS: XXXX"
+
+[node name="Settings" parent="." instance=ExtResource("1_0tgcp")]
+
+[node name="MK-82 LDGP" parent="." instance=ExtResource("3_fl1pj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90735e-06, 4, 1.43051e-06)
+metadata/Drop = true
+
+[node name="B-26K" parent="." instance=ExtResource("2_qcfcg")]
+transform = Transform3D(0.934204, 0, 0.356738, 0, 1, 0, -0.356738, 0, 0.934204, 17.9021, 1.87504, 0)

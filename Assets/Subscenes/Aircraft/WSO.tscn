@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhif7kgn1vrcw"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Behaviour/WSO.cs" id="1_hwt88"]
+
+[node name="WSO" type="Node"]
+script = ExtResource("1_hwt88")
