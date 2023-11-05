@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cksj26judn1ic"]
+[gd_scene load_steps=10 format=3 uid="uid://cksj26judn1ic"]
 
 [ext_resource type="Texture2D" uid="uid://defdxlwkg6p27" path="res://Assets/Sprites/HUD/Increase Throttle.png" id="1_15vrm"]
 [ext_resource type="Texture2D" uid="uid://bmxp3kxadsoom" path="res://Assets/Sprites/HUD/Water Temperature.png" id="1_geq0q"]
 [ext_resource type="Texture2D" uid="uid://ba134wt07lxs" path="res://Assets/Sprites/HUD/Tacometer/RPM idle.png" id="2_f1btv"]
 [ext_resource type="Texture2D" uid="uid://brhuyj7am7tcy" path="res://Assets/Sprites/HUD/Oil Temperature.png" id="2_f2xxd"]
-[ext_resource type="Texture2D" uid="uid://dubv8yp0ac8em" path="res://Assets/Sprites/HUD/Pixel Propeller.png" id="3_8mgde"]
+[ext_resource type="Texture2D" uid="uid://brxsd2fvmdbe8" path="res://Assets/Sprites/HUD/Propeller Pitch.png" id="5_31shq"]
 [ext_resource type="Texture2D" uid="uid://bl457i71lt0tk" path="res://Assets/Sprites/HUD/Feather.png" id="6_3ys4w"]
+[ext_resource type="Texture2D" uid="uid://x7hicbmuxa8f" path="res://Assets/Sprites/HUD/Water Cowling/Water Cowling Closed.png" id="6_jqtj5"]
+[ext_resource type="Texture2D" uid="uid://dijpwxplgk5es" path="res://Assets/Sprites/HUD/Oil Cowling/Oil Cowling Closed.png" id="7_eb76n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_76l1x"]
 font_size = 12
@@ -84,7 +86,7 @@ columns = 2
 
 [node name="Propeller Pitch" type="TextureRect" parent="CenterContainer/Detail Container"]
 layout_mode = 2
-texture = ExtResource("3_8mgde")
+texture = ExtResource("5_31shq")
 stretch_mode = 5
 
 [node name="Propeller Pitch Percentage" type="Label" parent="CenterContainer/Detail Container"]
@@ -92,21 +94,18 @@ layout_mode = 2
 text = "XXX%"
 label_settings = SubResource("LabelSettings_76l1x")
 
-[node name="Water Cowling" type="Label" parent="CenterContainer/Detail Container"]
+[node name="Water Cowling" type="TextureRect" parent="CenterContainer/Detail Container"]
 layout_mode = 2
-text = "WTR Cowl:"
-label_settings = SubResource("LabelSettings_76l1x")
+texture = ExtResource("6_jqtj5")
 
 [node name="WTR Cowling Percentage" type="Label" parent="CenterContainer/Detail Container"]
 layout_mode = 2
 text = "XXX%"
 label_settings = SubResource("LabelSettings_76l1x")
 
-[node name="Oil Cowling" type="Label" parent="CenterContainer/Detail Container"]
+[node name="Oil Cowling" type="TextureRect" parent="CenterContainer/Detail Container"]
 layout_mode = 2
-text = "OIL Cowl:
-"
-label_settings = SubResource("LabelSettings_76l1x")
+texture = ExtResource("7_eb76n")
 
 [node name="OIL Cowling Percentage" type="Label" parent="CenterContainer/Detail Container"]
 layout_mode = 2

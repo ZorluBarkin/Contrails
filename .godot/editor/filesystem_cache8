@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1699210325
+::res://::1699218036
 icon.svg::CompressedTexture2D::4305356733133293945::1696934636::1696934646::1::::<><>::
 README.md::TextFile::-1::1699001488::0::1::::<><>::
 ::res://Assets/::1699197213
@@ -29,25 +29,34 @@ Settings.cs::CSharpScript::-1::1699191482::0::1::::<><>::
 Bomb.cs::CSharpScript::-1::1698836474::0::1::::<><>::
 Weapon.cs::CSharpScript::-1::1698835164::0::1::::<><>::
 ::res://Assets/Sprites/::1699210325
-::res://Assets/Sprites/HUD/::1699210325
+::res://Assets/Sprites/HUD/::1699220460
 Decrease Throttle.png::CompressedTexture2D::5298146865157242305::1699207918::1699207931::1::::<><>::
 Feather.png::CompressedTexture2D::3220244044584480892::1699210314::1699210325::1::::<><>::
 Increase Throttle.png::CompressedTexture2D::7450563150846001290::1699207918::1699207931::1::::<><>::
 Oil Temperature.png::CompressedTexture2D::3595339390888325224::1699200194::1699207931::1::::<><>::
 Pixel Propeller.png::CompressedTexture2D::8566438574509440136::1699197223::1699207931::1::::<><>::
+Propeller Pitch.png::CompressedTexture2D::3628211403959312613::1699218989::1699218989::1::::<><>::
 Water Temperature.png::CompressedTexture2D::3277128813582434720::1699198628::1699207931::1::::<><>::
+::res://Assets/Sprites/HUD/Oil Cowling/::1699220471
+Oil Cowling Closed.png::CompressedTexture2D::7740303474044860002::1699220471::1699220471::1::::<><>::
+Oil Cowling Halfway.png::CompressedTexture2D::7157032432071115503::1699220471::1699220471::1::::<><>::
+Oil Cowling Opened.png::CompressedTexture2D::747052273788057170::1699220471::1699220471::1::::<><>::
 ::res://Assets/Sprites/HUD/Tacometer/::1699210321
 Empty RPM.png::CompressedTexture2D::4583426118648892103::1699208902::1699208930::1::::<><>::
 RPM idle.png::CompressedTexture2D::71819045740101564::1699208902::1699208933::1::::<><>::
-::res://Assets/Subscenes/::1699209155
-HUD.tscn::PackedScene::5512484915750285266::1699209155::0::1::::<><>::uid://defdxlwkg6p27::::res://Assets/Sprites/HUD/Increase Throttle.png<>uid://bmxp3kxadsoom::::res://Assets/Sprites/HUD/Water Temperature.png<>uid://ba134wt07lxs::::res://Assets/Sprites/HUD/Tacometer/RPM idle.png<>uid://brhuyj7am7tcy::::res://Assets/Sprites/HUD/Oil Temperature.png<>uid://dubv8yp0ac8em::::res://Assets/Sprites/HUD/Pixel Propeller.png
-Settings.tscn::PackedScene::8505535606396153229::1699208975::0::1::::<><>::res://Assets/Scripts/Game/Settings.cs
+::res://Assets/Sprites/HUD/Water Cowling/::1699220482
+Water Cowling Closed.png::CompressedTexture2D::1680842904269623711::1699220482::1699220483::1::::<><>::
+Water Cowling Halfway.png::CompressedTexture2D::1664717968562172300::1699220482::1699220483::1::::<><>::
+Water Cowling Opened.png::CompressedTexture2D::4423378486996490789::1699220482::1699220483::1::::<><>::
+::res://Assets/Subscenes/::1699219024
+HUD.tscn::PackedScene::5512484915750285266::1699219024::0::1::::<><>::uid://defdxlwkg6p27::::res://Assets/Sprites/HUD/Increase Throttle.png<>uid://bmxp3kxadsoom::::res://Assets/Sprites/HUD/Water Temperature.png<>uid://ba134wt07lxs::::res://Assets/Sprites/HUD/Tacometer/RPM idle.png<>uid://brhuyj7am7tcy::::res://Assets/Sprites/HUD/Oil Temperature.png<>uid://brxsd2fvmdbe8::::res://Assets/Sprites/HUD/Propeller Pitch.png<>uid://bl457i71lt0tk::::res://Assets/Sprites/HUD/Feather.png
+Settings.tscn::PackedScene::8505535606396153229::1699219024::0::1::::<><>::res://Assets/Scripts/Game/Settings.cs
 ::res://Assets/Subscenes/Aircraft/::1698927688
 WSO.tscn::PackedScene::7667460244075375366::1698927688::0::1::::<><>::res://Assets/Scripts/Behaviour/WSO.cs
-::res://Assets/Subscenes/Aircraft/USA/::1699208975
-B-26K.tscn::PackedScene::8621717367246528248::1699208975::0::1::::<><>::res://Assets/Scripts/Aircraft/Flight.cs<>res://Assets/Scripts/Aircraft/AircraftControls.cs<>uid://dhif7kgn1vrcw::::res://Assets/Subscenes/Aircraft/WSO.tscn<>res://Assets/Scripts/Aircraft/WeaponControls.cs<>res://Assets/Scripts/Aircraft/AircraftFuelManager.cs<>res://Assets/Scripts/Aircraft/Mechanization.cs<>res://Assets/Scripts/Aircraft/AircraftPistonEngine.cs<>res://Assets/Scripts/Aircraft/LandingGear.cs<>res://Assets/Scripts/Aircraft/Pylon.cs<>res://Assets/Scripts/Aircraft/AircraftDamage.cs<>uid://dkrrnoks0jonn::::res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn
+::res://Assets/Subscenes/Aircraft/USA/::1699219024
+B-26K.tscn::PackedScene::8621717367246528248::1699219024::0::1::::<><>::res://Assets/Scripts/Aircraft/Flight.cs<>res://Assets/Scripts/Aircraft/AircraftControls.cs<>uid://dhif7kgn1vrcw::::res://Assets/Subscenes/Aircraft/WSO.tscn<>res://Assets/Scripts/Aircraft/WeaponControls.cs<>res://Assets/Scripts/Aircraft/AircraftFuelManager.cs<>res://Assets/Scripts/Aircraft/Mechanization.cs<>res://Assets/Scripts/Aircraft/AircraftPistonEngine.cs<>res://Assets/Scripts/Aircraft/LandingGear.cs<>res://Assets/Scripts/Aircraft/Pylon.cs<>res://Assets/Scripts/Aircraft/AircraftDamage.cs<>uid://dkrrnoks0jonn::::res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn
 ::res://Assets/Subscenes/Ordinance/::1698510986
-::res://Assets/Subscenes/Ordinance/USA/::1699208975
-MK-82 LDGP.tscn::PackedScene::7897301065102999319::1699208975::0::1::::<><>::uid://dhdemyk6dr4vw::::res://Assets/Models/Ordinance/MK82GLTF2.glb<>res://Assets/Scripts/Weapons/Bomb.cs
-::res://Scenes/::1699208974
-dev_scene.tscn::PackedScene::7380948666163426159::1699208974::0::1::::<><>::uid://dtge6twdqslwf::::res://Assets/Subscenes/Settings.tscn<>uid://cksj26judn1ic::::res://Assets/Subscenes/HUD.tscn<>uid://du3oop0r2q05i::::res://Assets/Subscenes/Aircraft/USA/B-26K.tscn<>uid://dkrrnoks0jonn::::res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn
+::res://Assets/Subscenes/Ordinance/USA/::1699219024
+MK-82 LDGP.tscn::PackedScene::7897301065102999319::1699219024::0::1::::<><>::uid://dhdemyk6dr4vw::::res://Assets/Models/Ordinance/MK82GLTF2.glb<>res://Assets/Scripts/Weapons/Bomb.cs
+::res://Scenes/::1699219023
+dev_scene.tscn::PackedScene::7380948666163426159::1699219023::0::1::::<><>::uid://dtge6twdqslwf::::res://Assets/Subscenes/Settings.tscn<>uid://cksj26judn1ic::::res://Assets/Subscenes/HUD.tscn<>uid://du3oop0r2q05i::::res://Assets/Subscenes/Aircraft/USA/B-26K.tscn<>uid://dkrrnoks0jonn::::res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn
