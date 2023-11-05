@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cksj26judn1ic"]
+[gd_scene load_steps=8 format=3 uid="uid://cksj26judn1ic"]
 
 [ext_resource type="Texture2D" uid="uid://defdxlwkg6p27" path="res://Assets/Sprites/HUD/Increase Throttle.png" id="1_15vrm"]
 [ext_resource type="Texture2D" uid="uid://bmxp3kxadsoom" path="res://Assets/Sprites/HUD/Water Temperature.png" id="1_geq0q"]
 [ext_resource type="Texture2D" uid="uid://ba134wt07lxs" path="res://Assets/Sprites/HUD/Tacometer/RPM idle.png" id="2_f1btv"]
 [ext_resource type="Texture2D" uid="uid://brhuyj7am7tcy" path="res://Assets/Sprites/HUD/Oil Temperature.png" id="2_f2xxd"]
 [ext_resource type="Texture2D" uid="uid://dubv8yp0ac8em" path="res://Assets/Sprites/HUD/Pixel Propeller.png" id="3_8mgde"]
+[ext_resource type="Texture2D" uid="uid://bl457i71lt0tk" path="res://Assets/Sprites/HUD/Feather.png" id="6_3ys4w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_76l1x"]
 font_size = 12
@@ -112,10 +113,10 @@ layout_mode = 2
 text = "XXX%"
 label_settings = SubResource("LabelSettings_76l1x")
 
-[node name="Feathering" type="Label" parent="CenterContainer/Detail Container"]
+[node name="Feathering" type="TextureRect" parent="CenterContainer/Detail Container"]
 layout_mode = 2
-text = "Feathered:"
-label_settings = SubResource("LabelSettings_76l1x")
+texture = ExtResource("6_3ys4w")
+stretch_mode = 5
 
 [node name="Feathering Toggle" type="CheckButton" parent="CenterContainer/Detail Container"]
 layout_mode = 2
