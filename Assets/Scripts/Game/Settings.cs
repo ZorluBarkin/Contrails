@@ -11,7 +11,7 @@ public partial class Settings : Node
 {
 
 	public /*private*/ static Camera3D camera;
-	private RichTextLabel fpsLabel;
+	private Label fpsLabel;
 	[Export] private DisplayServer.VSyncMode vSyncMode = DisplayServer.VSyncMode.Disabled;
 	[Export] private int fpsLimit = 60;
 
@@ -28,7 +28,7 @@ public partial class Settings : Node
 						camera = GetNode<Camera3D>(GetParent().GetChild(i).GetPath());
 
 		if(fpsLabel == null)
-			fpsLabel = camera.GetChild(0).GetChild<RichTextLabel>(0);
+			fpsLabel = camera.GetChild(0).GetChild<Label>(0);
 			//					HUD					// Label	
 
 		ApplySettings();

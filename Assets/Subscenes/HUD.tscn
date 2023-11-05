@@ -1,0 +1,142 @@
+[gd_scene load_steps=7 format=3 uid="uid://cksj26judn1ic"]
+
+[ext_resource type="Texture2D" uid="uid://defdxlwkg6p27" path="res://Assets/Sprites/HUD/Increase Throttle.png" id="1_15vrm"]
+[ext_resource type="Texture2D" uid="uid://bmxp3kxadsoom" path="res://Assets/Sprites/HUD/Water Temperature.png" id="1_geq0q"]
+[ext_resource type="Texture2D" uid="uid://ba134wt07lxs" path="res://Assets/Sprites/HUD/Tacometer/RPM idle.png" id="2_f1btv"]
+[ext_resource type="Texture2D" uid="uid://brhuyj7am7tcy" path="res://Assets/Sprites/HUD/Oil Temperature.png" id="2_f2xxd"]
+[ext_resource type="Texture2D" uid="uid://dubv8yp0ac8em" path="res://Assets/Sprites/HUD/Pixel Propeller.png" id="3_8mgde"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_76l1x"]
+font_size = 12
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FPS Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 84.0
+grow_vertical = 0
+text = "FPS: XXXX"
+
+[node name="CenterContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 111.0
+offset_bottom = 268.0
+
+[node name="Engine Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "Engine X:"
+
+[node name="Engine Container" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Throttle" type="TextureRect" parent="CenterContainer/Engine Container"]
+layout_mode = 2
+texture = ExtResource("1_15vrm")
+stretch_mode = 5
+
+[node name="Throttle Label" type="Label" parent="CenterContainer/Engine Container"]
+layout_mode = 2
+text = "XXX%"
+
+[node name="RPM" type="TextureRect" parent="CenterContainer/Engine Container"]
+layout_mode = 2
+texture = ExtResource("2_f1btv")
+stretch_mode = 5
+
+[node name="RPM Number" type="Label" parent="CenterContainer/Engine Container"]
+layout_mode = 2
+text = "XXXXX"
+
+[node name="Water" type="TextureRect" parent="CenterContainer/Engine Container"]
+layout_mode = 2
+texture = ExtResource("1_geq0q")
+stretch_mode = 5
+
+[node name="Water Temperature" type="Label" parent="CenterContainer/Engine Container"]
+layout_mode = 2
+text = "XXX C
+"
+
+[node name="Oil" type="TextureRect" parent="CenterContainer/Engine Container"]
+layout_mode = 2
+texture = ExtResource("2_f2xxd")
+stretch_mode = 5
+
+[node name="Oil Temperature" type="Label" parent="CenterContainer/Engine Container"]
+layout_mode = 2
+text = "XXX C"
+
+[node name="Detail Container" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Propeller Pitch" type="TextureRect" parent="CenterContainer/Detail Container"]
+layout_mode = 2
+texture = ExtResource("3_8mgde")
+stretch_mode = 5
+
+[node name="Propeller Pitch Percentage" type="Label" parent="CenterContainer/Detail Container"]
+layout_mode = 2
+text = "XXX%"
+label_settings = SubResource("LabelSettings_76l1x")
+
+[node name="Water Cowling" type="Label" parent="CenterContainer/Detail Container"]
+layout_mode = 2
+text = "WTR Cowl:"
+label_settings = SubResource("LabelSettings_76l1x")
+
+[node name="WTR Cowling Percentage" type="Label" parent="CenterContainer/Detail Container"]
+layout_mode = 2
+text = "XXX%"
+label_settings = SubResource("LabelSettings_76l1x")
+
+[node name="Oil Cowling" type="Label" parent="CenterContainer/Detail Container"]
+layout_mode = 2
+text = "OIL Cowl:
+"
+label_settings = SubResource("LabelSettings_76l1x")
+
+[node name="OIL Cowling Percentage" type="Label" parent="CenterContainer/Detail Container"]
+layout_mode = 2
+text = "XXX%"
+label_settings = SubResource("LabelSettings_76l1x")
+
+[node name="Feathering" type="Label" parent="CenterContainer/Detail Container"]
+layout_mode = 2
+text = "Feathered:"
+label_settings = SubResource("LabelSettings_76l1x")
+
+[node name="Feathering Toggle" type="CheckButton" parent="CenterContainer/Detail Container"]
+layout_mode = 2
+
+[node name="Major Info Container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -110.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Speed Label" type="Label" parent="Major Info Container"]
+layout_mode = 2
+text = "Speed: XXX:"
+
+[node name="Altitude Label" type="Label" parent="Major Info Container"]
+layout_mode = 2
+text = "Altitude: XXXXX Feet"
+
+[node name="Fuel" type="Label" parent="Major Info Container"]
+layout_mode = 2
+text = "Fuel: XXX.XX Mins"

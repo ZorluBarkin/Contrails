@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddfne770a8m2b"]
+[gd_scene load_steps=8 format=3 uid="uid://ddfne770a8m2b"]
 
 [ext_resource type="PackedScene" uid="uid://dtge6twdqslwf" path="res://Assets/Subscenes/Settings.tscn" id="1_0tgcp"]
+[ext_resource type="PackedScene" uid="uid://cksj26judn1ic" path="res://Assets/Subscenes/HUD.tscn" id="1_hq76p"]
 [ext_resource type="PackedScene" uid="uid://du3oop0r2q05i" path="res://Assets/Subscenes/Aircraft/USA/B-26K.tscn" id="2_qcfcg"]
 [ext_resource type="PackedScene" uid="uid://dkrrnoks0jonn" path="res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn" id="3_fl1pj"]
 
@@ -33,16 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0,
 transform = Transform3D(1, 0, 0, 0, 0.999345, 0.0361908, 0, -0.0361908, 0.999345, 4.66878, 1.892, 14.3844)
 metadata/MainCamera = true
 
-[node name="HUD" type="CanvasLayer" parent="Camera3D"]
-
-[node name="FPS Label" type="RichTextLabel" parent="Camera3D/HUD"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -25.0
-offset_right = 84.0
-grow_vertical = 0
-text = "FPS: XXXX"
+[node name="HUD" parent="Camera3D" instance=ExtResource("1_hq76p")]
 
 [node name="Settings" parent="." instance=ExtResource("1_0tgcp")]
 
