@@ -9,7 +9,7 @@ using System;
 public partial class WeaponControls : Node
 {
 	[Export] private Camera3D camera = null;
-	WeaponType selectedWeaponType = WeaponType.Empty; // enums can be negative or exceed the limit need a wrap around
+	public WeaponType selectedWeaponType = WeaponType.Empty; // enums can be negative or exceed the limit need a wrap around
 	[Export] private Node3D[] guns; // always ready
 	
 	// Plyons
@@ -38,7 +38,9 @@ public partial class WeaponControls : Node
 		//		if(GetParent().GetChild(i).HasMeta("MainCamera"))
 		//			if(GetParent().GetChild(i).GetMeta("MainCamera").AsBool())
 		//				camera = GetNode<Camera3D>(GetParent().GetChild(i).GetPath());
-		PlaceWeapon();
+		
+		
+		//PlaceWeapon();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

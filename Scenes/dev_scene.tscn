@@ -15,6 +15,8 @@ size = Vector2(1000, 1000)
 
 [node name="DevScene" type="Node3D"]
 
+[node name="Settings" parent="." instance=ExtResource("1_0tgcp")]
+
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="Ground" type="MeshInstance3D" parent="Environment"]
@@ -31,16 +33,14 @@ shape = SubResource("WorldBoundaryShape3D_73ued")
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999345, 0.0361908, 0, -0.0361908, 0.999345, 4.66878, 1.892, 14.3844)
+transform = Transform3D(1, 0, 0, 0, 0.999345, 0.0361908, 0, -0.0361908, 0.999345, 17.9, 7, 14)
 metadata/MainCamera = true
 
 [node name="HUD" parent="Camera3D" instance=ExtResource("1_hq76p")]
-
-[node name="Settings" parent="." instance=ExtResource("1_0tgcp")]
 
 [node name="MK-82 LDGP" parent="." instance=ExtResource("3_fl1pj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90735e-06, 4, 1.43051e-06)
 metadata/Drop = true
 
 [node name="B-26K" parent="." instance=ExtResource("2_qcfcg")]
-transform = Transform3D(0.934204, 0, 0.356738, 0, 1, 0, -0.356738, 0, 0.934204, 17.9021, 1.87504, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9021, 1.87504, 0)
