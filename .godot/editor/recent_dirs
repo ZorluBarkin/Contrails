@@ -1,7 +1,8 @@
-res://Assets/Scripts/Game/HUD
-res://Assets/Sprites/HUD
 res://Assets/Sprites/HUD/Oil Cowling
 res://Assets/Sprites/HUD/Water Cowling
+res://Assets/Sprites/HUD
+res://Assets/Subscenes/HUD
+res://Assets/Scripts/Game/HUD
 res://Assets/Sprites/HUD/Tacometer
 res://Assets/Sprites
 res://Assets

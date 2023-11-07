@@ -1,4 +1,3 @@
-res://Assets/Subscenes/HUD.tscn
 res://Assets/Scripts/Aircraft/AircraftControls.cs
 res://Assets/Scripts/Aircraft/AircraftDamage.cs
 res://Assets/Scripts/Aircraft/AircraftFuelManager.cs
@@ -9,13 +8,16 @@ res://Assets/Scripts/Aircraft/Mechanization.cs
 res://Assets/Scripts/Aircraft/Pylon.cs
 res://Assets/Scripts/Aircraft/WeaponControls.cs
 res://Assets/Scripts/Behaviour/WSO.cs
+res://Assets/Scripts/Game/HUD/AircraftInfo.cs
+res://Assets/Scripts/Game/HUD/EngineInfo.cs
 res://Assets/Scripts/Game/HUD/HUD.cs
+res://Assets/Scripts/Game/HUD/WeaponInfo.cs
 res://Assets/Scripts/Game/Settings.cs
 res://Assets/Scripts/Weapons/Bomb.cs
+res://Assets/Subscenes/HUD.tscn
 res://Scenes/dev_scene.tscn
 res://Assets/Subscenes/Aircraft/USA/B-26K.tscn
 res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn
 res://Assets/Subscenes/Settings.tscn
-res://Assets/Scripts/Game/HUD/AircraftInfo.cs
-res://Assets/Scripts/Game/HUD/EngineInfo.cs
-res://Assets/Scripts/Game/HUD/WeaponInfo.cs
+res://Assets/Subscenes/HUD/HUD.tscn
+res://Assets/Subscenes/HUD/EngineInfoContainer.tscn
