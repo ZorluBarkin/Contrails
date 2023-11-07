@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddfne770a8m2b"]
+[gd_scene load_steps=9 format=3 uid="uid://ddfne770a8m2b"]
 
 [ext_resource type="PackedScene" uid="uid://dtge6twdqslwf" path="res://Assets/Subscenes/Settings.tscn" id="1_0tgcp"]
 [ext_resource type="PackedScene" uid="uid://cksj26judn1ic" path="res://Assets/Subscenes/HUD/HUD.tscn" id="1_hq76p"]
+[ext_resource type="PackedScene" uid="uid://dvnt5qdvkponl" path="res://Assets/Subscenes/GameManager.tscn" id="1_vk158"]
 [ext_resource type="PackedScene" uid="uid://du3oop0r2q05i" path="res://Assets/Subscenes/Aircraft/USA/B-26K.tscn" id="2_qcfcg"]
 [ext_resource type="PackedScene" uid="uid://dkrrnoks0jonn" path="res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn" id="3_fl1pj"]
 
@@ -14,6 +15,8 @@ size = Vector2(1000, 1000)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_73ued"]
 
 [node name="DevScene" type="Node3D"]
+
+[node name="Game Manager" parent="." instance=ExtResource("1_vk158")]
 
 [node name="Settings" parent="." instance=ExtResource("1_0tgcp")]
 
@@ -44,3 +47,4 @@ metadata/Drop = true
 
 [node name="B-26K" parent="." instance=ExtResource("2_qcfcg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9021, 1.87504, 0)
+metadata/PlayerVehicle = true

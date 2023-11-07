@@ -9,7 +9,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_joyma"]
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("FPSLabel")]
+[node name="HUD" type="Control" node_paths=PackedStringArray("FPSLabel", "engineInfos")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +18,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6e0ip")
 FPSLabel = NodePath("FPS Label")
+EngineInfoSubScene = ExtResource("2_fwbho")
+engineInfos = []
 
 [node name="FPS Label" type="Label" parent="."]
 layout_mode = 1
@@ -32,6 +34,11 @@ label_settings = SubResource("LabelSettings_1f800")
 
 [node name="Engine Info Container" parent="." instance=ExtResource("2_fwbho")]
 layout_mode = 0
+
+[node name="Engine Info Container2" parent="." instance=ExtResource("2_fwbho")]
+layout_mode = 0
+offset_left = 86.0
+offset_right = 172.0
 
 [node name="Aircraft Info Container" type="GridContainer" parent="."]
 layout_mode = 1

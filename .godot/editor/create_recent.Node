@@ -1,3 +1,4 @@
+Node
 Label
 HFlowContainer
 GridContainer
@@ -13,7 +14,6 @@ CheckBox
 ColorRect
 RichTextLabel
 SubViewport
-Node
 MeshInstance3D
 CollisionShape3D
 RigidBody3D

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvnt5qdvkponl"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Game/GameManager.cs" id="1_4lj8b"]
+
+[node name="Game Manager" type="Node" node_paths=PackedStringArray("cameras")]
+script = ExtResource("1_4lj8b")
+cameras = []

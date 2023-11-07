@@ -12,7 +12,7 @@ public partial class AircraftPistonEngine : Node
 {
 
 	#region References, Globals
-	//[Export] AircraftControls aircraftControls; // can assign or find in start
+	//[Export] Controls aircraftControls; // can assign or find in start
 	[Export] AircraftFuelManager aircraftFuelManager; // can assign in start
 	#endregion
 	
@@ -64,10 +64,10 @@ public partial class AircraftPistonEngine : Node
 	//[Export] private float fuelConsumptionPerHour = 435.55f; // cruising, it's in Litres per Hour
 	[Export] private float maxFuelConsumptionPerHour = 1107.95f; // max rpm in Litres per Hour
 	private float fuelConsumptionPerSecond = -1f; // in Litres per Hour
-	[Export] public float oilHeat = 50f; // not sure // make non exported after test
-	[Export] public float waterHeat = 50f; // not sure // make non exported after test
-	[Export] public float optimalOilHeat = 50f; // constant but need to set through editor // not sure
-	[Export] public float optimalWaterHeat = 50f; // constant but need to set through editor //not sure
+	[Export] public float oilTemp = 50f; // not sure // make non exported after test
+	[Export] public float waterTemp = 50f; // not sure // make non exported after test
+	[Export] public float optimalOilTemp = 50f; // constant but need to set through editor // not sure
+	[Export] public float optimalWaterTemp = 50f; // constant but need to set through editor //not sure
 	[Export] [Range(0f,100f)] public float openRadiatorPercentage = 0f; // 0 is not open 100 is fully open, creates drag
 	
 	[Export] public bool onFire = false; // close after test

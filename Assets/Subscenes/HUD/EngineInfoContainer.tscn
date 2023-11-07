@@ -20,8 +20,8 @@
 font_size = 12
 
 [node name="Engine Info Container" type="VBoxContainer" node_paths=PackedStringArray("engineLabel", "throttleSymbol", "throttleLabel", "RPMSymbol", "RPMLabel", "waterTempLabel", "oilTempLabel", "detailsContainer", "waterCowlSymbol", "waterCowlLabel", "oilCowlSymbol", "oilCowlLabel", "feathering")]
-offset_right = 95.0
-offset_bottom = 291.0
+offset_right = 86.0
+offset_bottom = 306.0
 script = ExtResource("1_ptki8")
 engineLabel = NodePath("Engine/Engine Number")
 throttleSymbol = NodePath("Base Info Container/Throttle")

@@ -1,9 +1,22 @@
+/*  
+ * Copyright October 2023 Barkın Zorlu 
+ * All rights reserved. 
+ */
+
 using Godot;
 using System;
+using System.Dynamic;
 
 public partial class EngineInfo : VBoxContainer
 {
 	private HUD hud = null;
+	public int engineIndex = 0; // cannot be 0
+	public bool engineIndexSet = false; // cannot be 0
+	private AircraftPistonEngine pistonEngine = null;
+	// private JetEngine jetEngine = null;
+	private VehicleControls vehicleControls = null;
+
+	// Container Variables
 	[Export] private Label engineLabel = null; // Engine Number
 
 	// Engine Base information Container
@@ -37,14 +50,38 @@ public partial class EngineInfo : VBoxContainer
 		if(hud == null)
 			hud = GetNode<HUD>(this.GetParent().GetPath());
 		
-		//engineLabel.Text = engineNumber.ToString();
-		engineLabel.Text = "1";
+		vehicleControls = GameManager.instance.vehicleControls;
+		SetEngine();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if(!engineIndexSet)
+		{
+			engineLabel.Text = engineIndex.ToString();
+			engineIndexSet = true;
+		}
+
+		UpdateEngineInfo();
 		DetailVisibility();
+		
+		if(detailsContainer.Visible)
+			UpdateDetailInfo();
+	}
+
+	private void UpdateEngineInfo()
+	{
+		if(pistonEngine != null)
+		{
+			throttleLabel.Text = pistonEngine.throttle.ToString() + '%';
+			RPMLabel.Text = pistonEngine.RPM.ToString();
+			waterTempLabel.Text = pistonEngine.waterTemp.ToString() + "\u00B0C";
+			oilTempLabel.Text = pistonEngine.oilTemp.ToString() + "\u00B0C";
+		}
+		
+		//else if (jetEngine != null)
+		//	throttleLabel.Text = jetEngine.throttle.ToString() + '%';
 	}
 
 	private void DetailVisibility()
@@ -59,5 +96,24 @@ public partial class EngineInfo : VBoxContainer
 			if(!detailsContainer.Visible)
 				detailsContainer.Visible = true;
 		}
+	}
+
+	private void UpdateDetailInfo()
+	{
+
+	}
+
+	private void SetEngine()
+	{
+		if(vehicleControls.engines[engineIndex] is AircraftPistonEngine)
+		{
+			pistonEngine = GetNode<AircraftPistonEngine>(vehicleControls.engines[engineIndex].GetPath());
+		}
+		else
+		{GD.Print("Its not piston");}
+		//else (vehicleControls.engines[engineIndex] is AircraftJetEngine)
+		//{
+		//	jetEngine = GetNode<AircraftJetEngine>(vehicleControls.engines[engineIndex].GetPath());
+		//}
 	}
 }

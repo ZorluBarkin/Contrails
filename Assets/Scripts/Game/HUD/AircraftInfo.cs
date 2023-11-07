@@ -1,3 +1,8 @@
+/*  
+ * Copyright October 2023 Barkın Zorlu 
+ * All rights reserved. 
+ */
+
 using Godot;
 using System;
 
