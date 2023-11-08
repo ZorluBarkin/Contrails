@@ -34,12 +34,12 @@ public partial class AircraftPistonEngine : Node
 	}
 	[Export] private PropellerType propellerType = PropellerType.ConstantSpeed;
 
-	[Range(0, 100)] private float propellerPitch = 100f; // 17 to 87 degrees
+	[Range(0, 100)] public float propellerPitch = 100f; // 17 to 87 degrees
 	// higher (Coarse) pitch is better for cruising, lower engine RPMs
 	// lower (Fine) pitch is better for more power and acceleration, higher engine rpms
 	// make this nonexported after controls done
 	//propeller max RPM are around 2500-3000
-	private bool feathered = false;
+	public bool feathered = false;
 
 	private enum RotationDirection
 	{
@@ -50,7 +50,7 @@ public partial class AircraftPistonEngine : Node
 
 	private bool engineOn = false; // make this nonexported after controls done
 	[Range(0f, 100f)] public float throttle = 0f; // make this nonexported after controls done
-	private bool WEP = false;
+	public bool WEP = false;
 	public const float wepMultiplier = 1.15f; // %15 percent increase in power // only for 5 minutes
 	[Export] public float RPM = 0f;
 	[Export] public float idleRPM = 600f; // constant but need to set through editor 
@@ -68,7 +68,8 @@ public partial class AircraftPistonEngine : Node
 	[Export] public float waterTemp = 50f; // not sure // make non exported after test
 	[Export] public float optimalOilTemp = 50f; // constant but need to set through editor // not sure
 	[Export] public float optimalWaterTemp = 50f; // constant but need to set through editor //not sure
-	[Export] [Range(0f,100f)] public float openRadiatorPercentage = 0f; // 0 is not open 100 is fully open, creates drag
+	[Export] [Range(0f,100f)] public float waterCowlPercentage = 0; // 0 is not open 100 is fully open, creates drag
+	[Export] [Range(0f,100f)] public float oilCowlPercentage = 0; // 0 is not open 100 is fully open, creates drag
 	
 	[Export] public bool onFire = false; // close after test
 	[Export] private bool extinguished = false; // close after test

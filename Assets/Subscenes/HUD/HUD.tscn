@@ -37,8 +37,8 @@ layout_mode = 0
 
 [node name="Engine Info Container2" parent="." instance=ExtResource("2_fwbho")]
 layout_mode = 0
-offset_left = 86.0
-offset_right = 172.0
+offset_left = 90.0
+offset_right = 176.0
 
 [node name="Aircraft Info Container" type="GridContainer" parent="."]
 layout_mode = 1

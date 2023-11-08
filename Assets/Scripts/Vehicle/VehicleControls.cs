@@ -197,6 +197,14 @@ public partial class VehicleControls : Node
 					engines[i].SetMeta("WEP", true);
 			}
 		}
+		else
+		{
+			for(int i = 0; i < engines.Length; i++)
+			{
+				if(engines[i].HasMeta("WEP"))
+					engines[i].SetMeta("WEP", false);
+			}
+		}
 	}
 
 	private void SetPropellerPitch()

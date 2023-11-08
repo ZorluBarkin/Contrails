@@ -14,6 +14,7 @@ public partial class EngineInfo : VBoxContainer
 	public bool engineIndexSet = false; // cannot be 0
 	private AircraftPistonEngine pistonEngine = null;
 	// private JetEngine jetEngine = null;
+	private bool isPistonEngine = false;
 	private VehicleControls vehicleControls = null;
 
 	// Container Variables
@@ -26,6 +27,7 @@ public partial class EngineInfo : VBoxContainer
 	[Export] private TextureRect RPMSymbol = null;
 	[Export] private Label RPMLabel = null;
 	[Export] private Texture2D[] RPMSymbols; // from Low to High;
+	[Export] private Texture2D WEPSymbol; // from Low to High;
 
 	[Export] private Label waterTempLabel = null;
 	[Export] private Label oilTempLabel = null;
@@ -33,6 +35,7 @@ public partial class EngineInfo : VBoxContainer
 	// Details Container
 	[Export] private Container detailsContainer = null;
 
+	[Export] private Label propellerPitchLabel = null;
 	[Export] private TextureRect waterCowlSymbol = null;
 	[Export] private Label waterCowlLabel = null;
 	[Export] private Texture2D[] waterCowlSymbols; // from closed to Open;
@@ -72,15 +75,20 @@ public partial class EngineInfo : VBoxContainer
 
 	private void UpdateEngineInfo()
 	{
-		if(pistonEngine != null)
+		if(isPistonEngine)
 		{
-			throttleLabel.Text = pistonEngine.throttle.ToString() + '%';
-			RPMLabel.Text = pistonEngine.RPM.ToString();
-			waterTempLabel.Text = pistonEngine.waterTemp.ToString() + "\u00B0C";
-			oilTempLabel.Text = pistonEngine.oilTemp.ToString() + "\u00B0C";
-		}
-		
-		//else if (jetEngine != null)
+			throttleLabel.Text = ((int)pistonEngine.throttle).ToString() + '%';
+			if((int)pistonEngine.throttle > 80) // max crusing throttle
+				throttleSymbol.Texture = throttleSymbols[1];
+			else
+				throttleSymbol.Texture = throttleSymbols[0];
+
+			RPMLabel.Text = ((int)pistonEngine.RPM).ToString();
+			RPMSymbol.Texture = GetRPMSymbol();
+			waterTempLabel.Text = ((int)pistonEngine.waterTemp).ToString() + "\u00B0C";
+			oilTempLabel.Text = ((int)pistonEngine.oilTemp).ToString() + "\u00B0C";
+		}	
+		//else
 		//	throttleLabel.Text = jetEngine.throttle.ToString() + '%';
 	}
 
@@ -100,7 +108,45 @@ public partial class EngineInfo : VBoxContainer
 
 	private void UpdateDetailInfo()
 	{
+		if(isPistonEngine)
+		{
+			propellerPitchLabel.Text = ((int)pistonEngine.propellerPitch).ToString() + '%';
+			waterCowlSymbol.Texture = GetWaterCowlSymbol();
+			waterCowlLabel.Text = ((int)pistonEngine.waterCowlPercentage).ToString() + '%';
+			oilCowlSymbol.Texture = GetOilCowlSymbol();
+			oilCowlLabel.Text = ((int)pistonEngine.oilCowlPercentage).ToString() + '%';
+			feathering.ButtonPressed = pistonEngine.feathered;
+		}
+		//else // Jet Engine
+		//{}
+	}
 
+	private Texture2D GetRPMSymbol()
+	{
+		if(isPistonEngine)
+		{
+			if(pistonEngine.WEP)
+				return WEPSymbol;
+
+			float rpmPercent = (pistonEngine.maxRPM - (pistonEngine.maxRPM - pistonEngine.RPM)) / pistonEngine.maxRPM * 100f;
+			return RPMSymbols[Math.Clamp((int)(rpmPercent / (100f / RPMSymbols.Length)), 0, 6)];
+		}
+		else
+		{
+			//float rpmPercent = (jetEngine.maxRPM - (jetEngine.maxRPM - jetEngine.RPM)) / jetEngine.maxRPM * 100f;
+			//return RPMSymbols[Math.Clamp((int)(rpmPercent / (100f / fanRPMSymbols.Length)), 0, 6)];
+			return null;
+		}
+	}
+
+	private Texture2D GetWaterCowlSymbol()
+	{
+		return waterCowlSymbols[(int)((pistonEngine.waterCowlPercentage - 1f) / (100f / waterCowlSymbols.Length))];
+	}
+
+	private Texture2D GetOilCowlSymbol()
+	{
+		return oilCowlSymbols[(int)((pistonEngine.oilCowlPercentage - 1f) / (100f / oilCowlSymbols.Length))];
 	}
 
 	private void SetEngine()
@@ -108,12 +154,14 @@ public partial class EngineInfo : VBoxContainer
 		if(vehicleControls.engines[engineIndex] is AircraftPistonEngine)
 		{
 			pistonEngine = GetNode<AircraftPistonEngine>(vehicleControls.engines[engineIndex].GetPath());
+			isPistonEngine = true;
 		}
 		else
 		{GD.Print("Its not piston");}
 		//else (vehicleControls.engines[engineIndex] is AircraftJetEngine)
 		//{
 		//	jetEngine = GetNode<AircraftJetEngine>(vehicleControls.engines[engineIndex].GetPath());
+		//	isPistonEngine = false;
 		//}
 	}
 }

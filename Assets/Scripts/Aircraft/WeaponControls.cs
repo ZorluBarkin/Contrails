@@ -32,7 +32,7 @@ public partial class WeaponControls : Node
 		//GD.Print(leftPylons[0].availableOrdinance[0].GetState().GetNodeName(0)); // works
 		SetWeaponNames();
 		//GD.Print(ordinancePlacement[0][0][0]); // example access
-		camera = Settings.camera;
+		camera = GameManager.instance.mainCamera;
 		//if(camera == null)
 		//	for(int i = 0; i < GetParent().GetChildCount(); i++)
 		//		if(GetParent().GetChild(i).HasMeta("MainCamera"))

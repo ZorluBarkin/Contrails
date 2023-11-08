@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cyrp0f0p5hipt"]
+[gd_scene load_steps=24 format=3 uid="uid://cyrp0f0p5hipt"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Game/HUD/EngineInfo.cs" id="1_ptki8"]
 [ext_resource type="Texture2D" uid="uid://cudfxp61h7y17" path="res://Assets/Sprites/HUD/Engine.png" id="2_uk3bm"]
 [ext_resource type="Texture2D" uid="uid://chqpx70p4yds8" path="res://Assets/Sprites/HUD/Decrease Throttle.png" id="3_4ostj"]
 [ext_resource type="Texture2D" uid="uid://defdxlwkg6p27" path="res://Assets/Sprites/HUD/Increase Throttle.png" id="3_5ea7o"]
 [ext_resource type="Texture2D" uid="uid://ba134wt07lxs" path="res://Assets/Sprites/HUD/Tacometer/RPM idle.png" id="4_6lrwy"]
+[ext_resource type="Texture2D" uid="uid://b6kimgps23k5t" path="res://Assets/Sprites/HUD/Tacometer/Empty RPM.png" id="4_i3vy4"]
 [ext_resource type="Texture2D" uid="uid://xynwq7npb3hw" path="res://Assets/Sprites/HUD/Water Cowling/Water Cowling Halfway.png" id="5_rg722"]
 [ext_resource type="Texture2D" uid="uid://bmxp3kxadsoom" path="res://Assets/Sprites/HUD/Water Temperature.png" id="5_s1jco"]
 [ext_resource type="Texture2D" uid="uid://b4aynroc3uc1j" path="res://Assets/Sprites/HUD/Water Cowling/Water Cowling Opened.png" id="6_ekean"]
@@ -16,10 +17,22 @@
 [ext_resource type="Texture2D" uid="uid://dijpwxplgk5es" path="res://Assets/Sprites/HUD/Oil Cowling/Oil Cowling Closed.png" id="9_ngq57"]
 [ext_resource type="Texture2D" uid="uid://bl457i71lt0tk" path="res://Assets/Sprites/HUD/Feather.png" id="10_72x6h"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lpyb3"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vdi20"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_uurw0"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ebfec"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_se5sx"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2fbaw"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_76l1x"]
 font_size = 12
 
-[node name="Engine Info Container" type="VBoxContainer" node_paths=PackedStringArray("engineLabel", "throttleSymbol", "throttleLabel", "RPMSymbol", "RPMLabel", "waterTempLabel", "oilTempLabel", "detailsContainer", "waterCowlSymbol", "waterCowlLabel", "oilCowlSymbol", "oilCowlLabel", "feathering")]
+[node name="Engine Info Container" type="VBoxContainer" node_paths=PackedStringArray("engineLabel", "throttleSymbol", "throttleLabel", "RPMSymbol", "RPMLabel", "waterTempLabel", "oilTempLabel", "detailsContainer", "propellerPitchLabel", "waterCowlSymbol", "waterCowlLabel", "oilCowlSymbol", "oilCowlLabel", "feathering")]
 offset_right = 86.0
 offset_bottom = 306.0
 script = ExtResource("1_ptki8")
@@ -29,9 +42,12 @@ throttleLabel = NodePath("Base Info Container/Throttle Label")
 throttleSymbols = Array[Texture2D]([ExtResource("3_5ea7o"), ExtResource("3_4ostj")])
 RPMSymbol = NodePath("Base Info Container/RPM")
 RPMLabel = NodePath("Base Info Container/RPM Number")
+RPMSymbols = Array[Texture2D]([ExtResource("4_i3vy4"), ExtResource("4_6lrwy"), SubResource("PlaceholderTexture2D_lpyb3"), SubResource("PlaceholderTexture2D_vdi20"), SubResource("PlaceholderTexture2D_uurw0"), SubResource("PlaceholderTexture2D_ebfec"), SubResource("PlaceholderTexture2D_se5sx")])
+WEPSymbol = SubResource("PlaceholderTexture2D_2fbaw")
 waterTempLabel = NodePath("Base Info Container/Water Temperature")
 oilTempLabel = NodePath("Base Info Container/Oil Temperature")
 detailsContainer = NodePath("Detail Container")
+propellerPitchLabel = NodePath("Detail Container/Propeller Pitch Percentage")
 waterCowlSymbol = NodePath("Detail Container/Water Cowling")
 waterCowlLabel = NodePath("Detail Container/WTR Cowling Percentage")
 waterCowlSymbols = Array[Texture2D]([ExtResource("8_7v8st"), ExtResource("5_rg722"), ExtResource("6_ekean")])
@@ -39,6 +55,7 @@ oilCowlSymbol = NodePath("Detail Container/Oil Cowling")
 oilCowlLabel = NodePath("Detail Container/OIL Cowling Percentage")
 oilCowlSymbols = Array[Texture2D]([ExtResource("9_ngq57"), ExtResource("8_kcl4j"), ExtResource("9_3ojes")])
 feathering = NodePath("Detail Container/Feathering Toggle")
+seeDetails = true
 
 [node name="Engine" type="TextureRect" parent="."]
 layout_mode = 2
