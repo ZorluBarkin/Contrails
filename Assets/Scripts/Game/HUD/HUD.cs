@@ -8,13 +8,35 @@ using System;
 
 public partial class HUD : Control // Should not be a Singleton
 {
+	private Node3D playerVehicle = null;
+	private RigidBody3D vehicleRb = null;
+	private FuelManager fuelManager = null;
+	private Mechanization mechanization = null;
+
+	private DisplayUnitType displayUnitType = DisplayUnitType.Metric;
+	private FlapsDisplaySetting flapsDisplaySetting = FlapsDisplaySetting.Degrees;
+
+	// FPS Label
 	[Export] private Label FPSLabel = null;
 	private bool lowFPS = true;
 	private bool seeFPS = true;
 
-	[Export] private PackedScene EngineInfoSubScene = null;
-	[Export] private EngineInfo[] engineInfos;
+	// Engine Info Containers
+	//[Export] private PackedScene EngineInfoSubScene = null;
+	private EngineInfo[] engineInfos;
 	public int NumberOfEngines = 0;
+
+	// Aircraft Info Container
+	[Export] private Label speedLabel;
+	[Export] private Label altitudeLabel;
+
+	[Export] private TextureRect fuelSymbol;
+	[Export] private Label fuelLabel;
+	[Export] private Texture2D[] fuelSymbols;
+
+	[Export] private TextureRect flapsSymbol;
+	[Export] private Label flapsLabel;
+	[Export] private Texture2D[] flapsSymbols;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -24,6 +46,14 @@ public partial class HUD : Control // Should not be a Singleton
 
 		if(Settings.instance.seeFPS)
 			seeFPS = true;
+
+		playerVehicle = GameManager.instance.playerVehicle;
+		vehicleRb = GetNode<RigidBody3D>(playerVehicle.GetPath());
+		fuelManager = GameManager.instance.fuelManager;
+		mechanization = GameManager.instance.mechanization;
+
+		displayUnitType = Settings.instance.displayUnitType;
+		flapsDisplaySetting = Settings.instance.flapsDisplaySetting;
 
 		NumberOfEngines = GameManager.instance.vehicleControls.engines.Length; // create EngineNumber of EngineInfoContainer side by side
 		engineInfos = new EngineInfo[NumberOfEngines];
@@ -37,6 +67,7 @@ public partial class HUD : Control // Should not be a Singleton
 	public override void _Process(double delta)
 	{
 		UpdateFPSLabel();
+		UpdateAircraftInfo();
 	}
 
 	private int containerIndex = 0;
@@ -98,5 +129,51 @@ public partial class HUD : Control // Should not be a Singleton
 			}
 			FPSLabel.Text = "FPS: " + Engine.GetFramesPerSecond();
 		}
+	}
+
+	private void UpdateAircraftInfo()
+	{
+		switch (displayUnitType)
+		{
+			case DisplayUnitType.Metric:
+				speedLabel.Text = ((int)(vehicleRb.LinearVelocity.Length() * 3.6f)).ToString() + " km/h";
+				altitudeLabel.Text = ((int)playerVehicle.Position.Y).ToString() + " m";
+				fuelLabel.Text = GetFuelInTime();
+				flapsLabel.Text = GetFlapValue();
+				flapsSymbol.Texture = GetFlapSymbol();
+			break;
+			case DisplayUnitType.Impreial:
+
+			break;
+			case DisplayUnitType.Aeronautical:
+
+			break;
+		}
+	}
+
+	private string GetFuelInTime()
+	{
+		int hour = (int)(fuelManager.fuelInSeconds / 3600f);
+		int minutes = (int)(fuelManager.fuelInSeconds % 3600f / 60);
+		int seconds = (int)(fuelManager.fuelInSeconds % 3600f % 60);
+		return hour.ToString() + ":" + minutes.ToString() + ":" + seconds.ToString(); // concatting strings are faster
+	}
+
+	private string GetFlapValue()
+	{
+		switch(flapsDisplaySetting)
+		{
+			case FlapsDisplaySetting.Degrees:
+				return ((int) mechanization.flapActuation).ToString() +  "\u00B0";
+			case FlapsDisplaySetting.Percentage:
+				return ((int) ((mechanization.flapMaxDegree - mechanization.flapActuation) / mechanization.flapMaxDegree) ).ToString() + "%";
+		}
+		return "";
+	}
+
+	private Texture2D GetFlapSymbol()
+	{
+		float flapPercent = (mechanization.flapMaxDegree - mechanization.flapActuation) / mechanization.flapMaxDegree * 100;
+		return flapsSymbols[Math.Clamp((int) (flapPercent / (100f / flapsSymbols.Length)), 0, flapsSymbols.Length - 1)];
 	}
 }

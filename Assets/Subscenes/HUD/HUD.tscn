@@ -1,15 +1,34 @@
-[gd_scene load_steps=7 format=3 uid="uid://cksj26judn1ic"]
+[gd_scene load_steps=16 format=3 uid="uid://cksj26judn1ic"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Game/HUD/HUD.cs" id="1_6e0ip"]
 [ext_resource type="PackedScene" uid="uid://cyrp0f0p5hipt" path="res://Assets/Subscenes/HUD/EngineInfoContainer.tscn" id="2_fwbho"]
-[ext_resource type="Script" path="res://Assets/Scripts/Game/HUD/AircraftInfo.cs" id="12_u7fcn"]
 [ext_resource type="Script" path="res://Assets/Scripts/Game/HUD/WeaponInfo.cs" id="13_r7u2h"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wxvnm"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fcy0a"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_axu5l"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fqa8k"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2318w"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_uyvsx"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_icflo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1f800"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dps6v"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jxxdq"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x68lg"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_joyma"]
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("FPSLabel", "engineInfos")]
+[node name="HUD" type="Control" node_paths=PackedStringArray("FPSLabel", "speedLabel", "altitudeLabel", "fuelSymbol", "fuelLabel", "flapsSymbol", "flapsLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,8 +37,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6e0ip")
 FPSLabel = NodePath("FPS Label")
-EngineInfoSubScene = ExtResource("2_fwbho")
-engineInfos = []
+speedLabel = NodePath("Aircraft Info Container/Speed Label")
+altitudeLabel = NodePath("Aircraft Info Container/Altitude Label")
+fuelSymbol = NodePath("Aircraft Info Container/Fuel Symbol")
+fuelLabel = NodePath("Aircraft Info Container/Fuel Label")
+fuelSymbols = Array[Texture2D]([SubResource("PlaceholderTexture2D_wxvnm"), SubResource("PlaceholderTexture2D_fcy0a"), SubResource("PlaceholderTexture2D_axu5l"), SubResource("PlaceholderTexture2D_fqa8k")])
+flapsSymbol = NodePath("Aircraft Info Container/Flaps Symbol")
+flapsLabel = NodePath("Aircraft Info Container/Flaps Label")
+flapsSymbols = Array[Texture2D]([SubResource("PlaceholderTexture2D_2318w"), SubResource("PlaceholderTexture2D_uyvsx"), SubResource("PlaceholderTexture2D_icflo")])
 
 [node name="FPS Label" type="Label" parent="."]
 layout_mode = 1
@@ -42,54 +67,45 @@ offset_right = 176.0
 
 [node name="Aircraft Info Container" type="GridContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -110.0
-offset_bottom = 40.0
+offset_left = -167.0
+offset_bottom = 116.0
 grow_horizontal = 0
 columns = 2
-script = ExtResource("12_u7fcn")
+
+[node name="Speed Symbol" type="TextureRect" parent="Aircraft Info Container"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_dps6v")
 
 [node name="Speed Label" type="Label" parent="Aircraft Info Container"]
 layout_mode = 2
-text = "Speed:"
-
-[node name="Speed" type="Label" parent="Aircraft Info Container"]
-layout_mode = 2
 text = "XXXX Km/h"
+
+[node name="Altitude Symbol" type="TextureRect" parent="Aircraft Info Container"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_dps6v")
 
 [node name="Altitude Label" type="Label" parent="Aircraft Info Container"]
 layout_mode = 2
-text = "Altitude:"
-
-[node name="Altitude" type="Label" parent="Aircraft Info Container"]
-layout_mode = 2
 text = "XXXXX m"
+
+[node name="Fuel Symbol" type="TextureRect" parent="Aircraft Info Container"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_jxxdq")
 
 [node name="Fuel Label" type="Label" parent="Aircraft Info Container"]
 layout_mode = 2
-text = "Fuel:"
-
-[node name="Fuel" type="Label" parent="Aircraft Info Container"]
-layout_mode = 2
 text = "XXX.XX mins"
+
+[node name="Flaps Symbol" type="TextureRect" parent="Aircraft Info Container"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_x68lg")
 
 [node name="Flaps Label" type="Label" parent="Aircraft Info Container"]
 layout_mode = 2
-text = "Flaps:"
-
-[node name="Flaps Degree" type="Label" parent="Aircraft Info Container"]
-layout_mode = 2
 text = "XX deg"
-
-[node name="Guns Ammo Label" type="Label" parent="Aircraft Info Container"]
-layout_mode = 2
-text = "Guns:"
-
-[node name="Ammo" type="Label" parent="Aircraft Info Container"]
-layout_mode = 2
-text = "XXXX"
 
 [node name="Weapon Container" type="GridContainer" parent="."]
 layout_mode = 1
@@ -118,3 +134,25 @@ layout_mode = 2
 text = "XXXX"
 label_settings = SubResource("LabelSettings_joyma")
 vertical_alignment = 1
+
+[node name="Guns Info Container" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -277.0
+offset_top = -26.0
+offset_right = -188.0
+grow_horizontal = 0
+grow_vertical = 0
+columns = 2
+
+[node name="Guns Ammo Symbol" type="Label" parent="Guns Info Container"]
+layout_mode = 2
+text = "Guns:"
+
+[node name="Ammo Label" type="Label" parent="Guns Info Container"]
+layout_mode = 2
+text = "XXXX"

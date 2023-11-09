@@ -13,7 +13,7 @@ public partial class AircraftPistonEngine : Node
 
 	#region References, Globals
 	//[Export] Controls aircraftControls; // can assign or find in start
-	[Export] AircraftFuelManager aircraftFuelManager; // can assign in start
+	[Export] FuelManager fuelManager; // can assign in start
 	#endregion
 	
 	[Export] private Node3D propeller = null;
@@ -51,19 +51,20 @@ public partial class AircraftPistonEngine : Node
 	private bool engineOn = false; // make this nonexported after controls done
 	[Range(0f, 100f)] public float throttle = 0f; // make this nonexported after controls done
 	public bool WEP = false;
-	public const float wepMultiplier = 1.15f; // %15 percent increase in power // only for 5 minutes
+	public const float wepMultiplier = 1.10f; // %10 percent increase in rpm // only for 5 minutes
 	[Export] public float RPM = 0f;
 	[Export] public float idleRPM = 600f; // constant but need to set through editor 
 	// radials have 600-700 idle RPM
 	// v-type example, merlins are about 1000
-	[Export] public float maxRPM = 2800f; // constant but need to set through editor
-	[Export] public float power = 2500f; // HP
-	[Export] // for test
-	private float health = 100f;
+	[Export] public float leanRPM = 2250f; // when Auto lean is active, less power less than half fuel consumption
+	[Export] public float maxContRPM = 2600f; // constant but need to set through editor
+	[Export] private float power = 1900f; // HP //normal injection at normal rpm
+	[Export] private float emergencyPower = 2500f; // HP // wet injection at WEP RPM
+	public float health = 100f;
 	[Export] public float thrust = 3000f;
 	//[Export] private float fuelConsumptionPerHour = 435.55f; // cruising, it's in Litres per Hour
-	[Export] private float maxFuelConsumptionPerHour = 1107.95f; // max rpm in Litres per Hour
-	private float fuelConsumptionPerSecond = -1f; // in Litres per Hour
+	[Export] private float maxFuelConsumptionPerHour = 1041f; // max rpm in Litres per Hour
+	public float fuelConsumptionPerSecond = -1f; // in Litres per Hour
 	[Export] public float oilTemp = 50f; // not sure // make non exported after test
 	[Export] public float waterTemp = 50f; // not sure // make non exported after test
 	[Export] public float optimalOilTemp = 50f; // constant but need to set through editor // not sure
@@ -93,7 +94,7 @@ public partial class AircraftPistonEngine : Node
 				turnDirection = -1;
 				break;
 		}
-
+		fuelManager = GameManager.instance.fuelManager;
 		fuelConsumptionPerSecond = maxFuelConsumptionPerHour / 3600f;
 	}
 
@@ -109,7 +110,7 @@ public partial class AircraftPistonEngine : Node
 			EngineFailure();
 		}
 
-		if(aircraftFuelManager.totalFuelAmount <= 0 || health <= 0)//TEMP
+		if(fuelManager.totalFuelAmount <= 0 || health <= 0)//TEMP
 		{
 			EngineFailure();
 		} 
@@ -184,11 +185,9 @@ public partial class AircraftPistonEngine : Node
 	private void EngineCycle(float delta)
 	{
 		if(WEP)
-			RPM = (idleRPM + throttle / 100f * ((maxRPM - idleRPM) * health / 100f )) * wepMultiplier;
+			RPM = (idleRPM + throttle / 100f * ((maxContRPM - idleRPM) * health / 100f )) * wepMultiplier;
 		else
-			RPM = idleRPM + throttle / 100f * ((maxRPM - idleRPM) * health / 100f );
-
-		aircraftFuelManager.totalFuelAmount -= fuelConsumptionPerSecond * RPM / maxRPM * delta; // Temp
+			RPM = idleRPM + throttle / 100f * ((maxContRPM - idleRPM) * health / 100f );
 		
 		TurnPropeller(delta);
 	}
@@ -223,7 +222,7 @@ public partial class AircraftPistonEngine : Node
 	{	
 		if(!engineOn)
 		{
-			if(aircraftFuelManager.totalFuelAmount <= 0)
+			if(fuelManager.totalFuelAmount <= 0)
 				return;
 
 			if(health > 50f)
@@ -320,7 +319,7 @@ public partial class AircraftPistonEngine : Node
 			engineFailCount++;
 			timedEngineFailure = false;
 		}
-		else if(aircraftFuelManager.totalFuelAmount <= 0f) // Fuel Starvation //Temp
+		else if(fuelManager.totalFuelAmount <= 0f) // Fuel Starvation //Temp
 		{
 			engineOn = false;
 			// Specific throttle is 0

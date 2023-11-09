@@ -8,9 +8,26 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
+public enum DisplayUnitType
+{
+	Metric,
+	Impreial,
+	Aeronautical
+}
+
+public enum FlapsDisplaySetting
+{
+	Degrees,
+	Percentage
+}
+
 public partial class Settings : Node
 {
 	public static Settings instance;
+
+	public DisplayUnitType displayUnitType =  DisplayUnitType.Metric;
+	public FlapsDisplaySetting flapsDisplaySetting =  FlapsDisplaySetting.Degrees;
+	// FPS
 	public bool seeFPS = true;
 	[Export] private DisplayServer.VSyncMode vSyncMode = DisplayServer.VSyncMode.Disabled;
 	[Export] private int fpsLimit = 60;
@@ -21,12 +38,6 @@ public partial class Settings : Node
 	public override void _Ready()
 	{
 		instance = this;
-
-		
-		//f(fpsLabel == null)
-		//	fpsLabel = camera.GetChild(0).GetChild<Label>(0);
-		//	//					HUD					// Label	
-
 		ApplySettings();
 	}
 

@@ -6,6 +6,14 @@
 using Godot;
 using System;
 
+public enum PlayerVehicleType
+{
+	Aircraft,
+	GroundVehicle,
+	Ship,
+	Placement
+}
+
 public partial class GameManager : Node
 {
 	public static GameManager instance = null;
@@ -13,7 +21,10 @@ public partial class GameManager : Node
 	public Camera3D mainCamera = null;
 	[Export] public Camera3D[] cameras;
 	public Node3D playerVehicle = null;
-	public VehicleControls vehicleControls = null; 
+	[Export] public PlayerVehicleType playerVehicleType = PlayerVehicleType.Aircraft;
+	public VehicleControls vehicleControls = null;
+	public FuelManager fuelManager = null;
+	public Mechanization mechanization = null;
 	// may change class the name to controls and change to aircarft inside
 	
 	// Called when the node enters the scene tree for the first time.
@@ -24,6 +35,8 @@ public partial class GameManager : Node
 		mainCamera = FindMainCamera();
 		playerVehicle = FindPlayerVehicle();
 		vehicleControls = FindVehicleControls();
+		fuelManager = FindAircraftFuelManager();
+		mechanization = FindMechanization();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -66,6 +79,28 @@ public partial class GameManager : Node
 					return GetNode<VehicleControls>(playerVehicle.GetChild(i).GetPath());
 		
 		GD.PrintErr("Player vehicle is null!");
+		return null;
+	}
+
+	private FuelManager FindAircraftFuelManager()
+	{
+		if(playerVehicle != null)
+			for(int i = 0; i < playerVehicle.GetChildCount(); i++)
+				if(playerVehicle.GetChild(i) is FuelManager)
+					return GetNode<FuelManager>(playerVehicle.GetChild(i).GetPath());
+		
+		GD.PrintErr("Player vehicle does not have a fuel manager!");
+		return null;
+	}
+
+	private Mechanization FindMechanization()
+	{
+		if(playerVehicle != null)
+			for(int i = 0; i < playerVehicle.GetChildCount(); i++)
+				if(playerVehicle.GetChild(i) is Mechanization)
+					return GetNode<Mechanization>(playerVehicle.GetChild(i).GetPath());
+
+		GD.PrintErr("Player vehicle does not have mechanization!");
 		return null;
 	}
 }

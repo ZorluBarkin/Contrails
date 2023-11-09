@@ -1,13 +1,13 @@
+TextureRect
+GridContainer
 Node
 Label
 HFlowContainer
-GridContainer
 AspectRatioContainer
 Control
 Panel
 CenterContainer
 Container
-TextureRect
 VBoxContainer
 CheckButton
 CheckBox

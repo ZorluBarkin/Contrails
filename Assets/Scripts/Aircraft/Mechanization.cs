@@ -22,8 +22,8 @@ public partial class Mechanization : Node3D
 
 	[Export] Node3D[] leftFlaps = null; // same movement but can be damaged indipendently
 	[Export] Node3D[] rightFlaps = null; // same movement but can be damaged indipendently
-	[Export] float flapMaxDegree = 40f;
-	[Export] float flapSpeed = 0.5f;
+	[Export] public float flapMaxDegree = 40f;
+	[Export] private float flapSpeed = 0.5f;
 	[Range(-1,1)] public float flapActuation = 0f;
 
 	[Export] Node3D[] elevators = null; // same movement but can be damaged indipendently

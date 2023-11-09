@@ -77,7 +77,7 @@ public partial class EngineInfo : VBoxContainer
 	{
 		if(isPistonEngine)
 		{
-			throttleLabel.Text = ((int)pistonEngine.throttle).ToString() + '%';
+			throttleLabel.Text = ((int)pistonEngine.throttle).ToString() + "%";
 			if((int)pistonEngine.throttle > 80) // max crusing throttle
 				throttleSymbol.Texture = throttleSymbols[1];
 			else
@@ -110,11 +110,11 @@ public partial class EngineInfo : VBoxContainer
 	{
 		if(isPistonEngine)
 		{
-			propellerPitchLabel.Text = ((int)pistonEngine.propellerPitch).ToString() + '%';
+			propellerPitchLabel.Text = ((int)pistonEngine.propellerPitch).ToString() + "%";
 			waterCowlSymbol.Texture = GetWaterCowlSymbol();
-			waterCowlLabel.Text = ((int)pistonEngine.waterCowlPercentage).ToString() + '%';
+			waterCowlLabel.Text = ((int)pistonEngine.waterCowlPercentage).ToString() + "%";
 			oilCowlSymbol.Texture = GetOilCowlSymbol();
-			oilCowlLabel.Text = ((int)pistonEngine.oilCowlPercentage).ToString() + '%';
+			oilCowlLabel.Text = ((int)pistonEngine.oilCowlPercentage).ToString() + "%";
 			feathering.ButtonPressed = pistonEngine.feathered;
 		}
 		//else // Jet Engine
@@ -128,8 +128,8 @@ public partial class EngineInfo : VBoxContainer
 			if(pistonEngine.WEP)
 				return WEPSymbol;
 
-			float rpmPercent = (pistonEngine.maxRPM - (pistonEngine.maxRPM - pistonEngine.RPM)) / pistonEngine.maxRPM * 100f;
-			return RPMSymbols[Math.Clamp((int)(rpmPercent / (100f / RPMSymbols.Length)), 0, 6)];
+			float rpmPercent = (pistonEngine.maxContRPM - (pistonEngine.maxContRPM - pistonEngine.RPM)) / pistonEngine.maxContRPM * 100f;
+			return RPMSymbols[Math.Clamp((int)(rpmPercent / (100f / RPMSymbols.Length)), 0, RPMSymbols.Length - 1)];
 		}
 		else
 		{

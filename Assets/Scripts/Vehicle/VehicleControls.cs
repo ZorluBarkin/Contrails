@@ -8,15 +8,8 @@ using System;
 using System.ComponentModel.DataAnnotations;
 
 public partial class VehicleControls : Node
-{
-	public enum ControlType
-	{
-		Aircraft,
-		GroundVehicle,
-		Ship,
-		Placement
-	}
-	[Export] public ControlType controlType = ControlType.Aircraft; // not implemented yet
+{	
+	private PlayerVehicleType playerVehicleType = PlayerVehicleType.Aircraft; // not implemented yet
 
 	[Export] private AircraftDamage aircraftDamage = null;
 	[Export] private Mechanization mechanization = null;
@@ -54,6 +47,8 @@ public partial class VehicleControls : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		playerVehicleType = GameManager.instance.playerVehicleType;
+
 		if(engines[0].HasMeta("ManualPitch"))
 			hasPitchControl = true;
 		else
