@@ -16,7 +16,7 @@ public partial class AircraftPistonEngine : Node
 	[Export] FuelManager fuelManager; // can assign in start
 	#endregion
 	
-	[Export] private Node3D propeller = null;
+	[Export] private Node3D[] propellerModels = null;
 	private enum PropellerTurnAxis // x, y, z in vectors, this is local
 	{
 		X,
@@ -52,7 +52,7 @@ public partial class AircraftPistonEngine : Node
 	[Range(0f, 100f)] public float throttle = 0f; // make this nonexported after controls done
 	public bool WEP = false;
 	public const float wepMultiplier = 1.10f; // %10 percent increase in rpm // only for 5 minutes
-	[Export] public float RPM = 0f;
+	public float RPM = 0f;
 	[Export] public float idleRPM = 600f; // constant but need to set through editor 
 	// radials have 600-700 idle RPM
 	// v-type example, merlins are about 1000
@@ -195,27 +195,34 @@ public partial class AircraftPistonEngine : Node
 	private void TurnPropeller(float delta)
 	{
 		// if speed is above 200kmh turn slowly esle dont turn
-		float turnDegree = 0.05f;
+		float turnDegree = 0.05f * turnDirection;
 		if(!feathered)
 			turnDegree = Mathf.DegToRad(RPM * CalculatePropellerPitchIndegrees(propellerPitch) * turnDirection) * delta;
+
+		// makes sense but have to change this with a blurred mesh and reduce rotation speed
 
 		switch(propellerTurnAxis)
 		{
 			case PropellerTurnAxis.X:
-				propeller.RotateX(turnDegree);
+				propellerModels[0].RotateX(turnDegree);
 			break;
 			case PropellerTurnAxis.Y:
-				propeller.RotateY(turnDegree);
+				propellerModels[0].RotateY(turnDegree);
 			break;
 			case PropellerTurnAxis.Z:
-				propeller.RotateZ(turnDegree);
+				propellerModels[0].RotateZ(turnDegree);
 			break;
 		}
 	}
 	
-	private float CalculatePropellerPitchIndegrees(float propellerPitch)
+	/// <summary>
+	/// Method is static because it does not access instance members so this does not need a check. Making this static will make it faster.
+	/// </summary>
+	/// <param name="propellerPitch"></param>
+	/// <returns></returns>
+	private static float CalculatePropellerPitchIndegrees(float propellerPitch) 
 	{
-		return (-0.7f) * propellerPitch + 87f;
+		return -0.7f * propellerPitch + 87f;
 	}
 
 	private void StartEngine() // make this an event
@@ -270,7 +277,7 @@ public partial class AircraftPistonEngine : Node
 		}
 	}
 
-	private int EngineRestartPossibility()
+	private static int EngineRestartPossibility()
 	{
 		return GD.RandRange(0, 50);
 	}
