@@ -1,4 +1,6 @@
+AudioStreamPlayer3D
 Node
+AudioListener3D
 TextureRect
 GridContainer
 Label

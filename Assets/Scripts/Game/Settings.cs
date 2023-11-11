@@ -30,7 +30,7 @@ public partial class Settings : Node
 	// FPS
 	public bool seeFPS = true;
 	[Export] private DisplayServer.VSyncMode vSyncMode = DisplayServer.VSyncMode.Disabled;
-	[Export] private int fpsLimit = 60;
+	[Export] public int fpsLimit = 60;
 
 	[Export] private bool apply = false; // remove export after ui is implemented
 

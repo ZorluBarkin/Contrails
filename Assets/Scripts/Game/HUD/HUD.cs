@@ -154,8 +154,8 @@ public partial class HUD : Control // Should not be a Singleton
 	private string GetFuelInTime()
 	{
 		int hour = (int)(fuelManager.fuelInSeconds / 3600f);
-		int minutes = (int)(fuelManager.fuelInSeconds % 3600f / 60);
-		int seconds = (int)(fuelManager.fuelInSeconds % 3600f % 60);
+		int minutes = (int)(fuelManager.fuelInSeconds % 3600f / 60f);
+		int seconds = (int)(fuelManager.fuelInSeconds % 3600f % 60f);
 		return hour.ToString() + ":" + minutes.ToString() + ":" + seconds.ToString(); // concatting strings are faster
 	}
 

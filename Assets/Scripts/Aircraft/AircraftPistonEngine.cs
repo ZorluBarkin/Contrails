@@ -16,7 +16,11 @@ public partial class AircraftPistonEngine : Node
 	[Export] FuelManager fuelManager; // can assign in start
 	#endregion
 	
+	[Export] private float turn = 1f;
+
+	// max 3 Size, index: 0 is very slow turning, 1 is blurry, 2 is broken
 	[Export] private Node3D[] propellerModels = null;
+	private bool propellerBroken = false;
 	private enum PropellerTurnAxis // x, y, z in vectors, this is local
 	{
 		X,
@@ -48,7 +52,7 @@ public partial class AircraftPistonEngine : Node
 	};
 	[Export] private RotationDirection rotationDirection = RotationDirection.Left;
 
-	private bool engineOn = false; // make this nonexported after controls done
+	public bool engineOn = false; // make this nonexported after controls done
 	[Range(0f, 100f)] public float throttle = 0f; // make this nonexported after controls done
 	public bool WEP = false;
 	public const float wepMultiplier = 1.10f; // %10 percent increase in rpm // only for 5 minutes
@@ -72,6 +76,18 @@ public partial class AircraftPistonEngine : Node
 	[Export] [Range(0f,100f)] public float waterCowlPercentage = 0; // 0 is not open 100 is fully open, creates drag
 	[Export] [Range(0f,100f)] public float oilCowlPercentage = 0; // 0 is not open 100 is fully open, creates drag
 	
+	// Engine Startup
+	[Export] private float turnoverTimeStamp = 15f;
+	[Export] private float ignitionTimeStamp = 30f;
+	[Export] private AudioStreamOggVorbis turnoverSound = null;
+	[Export] private AudioStreamOggVorbis ignitionSound = null;
+	[Export] private AudioStreamOggVorbis idleSound = null;
+	[Export] private AudioStreamOggVorbis cruisingSound = null;
+	[Export] private AudioStreamPlayer3D audioPlayer = null;
+	private bool engineStarted = false;
+
+
+	[Export] public bool stopAudio = false; // delete after test
 	[Export] public bool onFire = false; // close after test
 	[Export] private bool extinguished = false; // close after test
 	[Export] public int extinguisherCount = 1;
@@ -129,7 +145,7 @@ public partial class AircraftPistonEngine : Node
 		if(GetMeta("EngineOn").AsBool())
 		{
 			if(!engineOn && !feathered)
-				StartEngine();
+				StartEngine((float) delta);
 		}
 		else
 		{
@@ -142,6 +158,11 @@ public partial class AircraftPistonEngine : Node
 
 		if(feathered)
 			TurnPropeller((float) delta);
+
+		//SoundUpdate();
+
+		//if(stopAudio)
+		//	audioPlayer.Stop();
 	}
 
 	private void SetThrottle()
@@ -194,13 +215,16 @@ public partial class AircraftPistonEngine : Node
 
 	private void TurnPropeller(float delta)
 	{
+		if(propellerBroken)
+			return;
+
 		// if speed is above 200kmh turn slowly esle dont turn
 		float turnDegree = 0.05f * turnDirection;
 		if(!feathered)
 			turnDegree = Mathf.DegToRad(RPM * CalculatePropellerPitchIndegrees(propellerPitch) * turnDirection) * delta;
 
 		// makes sense but have to change this with a blurred mesh and reduce rotation speed
-
+		//turnDegree = turn * turnDirection * delta; // after 20f, it gets wierd
 		switch(propellerTurnAxis)
 		{
 			case PropellerTurnAxis.X:
@@ -225,8 +249,14 @@ public partial class AircraftPistonEngine : Node
 		return -0.7f * propellerPitch + 87f;
 	}
 
-	private void StartEngine() // make this an event
+	private void StartEngine(float delta) // make this an event
 	{	
+		if(!engineStarted)
+		{
+			EngineStartup(delta);
+			return;
+		}
+
 		if(!engineOn)
 		{
 			if(fuelManager.totalFuelAmount <= 0)
@@ -256,16 +286,99 @@ public partial class AircraftPistonEngine : Node
 			{
 				engineOn = false;
 			}
+
+			SetMeta("EngineOn", engineOn);
 		}
-		SetMeta("EngineOn", engineOn);
+	}
+
+	private float time = 0f;
+	private void EngineStartup(float delta)
+	{
+		//time += delta;
+		//if(time < turnoverTimeStamp)
+		//{
+		//	GD.Print("Turnover");
+		//	audioStream.Stream = turnoverSound;
+		//	audioStream.Play();
+		//}
+		//else if(time < ignitionTimeStamp)
+		//{
+		//	GD.Print("Ignition");
+		//	audioStream.Stop();
+		//	audioStream.Stream = ignitionSound;
+		//	audioStream.Play();
+		//}
+		//else
+		//{
+		//	audioStream.Stop();
+		//	audioStream.Stream = ignitionSound;
+		//	audioStream.Play();
+		//	GD.Print("started");
+			engineStarted = true;
+		//}
 	}
 
 	private void StopEngine()
 	{
+		if(audioPlayer.Playing)
+			audioPlayer.Stop();
+
 		engineOn = false;
 		SetMeta("EngineOn", engineOn);
 	}
-	
+
+	private void SoundUpdate()
+	{
+		if(engineOn)
+		{
+			if(RPM < idleRPM + 700) // temp
+			{
+				if(!audioPlayer.Playing)
+				{
+					//audioStream.Stop();
+					audioPlayer.Stream = idleSound;
+					audioPlayer.PitchScale = RPM / idleRPM;
+					audioPlayer.VolumeDb = 2.5f;
+					//audioPlayer.MaxDb = -5f;
+					audioPlayer.Play();
+				}
+				else
+				{
+					if(audioPlayer.Stream != idleSound)
+					{
+						audioPlayer.Stop();
+						audioPlayer.Stream = idleSound;
+						audioPlayer.VolumeDb = 2.5f;
+						//audioPlayer.MaxDb = -5f;
+						audioPlayer.Play();
+					}
+					audioPlayer.PitchScale = RPM / idleRPM;
+				}
+			}
+			else
+			{
+				if(audioPlayer.Stream != cruisingSound) // can never be not playing
+				{
+					audioPlayer.Stop();
+					audioPlayer.Stream = cruisingSound;
+					audioPlayer.VolumeDb = 3f;
+					//audioPlayer.MaxDb = 6f;
+					//audioPlayer.PitchScale = 1f + ((RPM - leanRPM) / leanRPM);
+					audioPlayer.Play();
+				}
+				else
+				{
+					//audioPlayer.StreamPaused = true;
+					//audioPlayer.PitchScale = 1f + ((RPM - leanRPM) / leanRPM);
+					//audioPlayer.StreamPaused = false;
+				}
+				audioPlayer.PitchScale = 1f + ((RPM - leanRPM) / leanRPM);
+			}
+		}
+	}
+
+	// --------------------------------------------------- Engine Failures ---------------------------------------------------
+
 	private void OnFire(float delta)
 	{
 		health -= 5 * delta; // 5 hp damage per second

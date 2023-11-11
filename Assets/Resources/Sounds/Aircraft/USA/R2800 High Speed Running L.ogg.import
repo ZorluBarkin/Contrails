@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cqapltawkk7yj"
+path="res://.godot/imported/R2800 High Speed Running L.ogg-de98ba6e96246d2978e98d1b87c1bf08.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Resources/Sounds/Aircraft/USA/R2800 High Speed Running L.ogg"
+dest_files=["res://.godot/imported/R2800 High Speed Running L.ogg-de98ba6e96246d2978e98d1b87c1bf08.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

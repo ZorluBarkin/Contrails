@@ -1,3 +1,5 @@
+res://Assets/Scripts/Aircraft
+res://Assets/Resources/Sounds/Aircraft/USA
 res://Assets/Sprites/HUD/Tacometer
 res://Assets/Subscenes/HUD
 res://Assets/Subscenes
@@ -10,7 +12,6 @@ res://Assets/Sprites
 res://Assets
 res://Assets/Subscenes/Aircraft
 res://Assets/Scripts/Behaviour
-res://Assets/Scripts/Aircraft
 res://Assets/Scripts/Weapons
 res://Assets/Subscenes/Ordinance/USA
 res://Scenes
