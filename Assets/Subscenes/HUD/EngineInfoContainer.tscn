@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cyrp0f0p5hipt"]
+[gd_scene load_steps=25 format=3 uid="uid://cyrp0f0p5hipt"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Game/HUD/EngineInfo.cs" id="1_ptki8"]
 [ext_resource type="Texture2D" uid="uid://cudfxp61h7y17" path="res://Assets/Sprites/HUD/Engine.png" id="2_uk3bm"]
@@ -28,6 +28,8 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_se5sx"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2fbaw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5omad"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_76l1x"]
 font_size = 12
@@ -81,6 +83,7 @@ stretch_mode = 5
 [node name="Throttle Label" type="Label" parent="Base Info Container"]
 layout_mode = 2
 text = "XXX%"
+label_settings = SubResource("LabelSettings_5omad")
 vertical_alignment = 2
 
 [node name="RPM" type="TextureRect" parent="Base Info Container"]

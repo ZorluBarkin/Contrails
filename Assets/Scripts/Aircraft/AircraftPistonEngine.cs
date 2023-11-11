@@ -38,12 +38,15 @@ public partial class AircraftPistonEngine : Node
 	}
 	[Export] private PropellerType propellerType = PropellerType.ConstantSpeed;
 
+	public bool highPitch = false;
+
 	[Range(0, 100)] public float propellerPitch = 100f; // 17 to 87 degrees
 	// higher (Coarse) pitch is better for cruising, lower engine RPMs
 	// lower (Fine) pitch is better for more power and acceleration, higher engine rpms
 	// make this nonexported after controls done
 	//propeller max RPM are around 2500-3000
-	public bool feathered = false;
+	public bool manualPitchControl = false;
+	public bool feathered = false; // state
 
 	private enum RotationDirection
 	{
@@ -52,10 +55,14 @@ public partial class AircraftPistonEngine : Node
 	};
 	[Export] private RotationDirection rotationDirection = RotationDirection.Left;
 
-	public bool engineOn = false; // make this nonexported after controls done
+	private bool engineOn = false; // make this nonexported after controls done
+	public bool startEngine = false; // make this nonexported after controls done
+	public bool stopEngine = false; // make this nonexported after controls done
 	[Range(0f, 100f)] public float throttle = 0f; // make this nonexported after controls done
 	public bool WEP = false;
 	public const float wepMultiplier = 1.10f; // %10 percent increase in rpm // only for 5 minutes
+	private float wepTime = 300f; // %10 percent increase in rpm // only for 5 minutes
+	[Export] public bool dryWep = false; // State
 	public float RPM = 0f;
 	[Export] public float idleRPM = 600f; // constant but need to set through editor 
 	// radials have 600-700 idle RPM
@@ -64,6 +71,8 @@ public partial class AircraftPistonEngine : Node
 	[Export] public float maxContRPM = 2600f; // constant but need to set through editor
 	[Export] private float power = 1900f; // HP //normal injection at normal rpm
 	[Export] private float emergencyPower = 2500f; // HP // wet injection at WEP RPM
+	[Export] private float dryWepPower = 2200f; // Dry injection
+	[Export] private float currentPowerOutput = 2500f; // HP // wet injection at WEP RPM
 	public float health = 100f;
 	[Export] public float thrust = 3000f;
 	//[Export] private float fuelConsumptionPerHour = 435.55f; // cruising, it's in Litres per Hour
@@ -77,17 +86,14 @@ public partial class AircraftPistonEngine : Node
 	[Export] [Range(0f,100f)] public float oilCowlPercentage = 0; // 0 is not open 100 is fully open, creates drag
 	
 	// Engine Startup
-	[Export] private float turnoverTimeStamp = 15f;
-	[Export] private float ignitionTimeStamp = 30f;
+	[Export] private float turnoverTimeStamp = 5f;
+	[Export] private float ignitionTimeStamp = 5f + 15f;
 	[Export] private AudioStreamOggVorbis turnoverSound = null;
 	[Export] private AudioStreamOggVorbis ignitionSound = null;
 	[Export] private AudioStreamOggVorbis idleSound = null;
 	[Export] private AudioStreamOggVorbis cruisingSound = null;
 	[Export] private AudioStreamPlayer3D audioPlayer = null;
-	private bool engineStarted = false;
 
-
-	[Export] public bool stopAudio = false; // delete after test
 	[Export] public bool onFire = false; // close after test
 	[Export] private bool extinguished = false; // close after test
 	[Export] public int extinguisherCount = 1;
@@ -117,8 +123,8 @@ public partial class AircraftPistonEngine : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		SetThrottle();
 		SetPropellerPitch();
+		UseWep((float) delta);
 
 		if(timedEngineFailure)
 		{
@@ -142,74 +148,92 @@ public partial class AircraftPistonEngine : Node
 			EngineFailureDefiner();
 		}
 		
-		if(GetMeta("EngineOn").AsBool())
-		{
-			if(!engineOn && !feathered)
-				StartEngine((float) delta);
-		}
-		else
-		{
-			if(engineOn)
-				StopEngine();
-		}
+		OnEngineStateChange(delta);	
 
 		if(engineOn)
 			EngineCycle((float) delta);
 
 		if(feathered)
 			TurnPropeller((float) delta);
-
-		//SoundUpdate();
-
-		//if(stopAudio)
-		//	audioPlayer.Stop();
-	}
-
-	private void SetThrottle()
-	{
-		throttle = (float) GetMeta("Throttle");
-		if(throttle == 100f)
-			WEP = GetMeta("WEP").AsBool();
 	}
 
 	private void SetPropellerPitch()
 	{
-		if(GetMeta("Feathering").AsBool())
+		if(feathered)
 		{
-			if(!feathered)
-				feathered = true;
-
-			propellerPitch = 100f;
-
-			// close radiators
-
-			StopEngine();
-			return;
+			if(propellerPitch < 100f)
+			{
+				propellerPitch = 100f;
+				// close radiators
+				StopEngine();
+			}
 		}
 		else
-		{
-			if(feathered)
-				feathered = false;
+		{	
+			switch(propellerType)
+			{
+				case PropellerType.ControllablePitch:
+				{
+					if(!manualPitchControl)
+					{
+						// Auto propeller pitch logic
+						propellerPitch = 100 - throttle; // very basic algoithm
+						// high throttle means desire to accelerate
+						// lower thrttole means more cruising
+					}
+					break;
+				}
+				case PropellerType.TwoPosition:
+				{
+					if(highPitch)
+					{
+						propellerPitch = 0f;
+					}
+					else
+					{
+						if(propellerPitch < 100f)
+							propellerPitch = 100f;
+					}
+					break;
+				}
+			}
 		}
+	}
 
-		if(GetMeta("ManualPitch").AsBool()) // Manual mode
-			propellerPitch = (float) GetMeta("PropellerPitch");
-		else
+	private void UseWep(float delta)
+	{
+		if(throttle < 100f)
+			WEP = false;
+
+		if(WEP)
 		{
-			// Auto propeller pitch logic
-			propellerPitch = 100 - throttle; // very basic algoithm
-			// high throttle means desire to accelerate
-			// lower thrttole means more cruising
+			if(wepTime > 0)
+				wepTime -= delta;
+			else
+			{
+				if(!dryWep)
+					dryWep = true; // make engines overheat quickly
+			}
 		}
 	}
 
 	private void EngineCycle(float delta)
 	{
-		if(WEP)
+		if(WEP || dryWep)
 			RPM = (idleRPM + throttle / 100f * ((maxContRPM - idleRPM) * health / 100f )) * wepMultiplier;
 		else
 			RPM = idleRPM + throttle / 100f * ((maxContRPM - idleRPM) * health / 100f );
 		
+		if(WEP && !dryWep)
+			currentPowerOutput = emergencyPower;
+		else if(WEP && dryWep)
+			currentPowerOutput = dryWepPower;
+		
+		else
+		{
+			//currentPowerOutput = RPM * power
+		}
+
 		TurnPropeller(delta);
 	}
 
@@ -249,14 +273,26 @@ public partial class AircraftPistonEngine : Node
 		return -0.7f * propellerPitch + 87f;
 	}
 
-	private void StartEngine(float delta) // make this an event
-	{	
-		if(!engineStarted)
+	private void OnEngineStateChange(double delta)
+	{
+		if(startEngine)
 		{
-			EngineStartup(delta);
-			return;
-		}
+			startEngine = false;
 
+			if(!engineOn && !feathered)
+			{
+				StartEngine((float)delta);
+			}
+		}
+		else if(stopEngine)
+		{
+			stopEngine = false;
+			StopEngine();
+		}
+	}
+
+	private void StartEngine(float delta) // make this an event
+	{			
 		if(!engineOn)
 		{
 			if(fuelManager.totalFuelAmount <= 0)
@@ -264,6 +300,7 @@ public partial class AircraftPistonEngine : Node
 
 			if(health > 50f)
 			{
+				EngineStartup(delta); // Re look Execution steps
 				engineOn = true;
 			}
 			else if(health > 0f) // restart
@@ -286,99 +323,46 @@ public partial class AircraftPistonEngine : Node
 			{
 				engineOn = false;
 			}
-
-			SetMeta("EngineOn", engineOn);
 		}
 	}
 
 	private float time = 0f;
 	private void EngineStartup(float delta)
 	{
-		//time += delta;
-		//if(time < turnoverTimeStamp)
-		//{
-		//	GD.Print("Turnover");
-		//	audioStream.Stream = turnoverSound;
-		//	audioStream.Play();
-		//}
-		//else if(time < ignitionTimeStamp)
-		//{
-		//	GD.Print("Ignition");
-		//	audioStream.Stop();
-		//	audioStream.Stream = ignitionSound;
-		//	audioStream.Play();
-		//}
-		//else
-		//{
-		//	audioStream.Stop();
-		//	audioStream.Stream = ignitionSound;
-		//	audioStream.Play();
-		//	GD.Print("started");
-			engineStarted = true;
-		//}
+		time += delta;
+		if(time < turnoverTimeStamp)
+		{
+			GD.Print("Turnover");
+			//audioStream.Stream = turnoverSound;
+			//audioStream.Play();
+		}
+		else if(time < ignitionTimeStamp)
+		{
+			GD.Print("Ignition");
+			//audioStream.Stop();
+			//audioStream.Stream = ignitionSound;
+			//audioStream.Play();
+		}
+		else
+		{
+			GD.Print("started");
+			//audioStream.Stop();
+			//audioStream.Stream = idleSound;
+			//audioStream.Play();
+		}
 	}
 
 	private void StopEngine()
 	{
-		if(audioPlayer.Playing)
-			audioPlayer.Stop();
-
+		//if(audioPlayer.Playing)
+		//	audioPlayer.Stop();
+		RPM = 0f;
+		WEP = false;
 		engineOn = false;
-		SetMeta("EngineOn", engineOn);
-	}
-
-	private void SoundUpdate()
-	{
-		if(engineOn)
-		{
-			if(RPM < idleRPM + 700) // temp
-			{
-				if(!audioPlayer.Playing)
-				{
-					//audioStream.Stop();
-					audioPlayer.Stream = idleSound;
-					audioPlayer.PitchScale = RPM / idleRPM;
-					audioPlayer.VolumeDb = 2.5f;
-					//audioPlayer.MaxDb = -5f;
-					audioPlayer.Play();
-				}
-				else
-				{
-					if(audioPlayer.Stream != idleSound)
-					{
-						audioPlayer.Stop();
-						audioPlayer.Stream = idleSound;
-						audioPlayer.VolumeDb = 2.5f;
-						//audioPlayer.MaxDb = -5f;
-						audioPlayer.Play();
-					}
-					audioPlayer.PitchScale = RPM / idleRPM;
-				}
-			}
-			else
-			{
-				if(audioPlayer.Stream != cruisingSound) // can never be not playing
-				{
-					audioPlayer.Stop();
-					audioPlayer.Stream = cruisingSound;
-					audioPlayer.VolumeDb = 3f;
-					//audioPlayer.MaxDb = 6f;
-					//audioPlayer.PitchScale = 1f + ((RPM - leanRPM) / leanRPM);
-					audioPlayer.Play();
-				}
-				else
-				{
-					//audioPlayer.StreamPaused = true;
-					//audioPlayer.PitchScale = 1f + ((RPM - leanRPM) / leanRPM);
-					//audioPlayer.StreamPaused = false;
-				}
-				audioPlayer.PitchScale = 1f + ((RPM - leanRPM) / leanRPM);
-			}
-		}
 	}
 
 	// --------------------------------------------------- Engine Failures ---------------------------------------------------
-
+	#region Engine Failures
 	private void OnFire(float delta)
 	{
 		health -= 5 * delta; // 5 hp damage per second
@@ -457,5 +441,6 @@ public partial class AircraftPistonEngine : Node
 			timedEngineFailure = false;
 		}
 	}
+	#endregion
 }
 

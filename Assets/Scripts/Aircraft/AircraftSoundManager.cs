@@ -21,7 +21,7 @@ public partial class AircraftSoundManager : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		SetEngine();
+		SetEngines();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,7 +35,7 @@ public partial class AircraftSoundManager : Node
 		//{
 		//	pistonEngines[1].throttle = testThrottle;
 		//}
-		
+
 		//PlayEngineSounds();
 	}
 
@@ -49,54 +49,54 @@ public partial class AircraftSoundManager : Node
 
 	private void PlayPistonEngineSound()
 	{
-		int activeEngineNumber = 0;
-		bool sameRPM = true;
-		for(int i = 0; i < pistonEngines.Length;i++)
-		{
-			if(pistonEngines[i].engineOn)
-				activeEngineNumber++;
-			else
-				sameRPM = false;
-		}
-
-		if(sameRPM)
-		{
-			if(!centralSound.Playing)
-				centralSound.Play();
-			else
-			{
-				// volume *= 2;
-				centralSound.PitchScale = 1f + ((pistonEngines[0].RPM - pistonEngines[0].leanRPM) / pistonEngines[0].leanRPM);
-			}
-			return;
-		}
-
-		if(activeEngineNumber > 0)
-		{
-			if(centralSound.Playing)
-				centralSound.Stop();
-
-			for(int i = 0; i < pistonEngines.Length; i++)
-			{
-				if(pistonEngines[i].engineOn)
-				{
-					if(!engineSoundPlayers[i].Playing)
-						engineSoundPlayers[i].Play();
-					else
-					{
-						engineSoundPlayers[i].PitchScale = 1f + ((pistonEngines[i].RPM - pistonEngines[i].leanRPM) / pistonEngines[i].leanRPM);
-					}
-				}
-				else
-				{
-					if(engineSoundPlayers[i].Playing)
-						engineSoundPlayers[i].Stop();
-				}
-			}
-		}
+		//int activeEngineNumber = 0;
+		//bool sameRPM = true;
+		//for(int i = 0; i < pistonEngines.Length;i++)
+		//{
+		//	if(pistonEngines[i].engineOn)
+		//		activeEngineNumber++;
+		//	else
+		//		sameRPM = false;
+		//}
+//
+		//if(sameRPM)
+		//{
+		//	if(!centralSound.Playing)
+		//		centralSound.Play();
+		//	else
+		//	{
+		//		// volume *= 2;
+		//		centralSound.PitchScale = 1f + ((pistonEngines[0].RPM - pistonEngines[0].leanRPM) / pistonEngines[0].leanRPM);
+		//	}
+		//	return;
+		//}
+//
+		//if(activeEngineNumber > 0)
+		//{
+		//	if(centralSound.Playing)
+		//		centralSound.Stop();
+//
+		//	for(int i = 0; i < pistonEngines.Length; i++)
+		//	{
+		//		if(pistonEngines[i].engineOn)
+		//		{
+		//			if(!engineSoundPlayers[i].Playing)
+		//				engineSoundPlayers[i].Play();
+		//			else
+		//			{
+		//				engineSoundPlayers[i].PitchScale = 1f + ((pistonEngines[i].RPM - pistonEngines[i].leanRPM) / pistonEngines[i].leanRPM);
+		//			}
+		//		}
+		//		else
+		//		{
+		//			if(engineSoundPlayers[i].Playing)
+		//				engineSoundPlayers[i].Stop();
+		//		}
+		//	}
+		//}
 	}
 
-	private void SetEngine()
+	private void SetEngines()
 	{
 		pistonEngines = new AircraftPistonEngine[GameManager.instance.vehicleControls.engines.Length];
 		//jetEngines = new AircraftJetEngine[vehicleControls.engines.Length];
@@ -116,6 +116,5 @@ public partial class AircraftSoundManager : Node
 			//	isPistonEngine = false;
 			//}
 		}
-		
 	}
 }

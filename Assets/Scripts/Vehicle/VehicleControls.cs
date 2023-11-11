@@ -30,10 +30,12 @@ public partial class VehicleControls : Node
 		Outer
 	}
 	[Export] private EngineControlMode engineControlMode = EngineControlMode.Combined; // remove export after control implementation
+	private AircraftPistonEngine[] pistonEngines;
+	//private AircraftjetEngine[] jetEngines;
+	private bool isPistonEngine = false;
 	[Export] [Range(0,100)] public int throttle = 0; // make these switch for each engine in non fighter aircraft
 	[Export] public bool WEP = false; // %15 percent increase in power // only for 5 minutes
-	private bool wepEnabled = true;
-	private float wepTime = 300f; //5 minutes, 300 seconds
+	//private float wepTime = 300f; //5 minutes, 300 seconds
 
 	[Export] private bool manualPitchControl = false;
 	private bool hasPitchControl = false;
@@ -48,21 +50,23 @@ public partial class VehicleControls : Node
 	public override void _Ready()
 	{
 		playerVehicleType = GameManager.instance.playerVehicleType;
+		SetEngine();
 
 		if(engines[0].HasMeta("ManualPitch"))
 			hasPitchControl = true;
 		else
 			hasPitchControl = false;
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		// after WEP Input is gotten
-		if(wepEnabled)
-			UseWEP((float) delta);
-		else
-			WEP = false;
+		//if(wepEnabled)
+		//	UseWEP((float) delta);
+		//else
+		//	WEP = false;
 			
 
 		if(startEngine) // temp
@@ -93,20 +97,20 @@ public partial class VehicleControls : Node
 		}
 	}
 
-	private void UseWEP(float delta)
-	{
-		if(wepTime <= 0)
-		{
-			WEP = false;
-			wepEnabled = false;
-			return;
-		}
-
-		if(WEP)
-		{
-			wepTime -= delta;
-		}
-	}
+	//private void UseWEP(float delta)
+	//{
+	//	if(wepTime <= 0)
+	//	{
+	//		WEP = false;
+	//		wepEnabled = false;
+	//		return;
+	//	}
+//
+	//	if(WEP)
+	//	{
+	//		wepTime -= delta;
+	//	}
+	//}
 
 	private void OnStartEngine()
 	{
@@ -118,7 +122,10 @@ public partial class VehicleControls : Node
 			case EngineStartMode.Combined:
 				for(int i = 0; i < engines.Length; i++)
 				{
-					engines[i].SetMeta("EngineOn", true);
+					if(isPistonEngine)
+					{
+						pistonEngines[i].startEngine = true;
+					}
 				}
 			break;
 		}
@@ -134,7 +141,7 @@ public partial class VehicleControls : Node
 			case EngineStartMode.Combined:
 				for(int i = 0; i < engines.Length; i++)
 				{
-					engines[i].SetMeta("EngineOn", false);
+					pistonEngines[i].stopEngine = true;
 				}
 			break;
 		}
@@ -145,21 +152,14 @@ public partial class VehicleControls : Node
 		if(manualPitchControl)
 		{
 			for(int i = 0; i < engines.Length; i++)
-			{
-				if(!engines[i].GetMeta("ManualPitch").AsBool())
-					engines[i].SetMeta("ManualPitch", true);
-				
 				SetPropellerPitch();
-			}
 		}
-
-		if(!manualPitchControl)
+		else
 		{
 			for(int i = 0; i < engines.Length; i++)
-			{
-				if(engines[i].GetMeta("ManualPitch").AsBool())
-					engines[i].SetMeta("ManualPitch", false);
-			}
+				if(isPistonEngine)
+					if(pistonEngines[i].manualPitchControl)
+						manualPitchControl = false;
 		}
 	}
 
@@ -170,7 +170,8 @@ public partial class VehicleControls : Node
 			case EngineControlMode.Combined:
 				for(int i = 0; i < engines.Length; i++)
 				{
-					engines[i].SetMeta("Throttle", throttle);
+					if(isPistonEngine)
+						pistonEngines[i].throttle = throttle;
 				}
 			break;
 			case EngineControlMode.Specific:
@@ -188,16 +189,19 @@ public partial class VehicleControls : Node
 		{
 			for(int i = 0; i < engines.Length; i++)
 			{
-				if(engines[i].HasMeta("WEP"))
-					engines[i].SetMeta("WEP", true);
+				if(isPistonEngine)
+					pistonEngines[i].WEP = true;
 			}
 		}
 		else
 		{
 			for(int i = 0; i < engines.Length; i++)
 			{
-				if(engines[i].HasMeta("WEP"))
-					engines[i].SetMeta("WEP", false);
+				if(isPistonEngine)
+				{
+					if(pistonEngines[i].WEP)
+						pistonEngines[i].WEP = false;
+				}
 			}
 		}
 	}
@@ -209,7 +213,8 @@ public partial class VehicleControls : Node
 			case EngineControlMode.Combined:
 				for(int i = 0; i < engines.Length; i++)
 				{
-					engines[i].SetMeta("PropellerPitch", propellerPitch);
+					if(isPistonEngine)
+						pistonEngines[i].propellerPitch = propellerPitch;
 				}
 			break;
 			case EngineControlMode.Specific:
@@ -230,17 +235,42 @@ public partial class VehicleControls : Node
 		{
 			for(int i = 0; i < engines.Length; i++)
 			{
-				if(!engines[i].GetMeta("Feathering").AsBool())
-					engines[i].SetMeta("Feathering", true);
+				if(isPistonEngine)
+					pistonEngines[i].feathered = true;
 			}
 		}
 		else
 		{
 			for(int i = 0; i < engines.Length; i++)
 			{
-				if(engines[i].GetMeta("Feathering").AsBool())
-					engines[i].SetMeta("Feathering", false);
+				if(isPistonEngine)
+				{
+					if(pistonEngines[i].feathered)
+						pistonEngines[i].feathered = false;
+				}
 			}
+		}
+	}
+
+	private void SetEngine()
+	{
+		pistonEngines = new AircraftPistonEngine[GameManager.instance.vehicleControls.engines.Length];
+		//jetEngines = new AircraftJetEngine[vehicleControls.engines.Length];
+		for(int i = 0; i <  GameManager.instance.vehicleControls.engines.Length; i++)
+		{
+			if( GameManager.instance.vehicleControls.engines[i] is AircraftPistonEngine)
+			{
+				pistonEngines[i] = GetNode<AircraftPistonEngine>( GameManager.instance.vehicleControls.engines[i].GetPath());
+				isPistonEngine = true;
+				//Array.Clear(jetEngines);
+			}
+			else
+			{GD.Print("Its not piston");}
+			//else (vehicleControls.engines[i] is AircraftJetEngine)
+			//{
+			//	jetEngines = GetNode<AircraftJetEngine>(vehicleControls.engines[i].GetPath());
+			//	isPistonEngine = false;
+			//}
 		}
 	}
 }

@@ -161,9 +161,11 @@ public partial class LandingGear : Node
 		gearDoors = new GearDoor[gearDoorModels.Length];
 		for(int i = 0; i < gearDoors.Length; i++)
 		{
-			gearDoors[i] = new GearDoor();
-			gearDoors[i].door = gearDoorModels[i];
-			switch(doorsOpeningDirection[i])
+            gearDoors[i] = new GearDoor
+            {
+                door = gearDoorModels[i]
+            };
+            switch (doorsOpeningDirection[i])
 			{
 				case 0:
 					gearDoors[i].openingDirection = DoorOpeningDirection.Left;

@@ -78,10 +78,26 @@ public partial class EngineInfo : VBoxContainer
 		if(isPistonEngine)
 		{
 			throttleLabel.Text = ((int)pistonEngine.throttle).ToString() + "%";
-			if((int)pistonEngine.throttle > 80) // max crusing throttle
+			if((int)pistonEngine.throttle > 82) // change to max crusing throttle
+			{
 				throttleSymbol.Texture = throttleSymbols[1];
+				if(pistonEngine.WEP)
+				{
+					throttleLabel.LabelSettings.FontColor = Colors.Red;
+				}
+				else if (pistonEngine.dryWep)
+				{
+					throttleLabel.LabelSettings.FontColor = Colors.Orange;
+				}
+				else
+				{
+					throttleLabel.LabelSettings.FontColor = Colors.White;
+				}
+			} 
 			else
+			{
 				throttleSymbol.Texture = throttleSymbols[0];
+			}
 
 			RPMLabel.Text = ((int)pistonEngine.RPM).ToString();
 			RPMSymbol.Texture = GetRPMSymbol();
