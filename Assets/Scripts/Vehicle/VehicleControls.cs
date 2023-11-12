@@ -37,6 +37,7 @@ public partial class VehicleControls : Node
 	[Export] [Range(0f, 100f)] private float propellerPitch = 0f;
 
 	[Export] private bool featherPropeller = false;
+	[Export] private bool extinguish = false;
 	[Export] private bool startEngine = false; // TEMP
 	[Export] private bool stopEngine = false; // TEMP
 	[Export] private bool actuateGears = false; // TEMP
@@ -85,6 +86,12 @@ public partial class VehicleControls : Node
 				}
 
 				SetThrottle();
+
+				if(extinguish)
+				{
+					ExtinguishEngine();
+					extinguish = false;
+				}
 
 				if(hasPitchControl && ! featherPropeller)
 				{
@@ -252,6 +259,18 @@ public partial class VehicleControls : Node
 					if(pistonEngines[i].feathered)
 						pistonEngines[i].feathered = false;
 				}
+			}
+		}
+	}
+
+	private void ExtinguishEngine()
+	{
+		for(int i = 0; i < engines.Length; i++)
+		{
+			if(isPistonEngine)
+			{
+				if(pistonEngines[i].onFire)
+					pistonEngines[i].extinguish = true;
 			}
 		}
 	}

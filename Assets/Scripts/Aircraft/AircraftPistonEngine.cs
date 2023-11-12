@@ -95,7 +95,7 @@ public partial class AircraftPistonEngine : Node
 	[Export] private AudioStreamPlayer3D audioPlayer = null;
 
 	[Export] public bool onFire = false; // close after test
-	[Export] private bool extinguished = false; // close after test
+	public bool extinguish = false; // close after test
 	[Export] public int extinguisherCount = 1;
 	private int engineRestartChance = -1;
 	private bool timedEngineFailure = false;
@@ -368,7 +368,7 @@ public partial class AircraftPistonEngine : Node
 		health -= 5 * delta; // 5 hp damage per second
 		// initilize animation / partical effect and fire sounds
 
-		if(extinguished && extinguisherCount > 0)
+		if(extinguish && extinguisherCount > 0)
 		{
 			EngineFailure();
 		}
@@ -411,7 +411,7 @@ public partial class AircraftPistonEngine : Node
 			if(onFire)
 			{
 				onFire = false;
-				extinguished = false;
+				extinguish = false;
 				// cease partical effet / animation and stop fire sound
 			}
 		}
@@ -429,11 +429,11 @@ public partial class AircraftPistonEngine : Node
 			// Specific throttle is 0
 			// play engine stop sound
 		}
-		else if(extinguished)
+		else if(extinguish)
 		{
 			onFire = false;
 			extinguisherCount--;
-			extinguished = false;
+			extinguish = false;
 			// close animation
 			// cease fire sounds
 			engineOn = false;
