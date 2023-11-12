@@ -55,7 +55,7 @@ public partial class AircraftPistonEngine : Node
 	};
 	[Export] private RotationDirection rotationDirection = RotationDirection.Left;
 
-	private bool engineOn = false; // make this nonexported after controls done
+	public bool engineOn = false; // make this nonexported after controls done
 	public bool startEngine = false; // make this nonexported after controls done
 	public bool stopEngine = false; // make this nonexported after controls done
 	[Range(0f, 100f)] public float throttle = 0f; // make this nonexported after controls done
@@ -362,7 +362,7 @@ public partial class AircraftPistonEngine : Node
 	}
 
 	// --------------------------------------------------- Engine Failures ---------------------------------------------------
-	#region Engine Failures
+	#region Engine Failure Methods
 	private void OnFire(float delta)
 	{
 		health -= 5 * delta; // 5 hp damage per second

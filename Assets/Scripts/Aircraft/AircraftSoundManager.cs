@@ -5,6 +5,7 @@
 
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class AircraftSoundManager : Node
 {
@@ -27,73 +28,116 @@ public partial class AircraftSoundManager : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		//if(testCloseBool)
-		//{
-		//	pistonEngines[1].engineOn = false;
-		//}
-		//else
-		//{
-		//	pistonEngines[1].throttle = testThrottle;
-		//}
-
-		//PlayEngineSounds();
+		PlayEngineSounds();
 	}
 
 	private void PlayEngineSounds()
 	{
 		if(isPistonEngine)
 		{
-			PlayPistonEngineSound();
+			int activeEngines = 0;
+			bool rpmIsSame = true;
+			for(int i = 0; i < pistonEngines.Length; i++)
+			{
+				if(pistonEngines[i].engineOn)
+				{
+					if(activeEngines > 0)
+						if(pistonEngines[i].RPM != pistonEngines[i-1].RPM)
+							rpmIsSame = false;
+					activeEngines++;
+				}
+				else
+					rpmIsSame = false;
+			}
+
+			PlayPistonEngineSound(activeEngines , rpmIsSame);
+			StopPistonEngineSound(activeEngines);
 		}
 	}
 
-	private void PlayPistonEngineSound()
+	private void PlayPistonEngineSound(int activeEngineNumber, bool sameRPM)
 	{
-		//int activeEngineNumber = 0;
-		//bool sameRPM = true;
-		//for(int i = 0; i < pistonEngines.Length;i++)
-		//{
-		//	if(pistonEngines[i].engineOn)
-		//		activeEngineNumber++;
-		//	else
-		//		sameRPM = false;
-		//}
-//
-		//if(sameRPM)
-		//{
-		//	if(!centralSound.Playing)
-		//		centralSound.Play();
-		//	else
-		//	{
-		//		// volume *= 2;
-		//		centralSound.PitchScale = 1f + ((pistonEngines[0].RPM - pistonEngines[0].leanRPM) / pistonEngines[0].leanRPM);
-		//	}
-		//	return;
-		//}
-//
-		//if(activeEngineNumber > 0)
-		//{
-		//	if(centralSound.Playing)
-		//		centralSound.Stop();
-//
-		//	for(int i = 0; i < pistonEngines.Length; i++)
-		//	{
-		//		if(pistonEngines[i].engineOn)
-		//		{
-		//			if(!engineSoundPlayers[i].Playing)
-		//				engineSoundPlayers[i].Play();
-		//			else
-		//			{
-		//				engineSoundPlayers[i].PitchScale = 1f + ((pistonEngines[i].RPM - pistonEngines[i].leanRPM) / pistonEngines[i].leanRPM);
-		//			}
-		//		}
-		//		else
-		//		{
-		//			if(engineSoundPlayers[i].Playing)
-		//				engineSoundPlayers[i].Stop();
-		//		}
-		//	}
-		//}
+		if(sameRPM)
+		{
+			for(int i = 0; i < engineSoundPlayers.Length; i++)
+				if(engineSoundPlayers[i].Playing)
+					engineSoundPlayers[i].Stop();
+
+			if(!centralSound.Playing)
+				centralSound.Play();
+			else
+			{
+				// volume *= 2;
+				if(pistonEngines[0].RPM < pistonEngines[0].idleRPM + 600f) // Idle
+				{
+					if(centralSound.Stream != idleSound)
+						centralSound.Stream = idleSound;
+					
+					centralSound.PitchScale = pistonEngines[0].RPM / pistonEngines[0].idleRPM;
+				}
+				else
+				{
+					if(centralSound.Stream != cruisingSound)
+						centralSound.Stream = cruisingSound;
+					
+					centralSound.PitchScale = 1f + ((pistonEngines[0].RPM - pistonEngines[0].leanRPM) / pistonEngines[0].leanRPM);
+				}
+			}
+		}
+		else if(activeEngineNumber > 0)
+		{
+			if(centralSound.Playing)
+				centralSound.Stop();
+
+			for(int i = 0; i < pistonEngines.Length; i++)
+			{
+				if(pistonEngines[i].engineOn)
+				{
+					if(!engineSoundPlayers[i].Playing)
+						engineSoundPlayers[i].Play();
+					else
+					{
+						if(pistonEngines[i].RPM < pistonEngines[i].idleRPM + 600f) // Idle
+						{
+							if(engineSoundPlayers[i].Stream != idleSound)
+								engineSoundPlayers[i].Stream = idleSound;
+							
+							engineSoundPlayers[i].PitchScale = pistonEngines[i].RPM / pistonEngines[i].idleRPM;
+						}
+						else
+						{
+							if(engineSoundPlayers[i].Stream != cruisingSound)
+								engineSoundPlayers[i].Stream = cruisingSound;
+							
+							engineSoundPlayers[i].PitchScale = 1f + ((pistonEngines[i].RPM - pistonEngines[i].leanRPM) / pistonEngines[i].leanRPM);
+						}		
+					}
+				}
+				else
+				{
+					if(engineSoundPlayers[i].Playing)
+						engineSoundPlayers[i].Stop();
+				}
+			}
+		}
+	}
+
+	private void StopPistonEngineSound(int activeEngineNumber)
+	{
+		if(activeEngineNumber == 0)
+		{
+			if(centralSound.Playing)
+				centralSound.Stop();
+		}
+
+		for(int i = 0; i < engineSoundPlayers.Length; i++)
+		{
+			if(!pistonEngines[i].engineOn)
+			{
+				if(engineSoundPlayers[i].Playing)
+					engineSoundPlayers[i].Stop();
+			}
+		}
 	}
 
 	private void SetEngines()

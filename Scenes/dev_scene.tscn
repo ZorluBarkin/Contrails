@@ -37,7 +37,7 @@ shape = SubResource("WorldBoundaryShape3D_73ued")
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999345, 0.0361908, 0, -0.0361908, 0.999345, 17.9, 7, 14)
+transform = Transform3D(1, 0, 0, 0, 0.999345, 0.0361908, 0, -0.0361908, 0.999345, 60, 7, 14)
 metadata/MainCamera = true
 
 [node name="HUD" parent="Camera3D" instance=ExtResource("1_hq76p")]
@@ -47,19 +47,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90735e-06, 4, 1.43051e-06)
 metadata/Drop = true
 
 [node name="B-26K" parent="." instance=ExtResource("2_qcfcg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0)
 metadata/PlayerVehicle = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)
 stream = ExtResource("7_he4e1")
-volume_db = 5.0
-max_db = 6.0
-pitch_scale = 0.83
+volume_db = 2.5
+max_db = 5.0
+pitch_scale = 1.26
+autoplay = true
 max_distance = 4096.0
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)
 stream = ExtResource("7_he4e1")
-volume_db = 5.0
-max_db = 6.0
-pitch_scale = 0.83
+volume_db = 2.5
+max_db = 5.0
+autoplay = true
 max_distance = 4096.0

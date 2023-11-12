@@ -1,6 +1,6 @@
 is_global = true
 build_property.GodotDisabledSourceGenerators = 
-build_property.GodotProjectDir = E:\Programs\Coding\Godot Workspace\Contrails\
+build_property.GodotProjectDir = e:\Programs\Coding\Godot Workspace\Contrails\
 build_property.GodotProjectDirBase64 = 
 build_property.GodotSourceGenerators = 
 build_property.IsGodotToolsProject = 
@@ -13,4 +13,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Contrails
-build_property.ProjectDir = E:\Programs\Coding\Godot Workspace\Contrails\
+build_property.ProjectDir = e:\Programs\Coding\Godot Workspace\Contrails\

@@ -1,4 +1,5 @@
 AudioStreamPlayer3D
+Node3D
 Node
 AudioListener3D
 TextureRect
@@ -19,7 +20,6 @@ SubViewport
 MeshInstance3D
 CollisionShape3D
 RigidBody3D
-Node3D
 CanvasLayer
 Camera3D
 DirectionalLight3D

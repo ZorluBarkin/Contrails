@@ -22,7 +22,7 @@ public partial class FuelManager : Node
 	[Export] public Node3D[] fuelTanks; // fill in inspector
 	[Export] public Node3D[] externalFuelTanks; // fill in inspector
 	[Export] public float maxFuelAmount = 3795f; //for b26k 
-	[Export] public float totalFuelAmount = -1f; // exported for testing
+	public float totalFuelAmount = -1f;
 	private float internalFuelAmount = -1f;
 	private float externalFuelAmount = -1f;
 	public float fuelInSeconds = -1f;
