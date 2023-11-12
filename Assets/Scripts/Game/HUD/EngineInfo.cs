@@ -54,15 +54,16 @@ public partial class EngineInfo : VBoxContainer
 			hud = GetNode<HUD>(this.GetParent().GetPath());
 		
 		vehicleControls = GameManager.instance.vehicleControls;
-		SetEngine();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// need to set at the first frame as this has to be after HUD _Ready()
 		if(!engineIndexSet)
 		{
-			engineLabel.Text = engineIndex.ToString();
+			SetEngine();
+			engineLabel.Text = (engineIndex + 1).ToString();
 			engineIndexSet = true;
 		}
 

@@ -56,7 +56,7 @@ public partial class FuelManager : Node
 			case PlayerVehicleType.Ship:
 				ableToTransferFuel = false;
 			break;
-			case PlayerVehicleType.Placement:
+			case PlayerVehicleType.StaticPlacement:
 				ableToTransferFuel = false;
 			break;
 		}

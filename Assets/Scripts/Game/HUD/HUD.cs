@@ -82,7 +82,7 @@ public partial class HUD : Control // Should not be a Singleton
 					GetNode<CanvasItem>(GetChild(i).GetPath()).QueueFree(); // Delete Container
 				}
 				engineInfos[containerIndex] = GetNode<EngineInfo>(GetChild(i).GetPath());
-				engineInfos[containerIndex].engineIndex = containerIndex + 1;
+				engineInfos[containerIndex].engineIndex = containerIndex;
 				containerIndex++;
 			}
 		}

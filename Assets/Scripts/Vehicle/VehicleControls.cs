@@ -15,21 +15,16 @@ public partial class VehicleControls : Node
 	[Export] private Mechanization mechanization = null;
 
 	[Export] public Node[] engines;
-	private enum EngineStartMode
-	{
-		Specific,
-		Combined
-	}
-	[Export] private EngineStartMode engineStartMode = EngineStartMode.Combined;
 
 	private enum EngineControlMode
 	{
 		Combined,
-		Specific,
-		Inner,
-		Outer
+		Specific, // one index
+		//Inner, // only can be if there are 4 engines
+		//Outer // only can be if there are 4 engines
 	}
 	[Export] private EngineControlMode engineControlMode = EngineControlMode.Combined; // remove export after control implementation
+	[Export] private int engineIndex = 0;
 	private AircraftPistonEngine[] pistonEngines;
 	//private AircraftjetEngine[] jetEngines;
 	private bool isPistonEngine = false;
@@ -50,76 +45,78 @@ public partial class VehicleControls : Node
 	public override void _Ready()
 	{
 		playerVehicleType = GameManager.instance.playerVehicleType;
-		SetEngine();
+		switch(playerVehicleType)
+		{
+			case PlayerVehicleType.Aircraft:
+				SetAircraftEngine();
+				if(engines[0].HasMeta("ManualPitch"))
+					hasPitchControl = true;
+				else
+					hasPitchControl = false;
+			break;
+			case PlayerVehicleType.GroundVehicle:
+			break;
+			case PlayerVehicleType.Ship:
+			break;
+			case PlayerVehicleType.StaticPlacement:
+			break;
+		}
 
-		if(engines[0].HasMeta("ManualPitch"))
-			hasPitchControl = true;
-		else
-			hasPitchControl = false;
+
 		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-	{
-		// after WEP Input is gotten
-		//if(wepEnabled)
-		//	UseWEP((float) delta);
-		//else
-		//	WEP = false;
-			
-
-		if(startEngine) // temp
+	{	
+		switch(playerVehicleType)
 		{
-			OnStartEngine();
-			startEngine = false;
-		}
+			case PlayerVehicleType.Aircraft:
+				if(startEngine) // temp
+				{
+					OnStartEngine();
+					startEngine = false;
+				}
 
-		if(stopEngine)
-		{
-			OnStopEngine();
-			stopEngine = false;
-		}
+				if(stopEngine) // temp
+				{
+					OnStopEngine();
+					stopEngine = false;
+				}
 
-		SetThrottle();
+				SetThrottle();
 
-		if(hasPitchControl && ! featherPropeller)
-		{
-			ManualPropellerPitch();
-		}
+				if(hasPitchControl && ! featherPropeller)
+				{
+					ManualPropellerPitch();
+				}
 
-		FeatherPropellers();
+				FeatherPropellers();
 
-		if(actuateGears)// temp
-		{
-			actuateGears = false;
-			mechanization.actuateGears = true;
+				if(actuateGears) // temp
+				{
+					actuateGears = false;
+					mechanization.actuateGears = true;
+				}
+			break;
+			case PlayerVehicleType.GroundVehicle:
+			break;
+			case PlayerVehicleType.StaticPlacement:
+			break;
+			case PlayerVehicleType.Ship:
+			break;
 		}
 	}
 
-	//private void UseWEP(float delta)
-	//{
-	//	if(wepTime <= 0)
-	//	{
-	//		WEP = false;
-	//		wepEnabled = false;
-	//		return;
-	//	}
-//
-	//	if(WEP)
-	//	{
-	//		wepTime -= delta;
-	//	}
-	//}
-
 	private void OnStartEngine()
 	{
-		switch(engineStartMode)
+		switch(engineControlMode)
 		{
-			case EngineStartMode.Specific:
-			// do with designated Engine number
+			case EngineControlMode.Specific:
+				if(isPistonEngine)
+					pistonEngines[engineIndex].startEngine = true;
 			break;
-			case EngineStartMode.Combined:
+			case EngineControlMode.Combined:
 				for(int i = 0; i < engines.Length; i++)
 				{
 					if(isPistonEngine)
@@ -133,12 +130,13 @@ public partial class VehicleControls : Node
 
 	private void OnStopEngine()
 	{
-		switch(engineStartMode)
+		switch(engineControlMode)
 		{
-			case EngineStartMode.Specific:
-			// do with designated Engine number
+			case EngineControlMode.Specific:
+				if(isPistonEngine)
+					pistonEngines[engineIndex].stopEngine = true;
 			break;
-			case EngineStartMode.Combined:
+			case EngineControlMode.Combined:
 				for(int i = 0; i < engines.Length; i++)
 				{
 					pistonEngines[i].stopEngine = true;
@@ -176,13 +174,17 @@ public partial class VehicleControls : Node
 			break;
 			case EngineControlMode.Specific:
 			// do with designated Engine number
+				if(isPistonEngine)
+				{
+					pistonEngines[engineIndex].throttle = throttle;
+				}
 			break;
-			case EngineControlMode.Inner:
-			// do with designated Engine number on both sides
-			break;
-			case EngineControlMode.Outer:
-			// do with designated Engine number on outer both sides
-			break;
+			//case EngineControlMode.Inner:
+			//// do with designated Engine number on both sides
+			//break;
+			//case EngineControlMode.Outer:
+			//// do with designated Engine number on outer both sides
+			//break;
 		}
 
 		if(WEP)
@@ -219,13 +221,15 @@ public partial class VehicleControls : Node
 			break;
 			case EngineControlMode.Specific:
 			// do with designated Engine number
+				if(isPistonEngine)
+					pistonEngines[engineIndex].propellerPitch = propellerPitch;
 			break;
-			case EngineControlMode.Inner:
-			// do with designated Engine number on both sides
-			break;
-			case EngineControlMode.Outer:
-			// do with designated Engine number on outer both sides
-			break;
+			//case EngineControlMode.Inner:
+			//// do with designated Engine number on both sides
+			//break;
+			//case EngineControlMode.Outer:
+			//// do with designated Engine number on outer both sides
+			//break;
 		}
 	}
 
@@ -252,7 +256,7 @@ public partial class VehicleControls : Node
 		}
 	}
 
-	private void SetEngine()
+	private void SetAircraftEngine()
 	{
 		pistonEngines = new AircraftPistonEngine[GameManager.instance.vehicleControls.engines.Length];
 		//jetEngines = new AircraftJetEngine[vehicleControls.engines.Length];

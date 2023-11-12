@@ -11,7 +11,7 @@ public enum PlayerVehicleType
 	Aircraft,
 	GroundVehicle,
 	Ship,
-	Placement
+	StaticPlacement
 }
 
 public partial class GameManager : Node
