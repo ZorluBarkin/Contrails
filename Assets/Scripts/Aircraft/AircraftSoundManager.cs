@@ -9,6 +9,8 @@ using System.Diagnostics;
 
 public partial class AircraftSoundManager : Node
 {
+	[Export] bool centralPlayerOnly = true;
+
 	private AircraftPistonEngine[] pistonEngines;
 	private bool isPistonEngine = false;
 	[Export] private AudioStreamPlayer3D centralSound;
@@ -16,13 +18,14 @@ public partial class AircraftSoundManager : Node
 	[Export] private AudioStreamOggVorbis idleSound;
 	[Export] private AudioStreamOggVorbis cruisingSound;
 
-	[Export] private bool testCloseBool = false;
-	[Export] private float testThrottle = 50f;
+	[Export] private float idleSoundUpperRPMLimit = 1200f;
+	private float centralSoundVolume = 2.5f;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		SetEngines();
+		centralSoundVolume = centralSound.VolumeDb;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,87 +39,103 @@ public partial class AircraftSoundManager : Node
 		if(isPistonEngine)
 		{
 			int activeEngines = 0;
-			bool rpmIsSame = true;
+			bool idleRPMs = true;
+			bool highRPMs = true;
+
 			for(int i = 0; i < pistonEngines.Length; i++)
 			{
 				if(pistonEngines[i].engineOn)
 				{
-					if(activeEngines > 0)
-						if(pistonEngines[i].RPM != pistonEngines[i-1].RPM)
-							rpmIsSame = false;
+					idleRPMs &= pistonEngines[i].RPM < idleSoundUpperRPMLimit ? true : false;
+					highRPMs &= pistonEngines[i].RPM > idleSoundUpperRPMLimit ? true : false;
 					activeEngines++;
 				}
-				else
-					rpmIsSame = false;
 			}
 
-			PlayPistonEngineSound(activeEngines , rpmIsSame);
+			if(idleRPMs || highRPMs) // same audio are playing
+			{
+				centralSound.VolumeDb = centralSoundVolume * activeEngines / pistonEngines.Length;
+				PlayCentralSound();
+			}
+			else // different audio are playing
+			{
+				if(centralSound.Playing)
+					centralSound.Stop();
+				PlayMultipleEngineSounds();
+			}
+			
 			StopPistonEngineSound(activeEngines);
+		}
+		else // Jet engines
+		{
+
 		}
 	}
 
-	private void PlayPistonEngineSound(int activeEngineNumber, bool sameRPM)
+	private void PlayCentralSound()
 	{
-		if(sameRPM)
+		if(isPistonEngine)
 		{
-			for(int i = 0; i < engineSoundPlayers.Length; i++)
-				if(engineSoundPlayers[i].Playing)
-					engineSoundPlayers[i].Stop();
-
 			if(!centralSound.Playing)
 				centralSound.Play();
 			else
 			{
-				// volume *= 2;
-				if(pistonEngines[0].RPM < pistonEngines[0].idleRPM + 600f) // Idle
+				bool idling = false;
+				for(int i = 0; i < pistonEngines.Length; i++)
+					if(pistonEngines[i].engineOn)
+						idling |= pistonEngines[i].RPM < idleSoundUpperRPMLimit ? true : false;
+
+				if(idling)
 				{
 					if(centralSound.Stream != idleSound)
 						centralSound.Stream = idleSound;
-					
-					centralSound.PitchScale = pistonEngines[0].RPM / pistonEngines[0].idleRPM;
+
+					float averageScale = 0;
+					for(int i = 0; i < pistonEngines.Length; i++)
+						averageScale += (pistonEngines[i].RPM < pistonEngines[i].idleRPM ? pistonEngines[i].idleRPM : pistonEngines[i].RPM) / pistonEngines[i].idleRPM;
+					averageScale /= pistonEngines.Length;
+					centralSound.PitchScale = averageScale;
 				}
 				else
 				{
 					if(centralSound.Stream != cruisingSound)
 						centralSound.Stream = cruisingSound;
 					
-					centralSound.PitchScale = 1f + ((pistonEngines[0].RPM - pistonEngines[0].leanRPM) / pistonEngines[0].leanRPM);
+					float averageScale = 0;
+					for(int i = 0; i < pistonEngines.Length; i++)
+						averageScale += 1 + (pistonEngines[i].RPM - pistonEngines[i].leanRPM) / pistonEngines[i].leanRPM;
+					averageScale /= pistonEngines.Length;
+					centralSound.PitchScale = averageScale;
 				}
-			}
+			}	
 		}
-		else if(activeEngineNumber > 0)
-		{
-			if(centralSound.Playing)
-				centralSound.Stop();
+	}
 
+	private void PlayMultipleEngineSounds()
+	{
+		if(isPistonEngine)
+		{
 			for(int i = 0; i < pistonEngines.Length; i++)
 			{
 				if(pistonEngines[i].engineOn)
-				{
 					if(!engineSoundPlayers[i].Playing)
 						engineSoundPlayers[i].Play();
-					else
-					{
-						if(pistonEngines[i].RPM < pistonEngines[i].idleRPM + 600f) // Idle
-						{
-							if(engineSoundPlayers[i].Stream != idleSound)
-								engineSoundPlayers[i].Stream = idleSound;
-							
-							engineSoundPlayers[i].PitchScale = pistonEngines[i].RPM / pistonEngines[i].idleRPM;
-						}
-						else
-						{
-							if(engineSoundPlayers[i].Stream != cruisingSound)
-								engineSoundPlayers[i].Stream = cruisingSound;
-							
-							engineSoundPlayers[i].PitchScale = 1f + ((pistonEngines[i].RPM - pistonEngines[i].leanRPM) / pistonEngines[i].leanRPM);
-						}		
-					}
+				else
+					return;
+
+				if(pistonEngines[0].RPM < idleSoundUpperRPMLimit) // Idle
+				{
+					if(engineSoundPlayers[i].Stream != idleSound)
+						engineSoundPlayers[i].Stream = idleSound;
+					
+					engineSoundPlayers[i].PitchScale = pistonEngines[0].RPM / pistonEngines[0].idleRPM;
 				}
 				else
 				{
-					if(engineSoundPlayers[i].Playing)
-						engineSoundPlayers[i].Stop();
+					if(engineSoundPlayers[i].Stream != cruisingSound)
+						engineSoundPlayers[i].Stream = cruisingSound;
+
+					engineSoundPlayers[i].PitchScale = 1 + (pistonEngines[i].RPM - pistonEngines[i].leanRPM) / pistonEngines[i].leanRPM;;
 				}
 			}
 		}

@@ -56,7 +56,6 @@ stream = ExtResource("7_he4e1")
 volume_db = 2.5
 max_db = 5.0
 pitch_scale = 1.26
-autoplay = true
 max_distance = 4096.0
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
@@ -64,5 +63,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)
 stream = ExtResource("7_he4e1")
 volume_db = 2.5
 max_db = 5.0
-autoplay = true
 max_distance = 4096.0
