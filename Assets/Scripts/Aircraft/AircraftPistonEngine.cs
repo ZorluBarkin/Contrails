@@ -55,7 +55,7 @@ public partial class AircraftPistonEngine : Node
 	};
 	[Export] private RotationDirection rotationDirection = RotationDirection.Left;
 
-	public bool engineOn = false; // make this nonexported after controls done
+	public bool engineOn {get; private set;} = false; // make this nonexported after controls done
 	public bool startEngine = false; // make this nonexported after controls done
 	public bool stopEngine = false; // make this nonexported after controls done
 	[Range(0f, 100f)] public float throttle = 0f; // make this nonexported after controls done
