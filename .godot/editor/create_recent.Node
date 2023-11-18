@@ -1,5 +1,8 @@
-AudioStreamPlayer3D
+MeshInstance3D
+RigidBody3D
+CollisionShape3D
 Node3D
+AudioStreamPlayer3D
 Node
 AudioListener3D
 TextureRect
@@ -17,9 +20,6 @@ CheckBox
 ColorRect
 RichTextLabel
 SubViewport
-MeshInstance3D
-CollisionShape3D
-RigidBody3D
 CanvasLayer
 Camera3D
 DirectionalLight3D

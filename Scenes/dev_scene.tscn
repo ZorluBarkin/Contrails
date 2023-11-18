@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cksj26judn1ic" path="res://Assets/Subscenes/HUD/HUD.tscn" id="1_hq76p"]
 [ext_resource type="PackedScene" uid="uid://dvnt5qdvkponl" path="res://Assets/Subscenes/GameManager.tscn" id="1_vk158"]
 [ext_resource type="PackedScene" uid="uid://du3oop0r2q05i" path="res://Assets/Subscenes/Aircraft/USA/B-26K.tscn" id="2_qcfcg"]
-[ext_resource type="PackedScene" uid="uid://dkrrnoks0jonn" path="res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn" id="3_fl1pj"]
 [ext_resource type="AudioStream" uid="uid://cqapltawkk7yj" path="res://Assets/Resources/Sounds/Aircraft/USA/R2800 High Speed Running L.ogg" id="7_he4e1"]
+[ext_resource type="PackedScene" uid="uid://vnp7oxef58u3" path="res://Assets/Subscenes/Ordinance/test_bomb.tscn" id="7_s0w1f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbvfu"]
 albedo_color = Color(0.45098, 0.403922, 0.219608, 1)
@@ -37,14 +37,10 @@ shape = SubResource("WorldBoundaryShape3D_73ued")
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999345, 0.0361908, 0, -0.0361908, 0.999345, 60, 7, 14)
+transform = Transform3D(1, 0, 0, 0, 0.872248, 0.489063, 0, -0.489063, 0.872248, 2.90276, 101.411, -17.4134)
 metadata/MainCamera = true
 
 [node name="HUD" parent="Camera3D" instance=ExtResource("1_hq76p")]
-
-[node name="MK-82 LDGP" parent="." instance=ExtResource("3_fl1pj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90735e-06, 4, 1.43051e-06)
-metadata/Drop = true
 
 [node name="B-26K" parent="." instance=ExtResource("2_qcfcg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0)
@@ -64,3 +60,7 @@ stream = ExtResource("7_he4e1")
 volume_db = 2.5
 max_db = 5.0
 max_distance = 4096.0
+
+[node name="TestBomb" parent="." instance=ExtResource("7_s0w1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 75.76, -43.605)
+releaseSpeed = 0.0

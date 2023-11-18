@@ -9,7 +9,6 @@ height = 2.2
 
 [node name="MK-82 LDGP" type="RigidBody3D"]
 editor_description = "Temporarily transform is 0.33f"
-transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0, 0, 0)
 mass = 242.0
 continuous_cd = true
 max_contacts_reported = 1
@@ -18,7 +17,9 @@ script = ExtResource("1_y4iqm")
 metadata/WeaponType = 7
 metadata/Trigger = false
 
-[node name="MK82GLTF2" parent="." instance=ExtResource("1_kkbov")]
+[node name="Model Node" type="Node3D" parent="."]
+
+[node name="MK82GLTF2" parent="Model Node" instance=ExtResource("1_kkbov")]
 transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0, 0, 0)
 
 [node name="CollisionCapsule" type="CollisionShape3D" parent="."]

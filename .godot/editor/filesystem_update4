@@ -15,9 +15,4 @@ res://Assets/Scripts/Game/Settings.cs
 res://Assets/Scripts/Vehicle/FuelManager.cs
 res://Assets/Scripts/Vehicle/VehicleControls.cs
 res://Assets/Scripts/Weapons/Bomb.cs
-res://Scenes/dev_scene.tscn
-res://Assets/Subscenes/Aircraft/USA/B-26K.tscn
-res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn
-res://Assets/Subscenes/Settings.tscn
-res://Assets/Subscenes/HUD/HUD.tscn
-res://Assets/Subscenes/HUD/EngineInfoContainer.tscn
+res://Assets/Scripts/Weapons/GuidedBomb.cs

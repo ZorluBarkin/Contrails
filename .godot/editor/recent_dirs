@@ -1,3 +1,5 @@
+res://Assets/Scripts/Weapons
+res://Assets/Subscenes/Ordinance
 res://Assets/Scripts/Aircraft
 res://Assets/Resources/Sounds/Aircraft/USA
 res://Assets/Sprites/HUD/Tacometer
@@ -12,7 +14,6 @@ res://Assets/Sprites
 res://Assets
 res://Assets/Subscenes/Aircraft
 res://Assets/Scripts/Behaviour
-res://Assets/Scripts/Weapons
 res://Assets/Subscenes/Ordinance/USA
 res://Scenes
 E:/Programs/Coding/Godot Workspace/Contrails/Assets/Scripts/GameScripts
