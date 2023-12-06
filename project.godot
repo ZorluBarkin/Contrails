@@ -18,7 +18,7 @@ ResourceScriptDirectories=["res://"]
 
 config/name="Contrails"
 run/main_scene="res://Scenes/dev_scene.tscn"
-config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]

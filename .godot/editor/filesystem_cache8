@@ -1,80 +1,80 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1700318315
-icon.svg::CompressedTexture2D::4305356733133293945::1696934636::1696934646::1::::<><>::
-README.md::TextFile::-1::1699001488::0::1::::<><>::
-::res://Assets/::1699197213
-::res://Assets/Models/::1698509788
-::res://Assets/Models/Aircraft/::1698509399
-A36.glb::PackedScene::4036526263119435763::1696939467::1698509399::1::::<><>::
-::res://Assets/Models/Ordinance/::1698509986
-MK82GLTF2.glb::PackedScene::7657042664727290988::1698509985::1698509986::1::::<><>::
-::res://Assets/Resources/::1699558104
-::res://Assets/Resources/Sounds/::1699558112
-::res://Assets/Resources/Sounds/Aircraft/::1699558154
-::res://Assets/Resources/Sounds/Aircraft/USA/::1699718346
-PW R-2800 Startup.ogg::AudioStreamOggVorbis::675252273181647443::1699558161::1699560391::1::::<><>::
-R2800 High Speed Running L.ogg::AudioStreamOggVorbis::5896794263176197353::1699713120::1699718346::1::::<><>::
-R2800 Idle L.ogg::AudioStreamOggVorbis::650722667288022983::1699717659::1699717709::1::::<><>::
-::res://Assets/Scripts/::1699384387
-::res://Assets/Scripts/Aircraft/::1699723440
-AircraftDamage.cs::CSharpScript::-1::1698498483::0::1::::<><>::
-AircraftPistonEngine.cs::CSharpScript::-1::1700222288::0::1::::<><>::
-AircraftSoundManager.cs::CSharpScript::-1::1700252808::0::1::::<><>::
-Flight.cs::CSharpScript::-1::1698928078::0::1::::<><>::
-LandingGear.cs::CSharpScript::-1::1699741715::0::1::::<><>::
-Mechanization.cs::CSharpScript::-1::1699741157::0::1::::<><>::
-Pylon.cs::CSharpScript::-1::1698841458::0::1::::<><>::
-WeaponControls.cs::CSharpScript::-1::1699446152::0::1::::<><>::
-::res://Assets/Scripts/Behaviour/::1698927568
-WSO.cs::CSharpScript::-1::1698927655::0::1::::<><>::
-::res://Assets/Scripts/Game/::1699356898
-GameManager.cs::CSharpScript::-1::1699800290::0::1::::<><>::
-Settings.cs::CSharpScript::-1::1699552663::0::1::::<><>::
-::res://Assets/Scripts/Game/HUD/::1699477263
-EngineInfo.cs::CSharpScript::-1::1699800292::0::1::::<><>::
-HUD.cs::CSharpScript::-1::1699800291::0::1::::<><>::
-WeaponInfo.cs::CSharpScript::-1::1699356962::0::1::::<><>::
-::res://Assets/Scripts/Vehicle/::1699474893
-FuelManager.cs::CSharpScript::-1::1699830066::0::1::::<><>::
-VehicleControls.cs::CSharpScript::-1::1699801082::0::1::::<><>::
-::res://Assets/Scripts/Weapons/::1700310405
-Bomb.cs::CSharpScript::-1::1700313039::0::1::::<><>::
-GuidedBomb.cs::CSharpScript::-1::1700313337::0::1::::<><>::
-Weapon.cs::CSharpScript::-1::1698835164::0::1::::<><>::
-::res://Assets/Sprites/::1699210325
-::res://Assets/Sprites/HUD/::1699353125
-Decrease Throttle.png::CompressedTexture2D::5298146865157242305::1699207918::1699207931::1::::<><>::
-Engine.png::CompressedTexture2D::6183156868563824868::1699353125::1699353125::1::::<><>::
-Feather.png::CompressedTexture2D::3220244044584480892::1699210314::1699210325::1::::<><>::
-Increase Throttle.png::CompressedTexture2D::7450563150846001290::1699207918::1699207931::1::::<><>::
-Oil Temperature.png::CompressedTexture2D::3595339390888325224::1699200194::1699207931::1::::<><>::
-Pixel Propeller.png::CompressedTexture2D::8566438574509440136::1699197223::1699207931::1::::<><>::
-Propeller Pitch.png::CompressedTexture2D::3628211403959312613::1699218989::1699218989::1::::<><>::
-Water Temperature.png::CompressedTexture2D::3277128813582434720::1699198628::1699207931::1::::<><>::
-::res://Assets/Sprites/HUD/Oil Cowling/::1699220471
-Oil Cowling Closed.png::CompressedTexture2D::7740303474044860002::1699220471::1699220471::1::::<><>::
-Oil Cowling Halfway.png::CompressedTexture2D::7157032432071115503::1699220471::1699220471::1::::<><>::
-Oil Cowling Opened.png::CompressedTexture2D::747052273788057170::1699220471::1699220471::1::::<><>::
-::res://Assets/Sprites/HUD/Tacometer/::1699210321
-Empty RPM.png::CompressedTexture2D::4583426118648892103::1699208902::1699208930::1::::<><>::
-RPM idle.png::CompressedTexture2D::71819045740101564::1699208902::1699208933::1::::<><>::
-::res://Assets/Sprites/HUD/Water Cowling/::1699220483
-Water Cowling Closed.png::CompressedTexture2D::1680842904269623711::1699220482::1699220483::1::::<><>::
-Water Cowling Halfway.png::CompressedTexture2D::1664717968562172300::1699220482::1699220483::1::::<><>::
-Water Cowling Opened.png::CompressedTexture2D::4423378486996490789::1699220482::1699220483::1::::<><>::
-::res://Assets/Subscenes/::1700312945
-GameManager.tscn::PackedScene::8661272720936599029::1699548613::0::1::::<><>::res://Assets/Scripts/Game/GameManager.cs
-Settings.tscn::PackedScene::8505535606396153229::1700312945::0::1::::<><>::res://Assets/Scripts/Game/Settings.cs
-::res://Assets/Subscenes/Aircraft/::1698927688
-WSO.tscn::PackedScene::7667460244075375366::1698927688::0::1::::<><>::res://Assets/Scripts/Behaviour/WSO.cs
-::res://Assets/Subscenes/Aircraft/USA/::1700312945
-B-26K.tscn::PackedScene::8621717367246528248::1700312945::0::1::::<><>::res://Assets/Scripts/Aircraft/Flight.cs<>uid://dhif7kgn1vrcw::::res://Assets/Subscenes/Aircraft/WSO.tscn<>res://Assets/Scripts/Vehicle/VehicleControls.cs<>res://Assets/Scripts/Aircraft/WeaponControls.cs<>res://Assets/Scripts/Aircraft/Mechanization.cs<>res://Assets/Scripts/Vehicle/FuelManager.cs<>res://Assets/Scripts/Aircraft/AircraftPistonEngine.cs<>res://Assets/Scripts/Aircraft/LandingGear.cs<>res://Assets/Scripts/Aircraft/AircraftSoundManager.cs<>res://Assets/Scripts/Aircraft/Pylon.cs<>uid://cqapltawkk7yj::::res://Assets/Resources/Sounds/Aircraft/USA/R2800 High Speed Running L.ogg<>res://Assets/Scripts/Aircraft/AircraftDamage.cs<>uid://jjhkpgqsrkdr::::res://Assets/Resources/Sounds/Aircraft/USA/R2800 Idle L.ogg<>uid://dkrrnoks0jonn::::res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn
-::res://Assets/Subscenes/HUD/::1700312945
-EngineInfoContainer.tscn::PackedScene::6493423738215882345::1700312945::0::1::::<><>::res://Assets/Scripts/Game/HUD/EngineInfo.cs<>uid://cudfxp61h7y17::::res://Assets/Sprites/HUD/Engine.png<>uid://chqpx70p4yds8::::res://Assets/Sprites/HUD/Decrease Throttle.png<>uid://defdxlwkg6p27::::res://Assets/Sprites/HUD/Increase Throttle.png<>uid://ba134wt07lxs::::res://Assets/Sprites/HUD/Tacometer/RPM idle.png<>uid://b6kimgps23k5t::::res://Assets/Sprites/HUD/Tacometer/Empty RPM.png<>uid://xynwq7npb3hw::::res://Assets/Sprites/HUD/Water Cowling/Water Cowling Halfway.png<>uid://bmxp3kxadsoom::::res://Assets/Sprites/HUD/Water Temperature.png<>uid://b4aynroc3uc1j::::res://Assets/Sprites/HUD/Water Cowling/Water Cowling Opened.png<>uid://brhuyj7am7tcy::::res://Assets/Sprites/HUD/Oil Temperature.png<>uid://brxsd2fvmdbe8::::res://Assets/Sprites/HUD/Propeller Pitch.png<>uid://x7hicbmuxa8f::::res://Assets/Sprites/HUD/Water Cowling/Water Cowling Closed.png<>uid://c876jp7gq1pxv::::res://Assets/Sprites/HUD/Oil Cowling/Oil Cowling Halfway.png<>uid://kv43veio4jok::::res://Assets/Sprites/HUD/Oil Cowling/Oil Cowling Opened.png<>uid://dijpwxplgk5es::::res://Assets/Sprites/HUD/Oil Cowling/Oil Cowling Closed.png<>uid://bl457i71lt0tk::::res://Assets/Sprites/HUD/Feather.png
-HUD.tscn::PackedScene::5512484915750285266::1700312945::0::1::::<><>::res://Assets/Scripts/Game/HUD/HUD.cs<>uid://cyrp0f0p5hipt::::res://Assets/Subscenes/HUD/EngineInfoContainer.tscn<>res://Assets/Scripts/Game/HUD/WeaponInfo.cs
-::res://Assets/Subscenes/Ordinance/::1700312945
-test_bomb.tscn::PackedScene::1501771298544955720::1700312945::0::1::::<><>::res://Assets/Scripts/Weapons/GuidedBomb.cs
-::res://Assets/Subscenes/Ordinance/USA/::1700312945
-MK-82 LDGP.tscn::PackedScene::7897301065102999319::1700312945::0::1::::<><>::uid://dhdemyk6dr4vw::::res://Assets/Models/Ordinance/MK82GLTF2.glb<>res://Assets/Scripts/Weapons/Bomb.cs
-::res://Scenes/::1700312945
-dev_scene.tscn::PackedScene::7380948666163426159::1700312945::0::1::::<><>::uid://dtge6twdqslwf::::res://Assets/Subscenes/Settings.tscn<>uid://cksj26judn1ic::::res://Assets/Subscenes/HUD/HUD.tscn<>uid://dvnt5qdvkponl::::res://Assets/Subscenes/GameManager.tscn<>uid://du3oop0r2q05i::::res://Assets/Subscenes/Aircraft/USA/B-26K.tscn<>uid://cqapltawkk7yj::::res://Assets/Resources/Sounds/Aircraft/USA/R2800 High Speed Running L.ogg<>uid://vnp7oxef58u3::::res://Assets/Subscenes/Ordinance/test_bomb.tscn
+::res://::1701900675
+icon.svg::CompressedTexture2D::4305356733133293945::1701900602::1701900602::1::::<><>::
+README.md::TextFile::-1::1701900602::0::1::::<><>::
+::res://Assets/::1701900602
+::res://Assets/Models/::1701900602
+::res://Assets/Models/Aircraft/::1701900602
+A36.glb::PackedScene::4036526263119435763::1701900602::1701900602::1::::<><>::
+::res://Assets/Models/Ordinance/::1701900602
+MK82GLTF2.glb::PackedScene::7657042664727290988::1701900602::1701900602::1::::<><>::
+::res://Assets/Resources/::1701900602
+::res://Assets/Resources/Sounds/::1701900602
+::res://Assets/Resources/Sounds/Aircraft/::1701900602
+::res://Assets/Resources/Sounds/Aircraft/USA/::1701900602
+PW R-2800 Startup.ogg::AudioStreamOggVorbis::675252273181647443::1701900602::1701900602::1::::<><>::
+R2800 High Speed Running L.ogg::AudioStreamOggVorbis::5896794263176197353::1701900602::1701900602::1::::<><>::
+R2800 Idle L.ogg::AudioStreamOggVorbis::650722667288022983::1701900602::1701900602::1::::<><>::
+::res://Assets/Scripts/::1701900602
+::res://Assets/Scripts/Aircraft/::1701900602
+AircraftDamage.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
+AircraftPistonEngine.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
+AircraftSoundManager.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
+Flight.cs::CSharpScript::-1::1701900602::0::1::::<>RigidBody3D<>::
+LandingGear.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
+Mechanization.cs::CSharpScript::-1::1701900602::0::1::::<>Node3D<>::
+Pylon.cs::CSharpScript::-1::1701900602::0::1::::<>MeshInstance3D<>::
+WeaponControls.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
+::res://Assets/Scripts/Behaviour/::1701900602
+WSO.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
+::res://Assets/Scripts/Game/::1701900602
+GameManager.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
+Settings.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
+::res://Assets/Scripts/Game/HUD/::1701900602
+EngineInfo.cs::CSharpScript::-1::1701900602::0::1::::<>VBoxContainer<>::
+HUD.cs::CSharpScript::-1::1701900602::0::1::::<>Control<>::
+WeaponInfo.cs::CSharpScript::-1::1701900602::0::1::::<>GridContainer<>::
+::res://Assets/Scripts/Vehicle/::1701900602
+FuelManager.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
+VehicleControls.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
+::res://Assets/Scripts/Weapons/::1701900602
+Bomb.cs::CSharpScript::-1::1701900602::0::1::::<>RigidBody3D<>::
+GuidedBomb.cs::CSharpScript::-1::1701900602::0::1::::<>RigidBody3D<>::
+Weapon.cs::CSharpScript::-1::1701900602::0::1::::<><>::
+::res://Assets/Sprites/::1701900602
+::res://Assets/Sprites/HUD/::1701900602
+Decrease Throttle.png::CompressedTexture2D::5298146865157242305::1701900602::1701900602::1::::<><>::
+Engine.png::CompressedTexture2D::6183156868563824868::1701900602::1701900602::1::::<><>::
+Feather.png::CompressedTexture2D::3220244044584480892::1701900602::1701900602::1::::<><>::
+Increase Throttle.png::CompressedTexture2D::7450563150846001290::1701900602::1701900602::1::::<><>::
+Oil Temperature.png::CompressedTexture2D::3595339390888325224::1701900602::1701900602::1::::<><>::
+Pixel Propeller.png::CompressedTexture2D::8566438574509440136::1701900602::1701900602::1::::<><>::
+Propeller Pitch.png::CompressedTexture2D::3628211403959312613::1701900602::1701900602::1::::<><>::
+Water Temperature.png::CompressedTexture2D::3277128813582434720::1701900602::1701900602::1::::<><>::
+::res://Assets/Sprites/HUD/Oil Cowling/::1701900602
+Oil Cowling Closed.png::CompressedTexture2D::7740303474044860002::1701900602::1701900602::1::::<><>::
+Oil Cowling Halfway.png::CompressedTexture2D::7157032432071115503::1701900602::1701900602::1::::<><>::
+Oil Cowling Opened.png::CompressedTexture2D::747052273788057170::1701900602::1701900602::1::::<><>::
+::res://Assets/Sprites/HUD/Tacometer/::1701900602
+Empty RPM.png::CompressedTexture2D::4583426118648892103::1701900602::1701900602::1::::<><>::
+RPM idle.png::CompressedTexture2D::71819045740101564::1701900602::1701900602::1::::<><>::
+::res://Assets/Sprites/HUD/Water Cowling/::1701900602
+Water Cowling Closed.png::CompressedTexture2D::1680842904269623711::1701900602::1701900602::1::::<><>::
+Water Cowling Halfway.png::CompressedTexture2D::1664717968562172300::1701900602::1701900602::1::::<><>::
+Water Cowling Opened.png::CompressedTexture2D::4423378486996490789::1701900602::1701900602::1::::<><>::
+::res://Assets/Subscenes/::1701900602
+GameManager.tscn::PackedScene::8661272720936599029::1701900602::0::1::::<><>::res://Assets/Scripts/Game/GameManager.cs
+Settings.tscn::PackedScene::8505535606396153229::1701900602::0::1::::<><>::res://Assets/Scripts/Game/Settings.cs
+::res://Assets/Subscenes/Aircraft/::1701900602
+WSO.tscn::PackedScene::7667460244075375366::1701900602::0::1::::<><>::res://Assets/Scripts/Behaviour/WSO.cs
+::res://Assets/Subscenes/Aircraft/USA/::1701900602
+B-26K.tscn::PackedScene::8621717367246528248::1701900602::0::1::::<><>::res://Assets/Scripts/Aircraft/Flight.cs<>uid://dhif7kgn1vrcw::::res://Assets/Subscenes/Aircraft/WSO.tscn<>res://Assets/Scripts/Vehicle/VehicleControls.cs<>res://Assets/Scripts/Aircraft/WeaponControls.cs<>res://Assets/Scripts/Aircraft/Mechanization.cs<>res://Assets/Scripts/Vehicle/FuelManager.cs<>res://Assets/Scripts/Aircraft/AircraftPistonEngine.cs<>res://Assets/Scripts/Aircraft/LandingGear.cs<>res://Assets/Scripts/Aircraft/AircraftSoundManager.cs<>res://Assets/Scripts/Aircraft/Pylon.cs<>uid://cqapltawkk7yj::::res://Assets/Resources/Sounds/Aircraft/USA/R2800 High Speed Running L.ogg<>res://Assets/Scripts/Aircraft/AircraftDamage.cs<>uid://jjhkpgqsrkdr::::res://Assets/Resources/Sounds/Aircraft/USA/R2800 Idle L.ogg<>uid://dkrrnoks0jonn::::res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn
+::res://Assets/Subscenes/HUD/::1701900602
+EngineInfoContainer.tscn::PackedScene::6493423738215882345::1701900602::0::1::::<><>::res://Assets/Scripts/Game/HUD/EngineInfo.cs<>uid://cudfxp61h7y17::::res://Assets/Sprites/HUD/Engine.png<>uid://chqpx70p4yds8::::res://Assets/Sprites/HUD/Decrease Throttle.png<>uid://defdxlwkg6p27::::res://Assets/Sprites/HUD/Increase Throttle.png<>uid://ba134wt07lxs::::res://Assets/Sprites/HUD/Tacometer/RPM idle.png<>uid://b6kimgps23k5t::::res://Assets/Sprites/HUD/Tacometer/Empty RPM.png<>uid://xynwq7npb3hw::::res://Assets/Sprites/HUD/Water Cowling/Water Cowling Halfway.png<>uid://bmxp3kxadsoom::::res://Assets/Sprites/HUD/Water Temperature.png<>uid://b4aynroc3uc1j::::res://Assets/Sprites/HUD/Water Cowling/Water Cowling Opened.png<>uid://brhuyj7am7tcy::::res://Assets/Sprites/HUD/Oil Temperature.png<>uid://brxsd2fvmdbe8::::res://Assets/Sprites/HUD/Propeller Pitch.png<>uid://x7hicbmuxa8f::::res://Assets/Sprites/HUD/Water Cowling/Water Cowling Closed.png<>uid://c876jp7gq1pxv::::res://Assets/Sprites/HUD/Oil Cowling/Oil Cowling Halfway.png<>uid://kv43veio4jok::::res://Assets/Sprites/HUD/Oil Cowling/Oil Cowling Opened.png<>uid://dijpwxplgk5es::::res://Assets/Sprites/HUD/Oil Cowling/Oil Cowling Closed.png<>uid://bl457i71lt0tk::::res://Assets/Sprites/HUD/Feather.png
+HUD.tscn::PackedScene::5512484915750285266::1701900602::0::1::::<><>::res://Assets/Scripts/Game/HUD/HUD.cs<>uid://cyrp0f0p5hipt::::res://Assets/Subscenes/HUD/EngineInfoContainer.tscn<>res://Assets/Scripts/Game/HUD/WeaponInfo.cs
+::res://Assets/Subscenes/Ordinance/::1701900602
+test_bomb.tscn::PackedScene::1501771298544955720::1701900602::0::1::::<><>::res://Assets/Scripts/Weapons/GuidedBomb.cs
+::res://Assets/Subscenes/Ordinance/USA/::1701900602
+MK-82 LDGP.tscn::PackedScene::7897301065102999319::1701900602::0::1::::<><>::uid://dhdemyk6dr4vw::::res://Assets/Models/Ordinance/MK82GLTF2.glb<>res://Assets/Scripts/Weapons/Bomb.cs
+::res://Scenes/::1701900602
+dev_scene.tscn::PackedScene::7380948666163426159::1701900602::0::1::::<><>::uid://dtge6twdqslwf::::res://Assets/Subscenes/Settings.tscn<>uid://cksj26judn1ic::::res://Assets/Subscenes/HUD/HUD.tscn<>uid://dvnt5qdvkponl::::res://Assets/Subscenes/GameManager.tscn<>uid://du3oop0r2q05i::::res://Assets/Subscenes/Aircraft/USA/B-26K.tscn<>uid://cqapltawkk7yj::::res://Assets/Resources/Sounds/Aircraft/USA/R2800 High Speed Running L.ogg<>uid://vnp7oxef58u3::::res://Assets/Subscenes/Ordinance/test_bomb.tscn
