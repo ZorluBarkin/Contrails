@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfrgomoh8w0td"]
+
+[ext_resource type="PackedScene" uid="uid://d1pxp4rgvhrf8" path="res://Assets/Models/Ordinance/Rockets/Mighty Mouse/Mighty Mouse.glb" id="1_rm8fm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c7dko"]
+radius = 0.036
+height = 1.2
+
+[node name="FFAR Might Mouse" type="RigidBody3D"]
+mass = 10.0
+continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
+
+[node name="Mighty Mouse" parent="." instance=ExtResource("1_rm8fm")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0294505)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_c7dko")

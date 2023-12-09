@@ -7,6 +7,9 @@ radius = 0.07
 
 [node name="ZuniRocket" type="RigidBody3D"]
 mass = 62.0
+continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
 
 [node name="Zuni Rocket" parent="." instance=ExtResource("1_v1d81")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
