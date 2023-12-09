@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2u2rqk2k2o45"]
+
+[ext_resource type="PackedScene" uid="uid://dih0002m6jb74" path="res://Assets/Models/Ordinance/Bombs/MK-83/MK-83 LDGP.glb" id="1_66e4v"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eiak6"]
+radius = 0.18
+height = 2.9
+
+[node name="MK-83 LDGP" type="RigidBody3D"]
+mass = 447.0
+continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
+
+[node name="MK-83 LDGP" parent="." instance=ExtResource("1_66e4v")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.3)
+shape = SubResource("CapsuleShape3D_eiak6")

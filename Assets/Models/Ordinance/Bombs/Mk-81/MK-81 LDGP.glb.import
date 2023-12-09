@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dhdemyk6dr4vw"
-path="res://.godot/imported/MK82GLTF2.glb-788d3d2f9a80e0771f1744360d840e86.scn"
+uid="uid://devcyn880i0vh"
+path="res://.godot/imported/MK-81 LDGP.glb-4eed9896b995ac0d28063a43b8fdf241.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Ordinance/MK82GLTF2.glb"
-dest_files=["res://.godot/imported/MK82GLTF2.glb-788d3d2f9a80e0771f1744360d840e86.scn"]
+source_file="res://Assets/Models/Ordinance/Bombs/Mk-81/MK-81 LDGP.glb"
+dest_files=["res://.godot/imported/MK-81 LDGP.glb-4eed9896b995ac0d28063a43b8fdf241.scn"]
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Scene Root"
+nodes/root_type=""
+nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
@@ -22,6 +22,7 @@ meshes/generate_lods=true
 meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
@@ -29,4 +30,5 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={}
+gltf/naming_version=1
 gltf/embedded_image_handling=1

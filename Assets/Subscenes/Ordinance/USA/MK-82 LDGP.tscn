@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkrrnoks0jonn"]
 
-[ext_resource type="PackedScene" uid="uid://dhdemyk6dr4vw" path="res://Assets/Models/Ordinance/MK82GLTF2.glb" id="1_kkbov"]
 [ext_resource type="Script" path="res://Assets/Scripts/Weapons/Bomb.cs" id="1_y4iqm"]
+[ext_resource type="PackedScene" uid="uid://blaah1eggaowj" path="res://Assets/Models/Ordinance/Bombs/MK-82/MK-82 LDGP.glb" id="2_stq35"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yook6"]
 radius = 0.14
@@ -17,10 +17,8 @@ script = ExtResource("1_y4iqm")
 metadata/WeaponType = 7
 metadata/Trigger = false
 
-[node name="Model Node" type="Node3D" parent="."]
-
-[node name="MK82GLTF2" parent="Model Node" instance=ExtResource("1_kkbov")]
-transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0, 0, 0)
+[node name="MK-82 LDGP" parent="." instance=ExtResource("2_stq35")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="CollisionCapsule" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.254911)

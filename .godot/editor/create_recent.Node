@@ -1,6 +1,6 @@
-MeshInstance3D
-RigidBody3D
 CollisionShape3D
+RigidBody3D
+MeshInstance3D
 Node3D
 AudioStreamPlayer3D
 Node
@@ -12,15 +12,3 @@ HFlowContainer
 AspectRatioContainer
 Control
 Panel
-CenterContainer
-Container
-VBoxContainer
-CheckButton
-CheckBox
-ColorRect
-RichTextLabel
-SubViewport
-CanvasLayer
-Camera3D
-DirectionalLight3D
-StaticBody3D

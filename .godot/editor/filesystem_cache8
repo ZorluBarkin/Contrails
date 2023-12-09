@@ -1,13 +1,29 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1701900675
+::res://::1702083936
 icon.svg::CompressedTexture2D::4305356733133293945::1701900602::1701900602::1::::<><>::
 README.md::TextFile::-1::1701900602::0::1::::<><>::
 ::res://Assets/::1701900602
 ::res://Assets/Models/::1701900602
 ::res://Assets/Models/Aircraft/::1701900602
 A36.glb::PackedScene::4036526263119435763::1701900602::1701900602::1::::<><>::
-::res://Assets/Models/Ordinance/::1701900602
-MK82GLTF2.glb::PackedScene::7657042664727290988::1701900602::1701900602::1::::<><>::
+::res://Assets/Models/Ordinance/::1702080681
+::res://Assets/Models/Ordinance/Bombs/::1702081703
+::res://Assets/Models/Ordinance/Bombs/Mk-81/::1702083997
+MK-81 LDGP.glb::PackedScene::7483534386821157477::1702083985::1702083985::1::::<><>::uid://cbg7k825jbqnd::::res://Assets/Models/Ordinance/Bombs/Mk-81/MK-81 LDGP_MK82BaseTexture.png
+MK-81 LDGP_MK82BaseTexture.png::CompressedTexture2D::4857379055611590933::1702083985::1702083997::1::::<><>::
+::res://Assets/Models/Ordinance/Bombs/MK-82/::1702084032
+MK-82 LDGP.glb::PackedScene::3158511836335760461::1702084031::1702084031::1::::<><>::uid://bf4aodkoh5lnr::::res://Assets/Models/Ordinance/Bombs/MK-82/MK-82 LDGP_MK82BaseTexture.png
+MK-82 LDGP_MK82BaseTexture.png::CompressedTexture2D::2797257031530402199::1702084031::1702084071::1::::<><>::
+::res://Assets/Models/Ordinance/Bombs/MK-83/::1702084041
+MK-83 LDGP.glb::PackedScene::7736787369509245017::1702084039::1702084040::1::::<><>::uid://rrstssts3w00::::res://Assets/Models/Ordinance/Bombs/MK-83/MK-83 LDGP_MK82BaseTexture.png
+MK-83 LDGP_MK82BaseTexture.png::CompressedTexture2D::1229432573734792099::1702084040::1702084074::1::::<><>::
+::res://Assets/Models/Ordinance/Bombs/MK-84/::1702084050
+MK-84 LDGP.glb::PackedScene::589424571133582065::1702084050::1702084051::1::::<><>::uid://c8lal13115lei::::res://Assets/Models/Ordinance/Bombs/MK-84/MK-84 LDGP_MK82BaseTexture.png
+MK-84 LDGP_MK82BaseTexture.png::CompressedTexture2D::7111802416547767308::1702084051::1702084077::1::::<><>::
+::res://Assets/Models/Ordinance/Rockets/::1702080961
+::res://Assets/Models/Ordinance/Rockets/Zuni/::1702084007
+Zuni Rocket.glb::PackedScene::8237107804011918228::1702080902::1702081048::1::::<><>::uid://er8tyvfuv8qx::::res://Assets/Models/Ordinance/Rockets/Zuni/Zuni Rocket_Zuni Texture.png
+Zuni Rocket_Zuni Texture.png::CompressedTexture2D::317888680472696195::1702080902::1702084007::1::::<><>::
 ::res://Assets/Resources/::1701900602
 ::res://Assets/Resources/Sounds/::1701900602
 ::res://Assets/Resources/Sounds/Aircraft/::1701900602
@@ -28,11 +44,11 @@ WeaponControls.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
 ::res://Assets/Scripts/Behaviour/::1701900602
 WSO.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
 ::res://Assets/Scripts/Game/::1701900602
-GameManager.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
+GameManager.cs::CSharpScript::-1::1701901923::0::1::::<>Node<>::
 Settings.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
 ::res://Assets/Scripts/Game/HUD/::1701900602
 EngineInfo.cs::CSharpScript::-1::1701900602::0::1::::<>VBoxContainer<>::
-HUD.cs::CSharpScript::-1::1701900602::0::1::::<>Control<>::
+HUD.cs::CSharpScript::-1::1701901903::0::1::::<>Control<>::
 WeaponInfo.cs::CSharpScript::-1::1701900602::0::1::::<>GridContainer<>::
 ::res://Assets/Scripts/Vehicle/::1701900602
 FuelManager.cs::CSharpScript::-1::1701900602::0::1::::<>Node<>::
@@ -74,7 +90,11 @@ EngineInfoContainer.tscn::PackedScene::6493423738215882345::1701900602::0::1::::
 HUD.tscn::PackedScene::5512484915750285266::1701900602::0::1::::<><>::res://Assets/Scripts/Game/HUD/HUD.cs<>uid://cyrp0f0p5hipt::::res://Assets/Subscenes/HUD/EngineInfoContainer.tscn<>res://Assets/Scripts/Game/HUD/WeaponInfo.cs
 ::res://Assets/Subscenes/Ordinance/::1701900602
 test_bomb.tscn::PackedScene::1501771298544955720::1701900602::0::1::::<><>::res://Assets/Scripts/Weapons/GuidedBomb.cs
-::res://Assets/Subscenes/Ordinance/USA/::1701900602
-MK-82 LDGP.tscn::PackedScene::7897301065102999319::1701900602::0::1::::<><>::uid://dhdemyk6dr4vw::::res://Assets/Models/Ordinance/MK82GLTF2.glb<>res://Assets/Scripts/Weapons/Bomb.cs
+::res://Assets/Subscenes/Ordinance/USA/::1702082499
+MK-81 LDGP.tscn::PackedScene::8596747915362868458::1702082183::0::1::::<><>::res://Assets/Scripts/Weapons/Bomb.cs<>uid://dmeswfio70lmh::::res://Assets/Models/Ordinance/Bombs/Mk-81/MK-81 LDGP.glb
+MK-82 LDGP.tscn::PackedScene::7897301065102999319::1702081869::0::1::::<><>::res://Assets/Scripts/Weapons/Bomb.cs<>uid://bbi2gni38mbec::::res://Assets/Models/Ordinance/Bombs/MK-82/MK-82 LDGP.glb
+MK-83 LDGP.tscn::PackedScene::4324477591365093384::1702082499::0::1::::<><>::uid://b503ta01v3cxe::::res://Assets/Models/Ordinance/Bombs/MK-83/MK-83 LDGP.glb
+MK-84 LDGP.tscn::PackedScene::5162180344847088546::1702082468::0::1::::<><>::uid://chxh6nltbpgt0::::res://Assets/Models/Ordinance/Bombs/MK-84/MK-84 LDGP.glb
+Zuni Rocket.tscn::PackedScene::228805237543070825::1702081349::0::1::::<><>::uid://dpmd7yfohheki::::res://Assets/Models/Ordinance/Rockets/Zuni/Zuni Rocket.glb
 ::res://Scenes/::1701900602
 dev_scene.tscn::PackedScene::7380948666163426159::1701900602::0::1::::<><>::uid://dtge6twdqslwf::::res://Assets/Subscenes/Settings.tscn<>uid://cksj26judn1ic::::res://Assets/Subscenes/HUD/HUD.tscn<>uid://dvnt5qdvkponl::::res://Assets/Subscenes/GameManager.tscn<>uid://du3oop0r2q05i::::res://Assets/Subscenes/Aircraft/USA/B-26K.tscn<>uid://cqapltawkk7yj::::res://Assets/Resources/Sounds/Aircraft/USA/R2800 High Speed Running L.ogg<>uid://vnp7oxef58u3::::res://Assets/Subscenes/Ordinance/test_bomb.tscn
