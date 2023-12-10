@@ -16,7 +16,7 @@ dest_files=["res://.godot/imported/Zuni Rocket_Zuni Texture.png-c1edc04c3ae82e66
 
 [params]
 
-compress/mode=4
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

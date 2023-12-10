@@ -16,7 +16,7 @@ dest_files=["res://.godot/imported/MK-82 LDGP_MK82BaseTexture.png-160ca462368bcd
 
 [params]
 
-compress/mode=4
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

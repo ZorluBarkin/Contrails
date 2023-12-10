@@ -6,6 +6,8 @@
 using Godot;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 public partial class Bomb : RigidBody3D
 {
@@ -17,7 +19,18 @@ public partial class Bomb : RigidBody3D
 
 	private bool dropped = false;
 	[Export] private bool drop = false;
-	// Called when the node enters the scene tree for the first time.
+    // Called when the node enters the scene tree for the first time.
+
+    public override void _Ready()
+    {
+        BombReady();
+    }
+
+    public  override void _Process(double delta)
+	{
+		BombProcess();
+	}
+
 	public void BombReady()
 	{
 		Freeze = true;

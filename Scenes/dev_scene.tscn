@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddfne770a8m2b"]
+[gd_scene load_steps=11 format=3 uid="uid://ddfne770a8m2b"]
 
 [ext_resource type="PackedScene" uid="uid://dtge6twdqslwf" path="res://Assets/Subscenes/Settings.tscn" id="1_0tgcp"]
 [ext_resource type="PackedScene" uid="uid://cksj26judn1ic" path="res://Assets/Subscenes/HUD/HUD.tscn" id="1_hq76p"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://du3oop0r2q05i" path="res://Assets/Subscenes/Aircraft/USA/B-26K.tscn" id="2_qcfcg"]
 [ext_resource type="AudioStream" uid="uid://cqapltawkk7yj" path="res://Assets/Resources/Sounds/Aircraft/USA/R2800 High Speed Running L.ogg" id="7_he4e1"]
 [ext_resource type="PackedScene" uid="uid://vnp7oxef58u3" path="res://Assets/Subscenes/Ordinance/test_bomb.tscn" id="7_s0w1f"]
+[ext_resource type="Script" path="res://Assets/Scripts/Weapons/ATG/Bomb.cs" id="7_xru2j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbvfu"]
 albedo_color = Color(0.45098, 0.403922, 0.219608, 1)
@@ -64,3 +65,8 @@ max_distance = 4096.0
 [node name="TestBomb" parent="." instance=ExtResource("7_s0w1f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 75.76, -43.605)
 releaseSpeed = 0.0
+
+[node name="TestBomb2" parent="." instance=ExtResource("7_s0w1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264585, 78.1501, -45.2318)
+mass = 242.0
+script = ExtResource("7_xru2j")

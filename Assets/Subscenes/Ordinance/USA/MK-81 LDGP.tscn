@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://duqlggt3h404u"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Weapons/Bomb.cs" id="1_xwm60"]
+[ext_resource type="Script" path="res://Assets/Scripts/Weapons/ATG/Bomb.cs" id="1_xwm60"]
 [ext_resource type="PackedScene" uid="uid://devcyn880i0vh" path="res://Assets/Models/Ordinance/Bombs/Mk-81/MK-81 LDGP.glb" id="2_qi1cp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r8qux"]

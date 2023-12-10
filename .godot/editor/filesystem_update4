@@ -1,2 +1,31 @@
-res://Assets/Subscenes/Ordinance/USA/FFAR Mighty Mouse.tscn
-res://Assets/Subscenes/Ordinance/USA/Zuni Rocket.tscn
+res://Assets/Scripts/Aircraft/AircraftDamage.cs
+res://Assets/Scripts/Aircraft/AircraftPistonEngine.cs
+res://Assets/Scripts/Aircraft/AircraftSoundManager.cs
+res://Assets/Scripts/Aircraft/Flight.cs
+res://Assets/Scripts/Aircraft/LandingGear.cs
+res://Assets/Scripts/Aircraft/Mechanization.cs
+res://Assets/Scripts/Aircraft/Pylon.cs
+res://Assets/Scripts/Aircraft/WeaponControls.cs
+res://Assets/Scripts/Behaviour/WSO.cs
+res://Assets/Scripts/Game/GameManager.cs
+res://Assets/Scripts/Game/HUD/EngineInfo.cs
+res://Assets/Scripts/Game/HUD/HUD.cs
+res://Assets/Scripts/Game/HUD/WeaponInfo.cs
+res://Assets/Scripts/Game/Settings.cs
+res://Assets/Scripts/Vehicle/FuelManager.cs
+res://Assets/Scripts/Vehicle/VehicleControls.cs
+res://Assets/Scripts/Weapons/AAM.cs
+res://Assets/Scripts/Weapons/Bomb.cs
+res://Assets/Scripts/Weapons/GuidedBomb.cs
+res://Assets/Scripts/Weapons/IRMissile.cs
+res://Scenes/dev_scene.tscn
+res://Assets/Subscenes/Ordinance/test_bomb.tscn
+res://Assets/Subscenes/Ordinance/USA/MK-81 LDGP.tscn
+res://Assets/Subscenes/Ordinance/USA/MK-82 LDGP.tscn
+res://Assets/Subscenes/Ordinance/USA/AIM-9B.tscn
+res://Assets/Subscenes/Ordinance/USA/MK-84 LDGP.tscn
+res://Assets/Subscenes/Ordinance/USA/MK-83 LDGP.tscn
+res://Assets/Scripts/Weapons/ATA/AAM.cs
+res://Assets/Scripts/Weapons/ATA/IRMissile.cs
+res://Assets/Scripts/Weapons/ATG/Bomb.cs
+res://Assets/Scripts/Weapons/ATG/GuidedBomb.cs

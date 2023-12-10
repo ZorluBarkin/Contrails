@@ -16,7 +16,7 @@ dest_files=["res://.godot/imported/Mighty Mouse_Zuni Texture.png-3a0800fb31d4d9b
 
 [params]
 
-compress/mode=4
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
