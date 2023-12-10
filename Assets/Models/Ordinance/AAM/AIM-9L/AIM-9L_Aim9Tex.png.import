@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4x6wk87fj001"
-path="res://.godot/imported/AIM-9D_Aim9Tex.png-752736db42497217021b9c7503ebaee3.ctex"
+uid="uid://ce057n0pj4y57"
+path="res://.godot/imported/AIM-9L_Aim9Tex.png-b37a6eb0ee06c1acd1b226e7b793f2ea.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,8 +11,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://Assets/Models/Ordinance/AAM/AIM-9D/AIM-9D_Aim9Tex.png"
-dest_files=["res://.godot/imported/AIM-9D_Aim9Tex.png-752736db42497217021b9c7503ebaee3.ctex"]
+source_file="res://Assets/Models/Ordinance/AAM/AIM-9L/AIM-9L_Aim9Tex.png"
+dest_files=["res://.godot/imported/AIM-9L_Aim9Tex.png-b37a6eb0ee06c1acd1b226e7b793f2ea.ctex"]
 
 [params]
 

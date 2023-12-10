@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1702226025
+::res://::1702234197
 icon.svg::CompressedTexture2D::4305356733133293945::1701900602::1701900602::1::::<><>::
 README.md::TextFile::-1::1701900602::0::1::::<><>::
 ::res://Assets/::1701900602
@@ -7,13 +7,16 @@ README.md::TextFile::-1::1701900602::0::1::::<><>::
 ::res://Assets/Models/Aircraft/::1702209185
 A36.glb::PackedScene::4036526263119435763::1701900602::1702209185::1::::<><>::
 ::res://Assets/Models/Ordinance/::1702168505
-::res://Assets/Models/Ordinance/AAM/::1702224305
+::res://Assets/Models/Ordinance/AAM/::1702234253
 ::res://Assets/Models/Ordinance/AAM/AIM-9B/::1702209282
 AIM-9B.glb::PackedScene::9070883463620024489::1702168525::1702209185::1::::<><>::uid://bslkevcssn4s5::::res://Assets/Models/Ordinance/AAM/AIM-9B/AIM-9B_Aim9Tex.png
 AIM-9B_Aim9Tex.png::CompressedTexture2D::3673143444498024382::1702168525::1702209282::1::::<><>::
-::res://Assets/Models/Ordinance/AAM/AIM-9D/::1702224330
-AIM-9D.glb::PackedScene::7948277770729726945::1702224320::1702224320::1::::<><>::uid://4x6wk87fj001::::res://Assets/Models/Ordinance/AAM/AIM-9D/AIM-9D_Aim9Tex.png
-AIM-9D_Aim9Tex.png::CompressedTexture2D::2084879245761028008::1702224320::1702224330::1::::<><>::
+::res://Assets/Models/Ordinance/AAM/AIM-9G/::1702234229
+AIM-9G.glb::PackedScene::5135431561609265282::1702234211::1702234229::1::::<><>::
+AIM-9G_Aim9Tex.png::CompressedTexture2D::1741317463855451454::1702234211::1702234221::1::::<><>::
+::res://Assets/Models/Ordinance/AAM/AIM-9L/::1702234261
+AIM-9L.glb::PackedScene::2080844122841852153::1702234261::1702234261::1::::<><>::uid://ce057n0pj4y57::::res://Assets/Models/Ordinance/AAM/AIM-9L/AIM-9L_Aim9Tex.png
+AIM-9L_Aim9Tex.png::CompressedTexture2D::5107085563096165908::1702234261::1702234265::1::::<><>::
 ::res://Assets/Models/Ordinance/Bombs/::1702081703
 ::res://Assets/Models/Ordinance/Bombs/Mk-81/::1702209277
 MK-81 LDGP.glb::PackedScene::7483534386821157477::1702083985::1702209185::1::::<><>::uid://cbg7k825jbqnd::::res://Assets/Models/Ordinance/Bombs/Mk-81/MK-81 LDGP_MK82BaseTexture.png
@@ -104,8 +107,9 @@ EngineInfoContainer.tscn::PackedScene::6493423738215882345::1702209737::0::1::::
 HUD.tscn::PackedScene::5512484915750285266::1702209737::0::1::::<><>::res://Assets/Scripts/Game/HUD/HUD.cs<>uid://cyrp0f0p5hipt::::res://Assets/Subscenes/HUD/EngineInfoContainer.tscn<>res://Assets/Scripts/Game/HUD/WeaponInfo.cs
 ::res://Assets/Subscenes/Ordinance/::1702225610
 test_bomb.tscn::PackedScene::1501771298544955720::1702225610::0::1::::<><>::res://Assets/Scripts/Weapons/ATG/GuidedBomb.cs
-::res://Assets/Subscenes/Ordinance/USA/::1702225624
+::res://Assets/Subscenes/Ordinance/USA/::1702234197
 AIM-9B.tscn::PackedScene::8071805721219705619::1702225620::0::1::::<><>::res://Assets/Scripts/Weapons/ATA/IRMissile.cs<>uid://d2iaei6ww1jcr::::res://Assets/Models/Ordinance/AAM/AIM-9B/AIM-9B.glb
+AIM-9D.tscn::PackedScene::3909219857452434341::1702234197::0::1::::<><>::res://Assets/Scripts/Weapons/ATA/IRMissile.cs<>uid://dlig8drnqjg2l::::res://Assets/Models/Ordinance/AAM/AIM-9G/AIM-9D.glb
 FFAR Mighty Mouse.tscn::PackedScene::2772849279044051341::1702209737::0::1::::<><>::uid://d1pxp4rgvhrf8::::res://Assets/Models/Ordinance/Rockets/Mighty Mouse/Mighty Mouse.glb
 MK-81 LDGP.tscn::PackedScene::8596747915362868458::1702225610::0::1::::<><>::res://Assets/Scripts/Weapons/ATG/Bomb.cs<>uid://devcyn880i0vh::::res://Assets/Models/Ordinance/Bombs/Mk-81/MK-81 LDGP.glb
 MK-82 LDGP.tscn::PackedScene::7897301065102999319::1702225610::0::1::::<><>::res://Assets/Scripts/Weapons/ATG/Bomb.cs<>uid://blaah1eggaowj::::res://Assets/Models/Ordinance/Bombs/MK-82/MK-82 LDGP.glb

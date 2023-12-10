@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dlig8drnqjg2l"
-path="res://.godot/imported/AIM-9D.glb-a919b414591c7275b5d3df4e22c15a53.scn"
+uid="uid://cffv2pq6ct4o1"
+path="res://.godot/imported/AIM-9G.glb-e03a467c0f256ff3a6f087761487d412.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Ordinance/AAM/AIM-9D/AIM-9D.glb"
-dest_files=["res://.godot/imported/AIM-9D.glb-a919b414591c7275b5d3df4e22c15a53.scn"]
+source_file="res://Assets/Models/Ordinance/AAM/AIM-9G/AIM-9G.glb"
+dest_files=["res://.godot/imported/AIM-9G.glb-e03a467c0f256ff3a6f087761487d412.scn"]
 
 [params]
 
@@ -24,7 +24,7 @@ meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
-animation/import=true
+animation/import=false
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true

@@ -8,7 +8,7 @@ radius = 0.07
 height = 3.0
 
 [node name="AIM-9B" type="RigidBody3D"]
-mass = 86.0
+mass = 70.0
 script = ExtResource("1_dyv7b")
 
 [node name="AIM-9B" parent="." instance=ExtResource("1_poavv")]
