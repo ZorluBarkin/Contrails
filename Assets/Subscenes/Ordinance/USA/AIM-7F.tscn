@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhvoi446slmcn"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Weapons/ATA/SARH.cs" id="1_kvf2u"]
+[ext_resource type="PackedScene" uid="uid://ec52g3eeb4ae" path="res://Assets/Models/Ordinance/AAM/AIM-7F/AIM-7F.glb" id="2_8qmj2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pwqvt"]
+radius = 0.11
+height = 3.7
+
+[node name="AIM-7F" type="RigidBody3D"]
+script = ExtResource("1_kvf2u")
+
+[node name="AIM-7F" parent="." instance=ExtResource("2_8qmj2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_pwqvt")

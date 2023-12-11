@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Contrails")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00b0162f6b407bf2abf05abbdb5115a249e3c57e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Contrails")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Contrails")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
