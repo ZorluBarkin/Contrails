@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dnabpw3d5ap52"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Weapons/ATA/IRMissile.cs" id="1_dyv7b"]
+[ext_resource type="Script" path="res://Assets/Scripts/Weapons/ATA/IRM.cs" id="1_iboc8"]
 [ext_resource type="PackedScene" uid="uid://d2iaei6ww1jcr" path="res://Assets/Models/Ordinance/AAM/AIM-9B/AIM-9B.glb" id="1_poavv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2pgw1"]
@@ -9,7 +9,7 @@ height = 3.0
 
 [node name="AIM-9B" type="RigidBody3D"]
 mass = 70.0
-script = ExtResource("1_dyv7b")
+script = ExtResource("1_iboc8")
 
 [node name="AIM-9B" parent="." instance=ExtResource("1_poavv")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 0)

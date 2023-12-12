@@ -85,6 +85,12 @@ public partial class AircraftPistonEngine : Node
 	[Export] [Range(0f,100f)] public float waterCowlPercentage = 0; // 0 is not open 100 is fully open, creates drag
 	[Export] [Range(0f,100f)] public float oilCowlPercentage = 0; // 0 is not open 100 is fully open, creates drag
 	
+	[Export] public float wepExhaustTemp = 750f; 
+	[Export] public float maxExhaustTemp = 650f; //650 degrees for piston engines thats not turbo compound
+	// turbo compound will be lower
+	// j79 f4 engien will do 600 - 650 degrees and with after burner its 1500 degrees
+	public float ExhaustTemp = 0f;
+
 	// Engine Startup
 	[Export] private float turnoverTimeStamp = 5f;
 	[Export] private float ignitionTimeStamp = 5f + 15f;

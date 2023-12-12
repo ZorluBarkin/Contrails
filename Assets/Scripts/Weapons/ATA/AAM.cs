@@ -1,3 +1,8 @@
+/*  
+ * Copyright October 2023 Barkın Zorlu 
+ * All rights reserved. 
+ */
+
 using Godot;
 using System;
 
@@ -12,4 +17,15 @@ public partial class AAM : RigidBody3D
 	public override void _Process(double delta)
 	{
 	}
+
+	public void DoGuidance(float gLimit, float delta)
+	{
+
+	}
+
+	public void Explode()
+	{
+
+	}
+
 }
