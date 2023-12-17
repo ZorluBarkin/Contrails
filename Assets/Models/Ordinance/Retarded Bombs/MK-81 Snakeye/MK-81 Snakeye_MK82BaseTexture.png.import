@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmain6kky08pl"
-path="res://.godot/imported/MK-81 LDGP_MK82BaseTexture.png-c1093d65451021d361e4d6890c003768.ctex"
+uid="uid://caxoskk0t0m18"
+path="res://.godot/imported/MK-81 Snakeye_MK82BaseTexture.png-ed1d3375bee123a5df3994f7591fed92.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,8 +11,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://Assets/Models/Ordinance/Bombs/Mk-81/MK-81 LDGP_MK82BaseTexture.png"
-dest_files=["res://.godot/imported/MK-81 LDGP_MK82BaseTexture.png-c1093d65451021d361e4d6890c003768.ctex"]
+source_file="res://Assets/Models/Ordinance/Retarded Bombs/MK-81 Snakeye/MK-81 Snakeye_MK82BaseTexture.png"
+dest_files=["res://.godot/imported/MK-81 Snakeye_MK82BaseTexture.png-ed1d3375bee123a5df3994f7591fed92.ctex"]
 
 [params]
 

@@ -15,7 +15,7 @@ public partial class Bomb : RigidBody3D
 	private Node3D model = null;
 	private Vector3 forwardVector;
 	[Export] public float releaseSpeed = 1f;
-	[Export] public bool guided {get; private set;} = false;
+	[Export] public bool highDrag {get; private set;} = false;
 
 	private bool dropped = false;
 	[Export] private bool drop = false;

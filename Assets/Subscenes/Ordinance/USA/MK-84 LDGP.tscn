@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfsumdvgx40ks"]
 
-[ext_resource type="PackedScene" uid="uid://inr0bqf02wtl" path="res://Assets/Models/Ordinance/Bombs/MK-84/MK-84 LDGP.glb" id="1_jq8f4"]
+[ext_resource type="PackedScene" uid="uid://ygjtdvpcx5jr" path="res://Assets/Models/Ordinance/Bombs/MK-84/MK-84 LDGP.glb" id="1_jq8f4"]
 [ext_resource type="Script" path="res://Assets/Scripts/Weapons/ATG/Bomb.cs" id="1_xjy0g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qqdi2"]
@@ -15,8 +15,8 @@ contact_monitor = true
 script = ExtResource("1_xjy0g")
 
 [node name="MK-84 LDGP" parent="." instance=ExtResource("1_jq8f4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.349619)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.38)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_qqdi2")

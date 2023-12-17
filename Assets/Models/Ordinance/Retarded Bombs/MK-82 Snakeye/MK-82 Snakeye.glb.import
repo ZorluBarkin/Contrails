@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ygjtdvpcx5jr"
-path="res://.godot/imported/MK-84 LDGP.glb-6376d70bd428917aeee73f7532199fbc.scn"
+uid="uid://qh7b644gjoa3"
+path="res://.godot/imported/MK-82 Snakeye.glb-023e8584d2429c8315da8f8b91adfbff.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Ordinance/Bombs/MK-84/MK-84 LDGP.glb"
-dest_files=["res://.godot/imported/MK-84 LDGP.glb-6376d70bd428917aeee73f7532199fbc.scn"]
+source_file="res://Assets/Models/Ordinance/Retarded Bombs/MK-82 Snakeye/MK-82 Snakeye.glb"
+dest_files=["res://.godot/imported/MK-82 Snakeye.glb-023e8584d2429c8315da8f8b91adfbff.scn"]
 
 [params]
 

@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://bd8wpyh2msgkm"]
+
+[ext_resource type="PackedScene" uid="uid://dlk6svxnqyne2" path="res://Assets/Models/Ordinance/Bombs/Mk-81/MK-81 LDGP.glb" id="1_sc5yu"]
+[ext_resource type="PackedScene" uid="uid://ccqkcfoog2li8" path="res://Assets/Models/Ordinance/Bombs/MK-82/MK-82 LDGP.glb" id="2_lfic3"]
+[ext_resource type="PackedScene" uid="uid://d1omqyuaul0ed" path="res://Assets/Models/Ordinance/Bombs/MK-83/MK-83 LDGP.glb" id="3_t8b0u"]
+[ext_resource type="PackedScene" uid="uid://ygjtdvpcx5jr" path="res://Assets/Models/Ordinance/Bombs/MK-84/MK-84 LDGP.glb" id="4_he76d"]
+[ext_resource type="PackedScene" uid="uid://pdj2ak0kfrtv" path="res://Assets/Models/Ordinance/Retarded Bombs/MK-81 Snakeye/MK-81 Snakeye.glb" id="5_jn2nb"]
+[ext_resource type="PackedScene" uid="uid://qh7b644gjoa3" path="res://Assets/Models/Ordinance/Retarded Bombs/MK-82 Snakeye/MK-82 Snakeye.glb" id="6_wsgw4"]
+[ext_resource type="PackedScene" uid="uid://qk7pykx2ymp5" path="res://Assets/Models/Ordinance/Retarded Bombs/MK-83 Snakeye/MK-83 Snakeye.glb" id="7_a4bvw"]
+
+[node name="ModelTestScene" type="Node3D"]
+
+[node name="MK-81 LDGP" parent="." instance=ExtResource("1_sc5yu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.69895, 0, 0)
+
+[node name="MK-82 LDGP" parent="." instance=ExtResource("2_lfic3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17071, 0, 0)
+
+[node name="MK-83 LDGP" parent="." instance=ExtResource("3_t8b0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67545, 0, 0)
+
+[node name="MK-84 LDGP" parent="." instance=ExtResource("4_he76d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12214, 0, 0)
+
+[node name="MK-81 Snakeye" parent="." instance=ExtResource("5_jn2nb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70293, 0.162321, 0.0238634)
+
+[node name="MK-82 Snakeye" parent="." instance=ExtResource("6_wsgw4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17506, 0.197364, 0.0516922)
+
+[node name="MK-83 Snakeye" parent="." instance=ExtResource("7_a4bvw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67006, 0.126077, -0.250509)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjlik50ggild7"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Weapons/ATG/Bomb.cs" id="1_1xn4i"]
+[ext_resource type="PackedScene" uid="uid://pdj2ak0kfrtv" path="res://Assets/Models/Ordinance/Retarded Bombs/MK-81 Snakeye/MK-81 Snakeye.glb" id="1_bifru"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hyiv1"]
+radius = 0.115
+height = 1.88
+
+[node name="MK-81 Snakeye" type="RigidBody3D"]
+script = ExtResource("1_1xn4i")
+highDrag = true
+
+[node name="MK-81 Snakeye" parent="." instance=ExtResource("1_bifru")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -0.242338)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_hyiv1")
