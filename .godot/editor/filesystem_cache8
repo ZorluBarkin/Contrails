@@ -1,12 +1,12 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1702409723
+::res://::1702813003
 icon.svg::CompressedTexture2D::4305356733133293945::1701900602::1701900602::1::::<><>::
 README.md::TextFile::-1::1701900602::0::1::::<><>::
 ::res://Assets/::1701900602
 ::res://Assets/Models/::1701900602
 ::res://Assets/Models/Aircraft/::1702209185
 A36.glb::PackedScene::4036526263119435763::1701900602::1702209185::1::::<><>::
-::res://Assets/Models/Ordinance/::1702168505
+::res://Assets/Models/Ordinance/::1702812916
 ::res://Assets/Models/Ordinance/AAM/::1702253080
 ::res://Assets/Models/Ordinance/AAM/AIM-7E/::1702253116
 AIM-7E.glb::PackedScene::9039561548873354552::1702253091::1702253116::1::::<><>::
@@ -36,6 +36,7 @@ MK-83 LDGP_MK82BaseTexture.png::CompressedTexture2D::1229432573734792099::170208
 ::res://Assets/Models/Ordinance/Bombs/MK-84/::1702209251
 MK-84 LDGP.glb::PackedScene::589424571133582065::1702081700::1702209185::1::::<><>::uid://c8lal13115lei::::res://Assets/Models/Ordinance/Bombs/MK-84/MK-84 LDGP_MK82BaseTexture.png
 MK-84 LDGP_MK82BaseTexture.png::CompressedTexture2D::7111802416547767308::1702081701::1702209251::1::::<><>::
+::res://Assets/Models/Ordinance/Retarded Bombs/::1702812904
 ::res://Assets/Models/Ordinance/Rockets/::1702131113
 ::res://Assets/Models/Ordinance/Rockets/Mighty Mouse/::1702209257
 Mighty Mouse.glb::PackedScene::9016562479461043735::1702131127::1702209185::1::::<><>::uid://jt5pf22dckxx::::res://Assets/Models/Ordinance/Rockets/Mighty Mouse/Mighty Mouse_Zuni Texture.png
@@ -77,7 +78,7 @@ Weapon.cs::CSharpScript::-1::1702225988::0::1::::<><>::
 ::res://Assets/Scripts/Weapons/ATA/::1702387311
 AAM.cs::CSharpScript::-1::1702393310::0::1::::<>RigidBody3D<>::
 IRM.cs::CSharpScript::-1::1702387317::0::1::::<><>::
-SARH.cs::CSharpScript::-1::1702253223::0::1::::<>RigidBody3D<>::
+SARH.cs::CSharpScript::-1::1702418594::0::1::::<>RigidBody3D<>::
 ::res://Assets/Scripts/Weapons/ATG/::1702225610
 Bomb.cs::CSharpScript::-1::1702209770::0::1::::<>RigidBody3D<>::
 GuidedBomb.cs::CSharpScript::-1::1701900602::0::1::::<>RigidBody3D<>::
@@ -114,12 +115,12 @@ EngineInfoContainer.tscn::PackedScene::6493423738215882345::1702234614::0::1::::
 HUD.tscn::PackedScene::5512484915750285266::1702209737::0::1::::<><>::res://Assets/Scripts/Game/HUD/HUD.cs<>uid://cyrp0f0p5hipt::::res://Assets/Subscenes/HUD/EngineInfoContainer.tscn<>res://Assets/Scripts/Game/HUD/WeaponInfo.cs
 ::res://Assets/Subscenes/Ordinance/::1702225610
 test_bomb.tscn::PackedScene::1501771298544955720::1702225610::0::1::::<><>::res://Assets/Scripts/Weapons/ATG/GuidedBomb.cs
-::res://Assets/Subscenes/Ordinance/USA/::1702387367
+::res://Assets/Subscenes/Ordinance/USA/::1702812979
 AIM-7E.tscn::PackedScene::5895388491348333298::1702253258::0::1::::<><>::res://Assets/Scripts/Weapons/ATA/SARH.cs<>uid://d113i1i7xs86w::::res://Assets/Models/Ordinance/AAM/AIM-7E/AIM-7E.glb
 AIM-7F.tscn::PackedScene::2921960415654033433::1702253327::0::1::::<><>::res://Assets/Scripts/Weapons/ATA/SARH.cs<>uid://ec52g3eeb4ae::::res://Assets/Models/Ordinance/AAM/AIM-7F/AIM-7F.glb
 AIM-9B.tscn::PackedScene::8071805721219705619::1702387365::0::1::::<><>::res://Assets/Scripts/Weapons/ATA/IRM.cs<>uid://d2iaei6ww1jcr::::res://Assets/Models/Ordinance/AAM/AIM-9B/AIM-9B.glb
 AIM-9G.tscn::PackedScene::7186889306068848591::1702387366::0::1::::<><>::res://Assets/Scripts/Weapons/ATA/IRM.cs<>uid://cffv2pq6ct4o1::::res://Assets/Models/Ordinance/AAM/AIM-9G/AIM-9G.glb
-AIM-9L.tscn::PackedScene::3565716587407184225::1702387367::0::1::::<><>::uid://4v8g0xia5pan::::res://Assets/Models/Ordinance/AAM/AIM-9L/AIM-9L.glb<>res://Assets/Scripts/Weapons/ATA/IRM.cs
+AIM-9L.tscn::PackedScene::3565716587407184225::1702812979::0::1::::<><>::uid://4v8g0xia5pan::::res://Assets/Models/Ordinance/AAM/AIM-9L/AIM-9L.glb<>res://Assets/Scripts/Weapons/ATA/IRM.cs
 FFAR Mighty Mouse.tscn::PackedScene::2772849279044051341::1702209737::0::1::::<><>::uid://d1pxp4rgvhrf8::::res://Assets/Models/Ordinance/Rockets/Mighty Mouse/Mighty Mouse.glb
 MK-81 LDGP.tscn::PackedScene::8596747915362868458::1702225610::0::1::::<><>::res://Assets/Scripts/Weapons/ATG/Bomb.cs<>uid://devcyn880i0vh::::res://Assets/Models/Ordinance/Bombs/Mk-81/MK-81 LDGP.glb
 MK-82 LDGP.tscn::PackedScene::7897301065102999319::1702225610::0::1::::<><>::res://Assets/Scripts/Weapons/ATG/Bomb.cs<>uid://blaah1eggaowj::::res://Assets/Models/Ordinance/Bombs/MK-82/MK-82 LDGP.glb
