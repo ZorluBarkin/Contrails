@@ -1,3 +1,8 @@
+/*  
+ * Copyright October 2023 Barkın Zorlu 
+ * All rights reserved. 
+ */
+
 using Godot;
 using System;
 
@@ -11,5 +16,10 @@ public partial class IRM : AAM
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+	}
+
+	private void QueryForTargets()
+	{
+
 	}
 }

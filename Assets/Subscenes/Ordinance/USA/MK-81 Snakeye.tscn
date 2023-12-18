@@ -7,13 +7,27 @@
 radius = 0.115
 height = 1.88
 
-[node name="MK-81 Snakeye" type="RigidBody3D"]
+[node name="MK-81 Snakeye" type="RigidBody3D" node_paths=PackedStringArray("highDragAnimation")]
+mass = 110.0
+angular_damp = 0.152
 script = ExtResource("1_1xn4i")
-highDrag = true
+highDragAnimation = NodePath("MK-81 Snakeye/AnimationPlayer")
+animationName = "BrakeOpening"
 
 [node name="MK-81 Snakeye" parent="." instance=ExtResource("1_bifru")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -0.242338)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.24)
+
+[node name="Mk-81 Snakeye Brake Right" parent="MK-81 Snakeye/Mk-81 Snakeye Body" index="2"]
+transform = Transform3D(1, 7.96572e-22, -5.65998e-36, -7.96572e-22, 1, -7.10543e-15, 0, 7.10543e-15, 1, 9.46047e-05, 0.000226901, -1.23)
+
+[node name="Mk-81 Snakeye Brake Up" parent="MK-81 Snakeye/Mk-81 Snakeye Body" index="3"]
+transform = Transform3D(1, 1.64991e-24, 1.21233e-24, -1.64991e-24, 1, 0, -1.21233e-24, 0, 1, 9.46047e-05, 0.000226901, -1.23)
+
+[node name="AnimationPlayer" parent="MK-81 Snakeye" index="3"]
+active = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_hyiv1")
+
+[editable path="MK-81 Snakeye"]

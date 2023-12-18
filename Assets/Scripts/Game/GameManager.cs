@@ -17,7 +17,10 @@ public enum PlayerVehicleType
 public partial class GameManager : Node
 {
 	public static GameManager instance = null;
+	
+	public Node3D[] AircraftArray;
 
+	#region Player Variables
 	public Camera3D mainCamera = null;
 	[Export] public Camera3D[] cameras;
 	public Node3D playerVehicle = null;
@@ -27,6 +30,8 @@ public partial class GameManager : Node
 	public Mechanization mechanization = null;
 	// may change class the name to controls and change to aircarft inside
 	
+	#endregion
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

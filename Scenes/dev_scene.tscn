@@ -1,12 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddfne770a8m2b"]
+[gd_scene load_steps=14 format=3 uid="uid://ddfne770a8m2b"]
 
 [ext_resource type="PackedScene" uid="uid://dtge6twdqslwf" path="res://Assets/Subscenes/Settings.tscn" id="1_0tgcp"]
 [ext_resource type="PackedScene" uid="uid://cksj26judn1ic" path="res://Assets/Subscenes/HUD/HUD.tscn" id="1_hq76p"]
 [ext_resource type="PackedScene" uid="uid://dvnt5qdvkponl" path="res://Assets/Subscenes/GameManager.tscn" id="1_vk158"]
 [ext_resource type="PackedScene" uid="uid://du3oop0r2q05i" path="res://Assets/Subscenes/Aircraft/USA/B-26K.tscn" id="2_qcfcg"]
+[ext_resource type="Script" path="res://Assets/Scripts/Game/DebugCamera.cs" id="3_nfa7b"]
 [ext_resource type="AudioStream" uid="uid://cqapltawkk7yj" path="res://Assets/Resources/Sounds/Aircraft/USA/R2800 High Speed Running L.ogg" id="7_he4e1"]
 [ext_resource type="PackedScene" uid="uid://vnp7oxef58u3" path="res://Assets/Subscenes/Ordinance/test_bomb.tscn" id="7_s0w1f"]
 [ext_resource type="Script" path="res://Assets/Scripts/Weapons/ATG/Bomb.cs" id="7_xru2j"]
+[ext_resource type="PackedScene" uid="uid://duqlggt3h404u" path="res://Assets/Subscenes/Ordinance/USA/MK-81 LDGP.tscn" id="8_d6q6q"]
+[ext_resource type="PackedScene" uid="uid://cjlik50ggild7" path="res://Assets/Subscenes/Ordinance/USA/MK-81 Snakeye.tscn" id="10_q3lpn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbvfu"]
 albedo_color = Color(0.45098, 0.403922, 0.219608, 1)
@@ -37,8 +40,11 @@ shape = SubResource("WorldBoundaryShape3D_73ued")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.872248, 0.489063, 0, -0.489063, 0.872248, 2.90276, 101.411, -17.4134)
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.178424, 0.393925, -0.901658, 0, 0.916363, 0.400349, 0.983954, -0.071432, 0.163501, -17.264, 31.883, -325.801)
+fov = 60.0
+script = ExtResource("3_nfa7b")
+target = NodePath("../MK-81 Snakeye")
 metadata/MainCamera = true
 
 [node name="HUD" parent="Camera3D" instance=ExtResource("1_hq76p")]
@@ -70,3 +76,13 @@ releaseSpeed = 0.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264585, 78.1501, -45.2318)
 mass = 242.0
 script = ExtResource("7_xru2j")
+
+[node name="MK-81 LDGP" parent="." instance=ExtResource("8_d6q6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00274, 50, 0)
+releaseSpeed = 100.0
+
+[node name="MK-81 Snakeye" parent="." instance=ExtResource("10_q3lpn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
+releaseSpeed = 200.0
+highDrag = true
+drop = true

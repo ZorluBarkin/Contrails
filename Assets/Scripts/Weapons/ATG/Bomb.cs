@@ -15,8 +15,14 @@ public partial class Bomb : RigidBody3D
 	private Node3D model = null;
 	private Vector3 forwardVector;
 	[Export] public float releaseSpeed = 1f;
+	[Export] public float MaxLaunchSpeed {get; private set;} = 340.27f * 1.2f; // 1.2 Mach
+	[Export] private float[] dragMachNumber = {0.95f, 1.05f};
+	[Export] public float[] dragPerMach {get; private set;} = {0.152f, 0.1918f, 0.3460f};
 	[Export] public bool highDrag {get; private set;} = false;
-
+	[Export] public AnimationPlayer highDragAnimation = null;
+	[Export] public string animationName = null;
+	[Export] public float highDragCoeff {get; private set;} = 1f; //1.35f; // works best, 3.4 is the real number
+	
 	private bool dropped = false;
 	[Export] private bool drop = false;
     // Called when the node enters the scene tree for the first time.
@@ -47,23 +53,57 @@ public partial class Bomb : RigidBody3D
 	public void BombProcess()
 	{
 		forwardVector = Transform.Basis * Vector3.Forward; // forward vector
-
 		//if(!dropped && GetMeta("Trigger").AsBool())
 		if(!dropped && drop)
 		{
 			Freeze = false;
 			dropped = true;
 			Owner = rootNode;
-
 			if(releaseSpeed == 0)
 				releaseSpeed++;
 			LinearVelocity = forwardVector * releaseSpeed;
 		}
 		else if(dropped)
 		{
-			// we add forward vector position and look target will not be the same
-			// adding forward vector will change its rotation slight not noticable
-			model.LookAt(Position + (LinearVelocity + forwardVector)); 
+			if(highDrag)
+			{
+				BrakeActivation();
+			}
+			else
+			{
+				float machSpeed = LinearVelocity.Length() / 340.27f;
+
+				if (machSpeed < dragMachNumber[0])
+					if(LinearDamp != dragPerMach[0])
+						LinearDamp = dragPerMach[0];
+				else if (machSpeed < dragMachNumber[1])
+					if(LinearDamp != dragPerMach[1])
+						LinearDamp = dragPerMach[1];
+				else // above mach 1.05
+					if(LinearDamp != dragPerMach[2])
+						LinearDamp = dragPerMach[2];
+			}
+
+			model.LookAt(Position - LinearVelocity); // makes it look forwards
+		}
+	}
+
+	/// <summary>
+	/// For high drag bombs activation of animations and effect, its async because it has to wait for animation finish.
+	/// </summary>
+	private async void BrakeActivation()
+	{
+		if(LinearDamp != highDragCoeff)
+		{
+			if(!highDragAnimation.Active)
+			{
+				highDragAnimation.CurrentAnimation = animationName;
+				GD.Print(highDragAnimation.CurrentAnimation);
+				highDragAnimation.Active = true;
+				await ToSignal(GetTree().CreateTimer(highDragAnimation.CurrentAnimationLength), SceneTreeTimer.SignalName.Timeout);
+				// do not use highDragAnimation.CurrentAnimation.Length, it returns wrong for parallel animations
+				LinearDamp = highDragCoeff;
+			}
 		}
 	}
 }
