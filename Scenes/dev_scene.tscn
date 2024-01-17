@@ -21,7 +21,11 @@ size = Vector2(1000, 1000)
 
 [node name="DevScene" type="Node3D"]
 
-[node name="Game Manager" parent="." instance=ExtResource("1_vk158")]
+[node name="Game Manager" parent="." node_paths=PackedStringArray("FriendlyUnitArray", "friendlyAircraftArray", "enemyUnitArray", "enemyAircraftArray") instance=ExtResource("1_vk158")]
+FriendlyUnitArray = []
+friendlyAircraftArray = []
+enemyUnitArray = []
+enemyAircraftArray = []
 
 [node name="Settings" parent="." instance=ExtResource("1_0tgcp")]
 
@@ -41,7 +45,7 @@ shape = SubResource("WorldBoundaryShape3D_73ued")
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(0.178424, 0.393925, -0.901658, 0, 0.916363, 0.400349, 0.983954, -0.071432, 0.163501, -17.264, 31.883, -325.801)
+transform = Transform3D(0.178424, 0.393925, -0.901658, 0, 0.916363, 0.400349, 0.983954, -0.071432, 0.163501, -17.264, 31.883, 0)
 fov = 60.0
 script = ExtResource("3_nfa7b")
 target = NodePath("../MK-81 Snakeye")
@@ -52,6 +56,24 @@ metadata/MainCamera = true
 [node name="B-26K" parent="." instance=ExtResource("2_qcfcg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0)
 metadata/PlayerVehicle = true
+metadata/Friend = true
+
+[node name="Friendly A" parent="." instance=ExtResource("2_qcfcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0)
+metadata/Friend = true
+
+[node name="Frendly A 2" parent="." instance=ExtResource("2_qcfcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0)
+metadata/Friend = true
+
+[node name="Enemy V" parent="." instance=ExtResource("2_qcfcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0)
+metadata/Aircraft = false
+
+[node name="Friend V" parent="." instance=ExtResource("2_qcfcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0)
+metadata/Friend = true
+metadata/Aircraft = false
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)
@@ -79,10 +101,8 @@ script = ExtResource("7_xru2j")
 
 [node name="MK-81 LDGP" parent="." instance=ExtResource("8_d6q6q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00274, 50, 0)
-releaseSpeed = 100.0
+releaseSpeed = 200.0
 
 [node name="MK-81 Snakeye" parent="." instance=ExtResource("10_q3lpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
-releaseSpeed = 200.0
-highDrag = true
-drop = true
+releaseSpeed = 10.0

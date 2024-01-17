@@ -281,7 +281,7 @@ public partial class VehicleControls : Node
 		//jetEngines = new AircraftJetEngine[vehicleControls.engines.Length];
 		for(int i = 0; i <  GameManager.instance.vehicleControls.engines.Length; i++)
 		{
-			if( GameManager.instance.vehicleControls.engines[i] is AircraftPistonEngine)
+			if(GameManager.instance.vehicleControls.engines[i] is AircraftPistonEngine)
 			{
 				pistonEngines[i] = GetNode<AircraftPistonEngine>( GameManager.instance.vehicleControls.engines[i].GetPath());
 				isPistonEngine = true;

@@ -7,9 +7,16 @@
 radius = 0.179
 height = 3.035
 
-[node name="MK-83 Snakeye" type="RigidBody3D"]
+[node name="MK-83 Snakeye" type="RigidBody3D" node_paths=PackedStringArray("highDragAnimation")]
+mass = 447.0
+continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
+linear_damp = 0.152
 script = ExtResource("1_h48h0")
 highDrag = true
+highDragAnimation = NodePath("MK-83 Snakeye/AnimationPlayer")
+animationName = "BrakeOpening"
 
 [node name="MK-83 Snakeye" parent="." instance=ExtResource("2_ge1b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.39735)
@@ -17,3 +24,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.39735)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_cildl")
+
+[editable path="MK-83 Snakeye"]

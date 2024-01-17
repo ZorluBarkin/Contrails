@@ -12,6 +12,7 @@ mass = 447.0
 continuous_cd = true
 max_contacts_reported = 1
 contact_monitor = true
+linear_damp = 0.152
 script = ExtResource("1_digtf")
 
 [node name="MK-83 LDGP" parent="." instance=ExtResource("1_66e4v")]

@@ -13,6 +13,7 @@ mass = 242.0
 continuous_cd = true
 max_contacts_reported = 1
 contact_monitor = true
+linear_damp = 0.152
 script = ExtResource("1_y4iqm")
 metadata/WeaponType = 7
 metadata/Trigger = false

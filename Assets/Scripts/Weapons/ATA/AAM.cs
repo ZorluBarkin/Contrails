@@ -18,8 +18,9 @@ public partial class AAM : RigidBody3D
 	//{
 	//}
 
-	public void DoGuidance(float gLimit, float delta)
+	public void DoGuidance(RigidBody3D target, float gLimit, float delta) // every missile does propotional Guidance (Every missile leads)
 	{
+		
 	}
 
 	public void Explode()

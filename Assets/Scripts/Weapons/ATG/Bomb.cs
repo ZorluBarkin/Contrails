@@ -16,12 +16,15 @@ public partial class Bomb : RigidBody3D
 	private Vector3 forwardVector;
 	[Export] public float releaseSpeed = 1f;
 	[Export] public float MaxLaunchSpeed {get; private set;} = 340.27f * 1.2f; // 1.2 Mach
-	[Export] private float[] dragMachNumber = {0.95f, 1.05f};
-	[Export] public float[] dragPerMach {get; private set;} = {0.152f, 0.1918f, 0.3460f};
+	[Export] public float[] DragMachNumber = {0.95f, 1.05f};
+	[Export] public float[] DragPerMach {get; private set;} = {0.152f, 0.1918f, 0.3460f};
+
+	#region High Drag Bomb Variables
 	[Export] public bool highDrag {get; private set;} = false;
 	[Export] public AnimationPlayer highDragAnimation = null;
 	[Export] public string animationName = null;
 	[Export] public float highDragCoeff {get; private set;} = 1f; //1.35f; // works best, 3.4 is the real number
+	#endregion
 	
 	private bool dropped = false;
 	[Export] private bool drop = false;
@@ -46,7 +49,7 @@ public partial class Bomb : RigidBody3D
 		if(model == null)
 			model = GetNode<Node3D>(GetChild(0).GetPath());
 
-		GD.Print(model.GetParent().Name);
+		//GD.Print(model.GetParent().Name);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,15 +76,15 @@ public partial class Bomb : RigidBody3D
 			{
 				float machSpeed = LinearVelocity.Length() / 340.27f;
 
-				if (machSpeed < dragMachNumber[0])
-					if(LinearDamp != dragPerMach[0])
-						LinearDamp = dragPerMach[0];
-				else if (machSpeed < dragMachNumber[1])
-					if(LinearDamp != dragPerMach[1])
-						LinearDamp = dragPerMach[1];
+				if (machSpeed < DragMachNumber[0])
+					if(LinearDamp != DragPerMach[0])
+						LinearDamp = DragPerMach[0];
+				else if (machSpeed < DragMachNumber[1])
+					if(LinearDamp != DragPerMach[1])
+						LinearDamp = DragPerMach[1];
 				else // above mach 1.05
-					if(LinearDamp != dragPerMach[2])
-						LinearDamp = dragPerMach[2];
+					if(LinearDamp != DragPerMach[2])
+						LinearDamp = DragPerMach[2];
 			}
 
 			model.LookAt(Position - LinearVelocity); // makes it look forwards
@@ -89,7 +92,7 @@ public partial class Bomb : RigidBody3D
 	}
 
 	/// <summary>
-	/// For high drag bombs activation of animations and effect, its async because it has to wait for animation finish.
+	/// For high drag bombs activation of animations and effects, its async because it has to wait for animation finish.
 	/// </summary>
 	private async void BrakeActivation()
 	{

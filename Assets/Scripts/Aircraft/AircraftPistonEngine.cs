@@ -85,11 +85,13 @@ public partial class AircraftPistonEngine : Node
 	[Export] [Range(0f,100f)] public float waterCowlPercentage = 0; // 0 is not open 100 is fully open, creates drag
 	[Export] [Range(0f,100f)] public float oilCowlPercentage = 0; // 0 is not open 100 is fully open, creates drag
 	
-	[Export] public float wepExhaustTemp = 750f; 
+	//[Export] public float wepExhaustTemp = 750f; // closed because can be made simple
 	[Export] public float maxExhaustTemp = 650f; //650 degrees for piston engines thats not turbo compound
 	// turbo compound will be lower
-	// j79 f4 engien will do 600 - 650 degrees and with after burner its 1500 degrees
-	public float ExhaustTemp = 0f;
+	// j79 f4 engines will do 600 - 650 degrees and with after burner its 1500 degrees
+	// front aspect jet engines go up to 850 degrees and after burners can go up to 1500 degrees	
+	[Export] public float idleExhaustTemp = 400f; //400-450f
+	public float frontTemp = 100f; // made up value
 
 	// Engine Startup
 	[Export] private float turnoverTimeStamp = 5f;
@@ -239,6 +241,13 @@ public partial class AircraftPistonEngine : Node
 		{
 			//currentPowerOutput = RPM * power
 		}
+
+		// can be made simple not so important
+		SetMeta("ExhaustTemp", idleExhaustTemp + (maxExhaustTemp - idleExhaustTemp) * throttle / 100f);
+		SetMeta("FrontTemp", frontTemp * throttle / 100f); // good enough
+
+		GD.Print(GetMeta("ExhaustTemp"));
+		GD.Print(GetMeta("FrontTemp"));
 
 		TurnPropeller(delta);
 	}
