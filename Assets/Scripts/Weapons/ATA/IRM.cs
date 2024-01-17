@@ -72,6 +72,6 @@ public partial class IRM : AAM
 
 	private static float CalculateLockQuality(float targetTemp, float distance, float bestLockTemp, float bestLockRange, float LockRange)
 	{
-		return 1 * (targetTemp / bestLockTemp) * ((LockRange / distance) / (LockRange / bestLockRange));
+		return 1 * (targetTemp / bestLockTemp) * Mathf.Clamp(((LockRange / distance) / (LockRange / bestLockRange)), 0f, 1f);
 	}
 }
