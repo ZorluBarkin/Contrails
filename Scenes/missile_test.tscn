@@ -1,0 +1,135 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfcajfydm2p1m"]
+
+[ext_resource type="PackedScene" uid="uid://dnabpw3d5ap52" path="res://Assets/Subscenes/Ordinance/USA/AIM-9B.tscn" id="1_3oj2r"]
+[ext_resource type="PackedScene" uid="uid://dvnt5qdvkponl" path="res://Assets/Subscenes/GameManager.tscn" id="1_824li"]
+[ext_resource type="PackedScene" uid="uid://dtge6twdqslwf" path="res://Assets/Subscenes/Settings.tscn" id="2_5duqb"]
+[ext_resource type="Script" path="res://Assets/Scripts/Game/DebugCamera.cs" id="2_i28cn"]
+[ext_resource type="PackedScene" uid="uid://cksj26judn1ic" path="res://Assets/Subscenes/HUD/HUD.tscn" id="4_sac4l"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3x6xv"]
+size = Vector3(1, 1, 5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3084l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jqub5"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_34at3"]
+size = Vector3(1, 1, 8000)
+
+[node name="MissileTest" type="Node3D"]
+
+[node name="Game Manager" parent="." node_paths=PackedStringArray("friendlyUnitArray", "friendlyAircraftArray", "enemyUnitArray", "enemyAircraftArray") instance=ExtResource("1_824li")]
+combatState = 1
+friendlyUnitArray = []
+friendlyAircraftArray = []
+enemyUnitArray = []
+enemyAircraftArray = []
+
+[node name="Node" parent="." instance=ExtResource("2_5duqb")]
+
+[node name="AIM-9B" parent="." instance=ExtResource("1_3oj2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+gravity_scale = 0.0
+
+[node name="Target" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -267.642, 10, -3980.92)
+gravity_scale = 0.0
+metadata/Aircraft = true
+metadata/Friend = true
+metadata/ExhaustTemp = 750.0
+metadata/FrontTemp = 350.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Target"]
+mesh = SubResource("BoxMesh_3x6xv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Target"]
+shape = SubResource("SphereShape3D_3084l")
+
+[node name="Target2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -192.643, 44.797, -3000)
+gravity_scale = 0.0
+metadata/Aircraft = true
+metadata/Friend = false
+metadata/ExhaustTemp = 800.0
+metadata/FrontTemp = 200.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Target2"]
+mesh = SubResource("BoxMesh_3x6xv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Target2"]
+shape = SubResource("SphereShape3D_3084l")
+
+[node name="Target3" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36301, 9.99988, -3630.48)
+gravity_scale = 0.0
+metadata/Aircraft = true
+metadata/Friend = false
+metadata/ExhaustTemp = 1400.0
+metadata/FrontTemp = 300.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Target3"]
+mesh = SubResource("BoxMesh_3x6xv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Target3"]
+shape = SubResource("SphereShape3D_3084l")
+
+[node name="Target4" type="RigidBody3D" parent="."]
+transform = Transform3D(0.766044, 0, 0.642788, 0, 1, 0, -0.642788, 0, 0.766044, -105.19, 10, -2000)
+gravity_scale = 0.0
+metadata/Aircraft = true
+metadata/Friend = false
+metadata/ExhaustTemp = 700.0
+metadata/FrontTemp = 350.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Target4"]
+mesh = SubResource("BoxMesh_3x6xv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Target4"]
+shape = SubResource("SphereShape3D_3084l")
+
+[node name="Target5" type="RigidBody3D" parent="."]
+transform = Transform3D(0.694658, 0, 0.71934, 0, 1, 0, -0.71934, 0, 0.694658, 122.82, 20, -2000)
+gravity_scale = 0.0
+metadata/Aircraft = true
+metadata/Friend = false
+metadata/ExhaustTemp = 700.0
+metadata/FrontTemp = 250.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Target5"]
+mesh = SubResource("BoxMesh_3x6xv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Target5"]
+shape = SubResource("SphereShape3D_3084l")
+
+[node name="Target6" type="RigidBody3D" parent="."]
+transform = Transform3D(0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, 0.34202, -29.108, 40, -900)
+gravity_scale = 0.0
+metadata/Aircraft = true
+metadata/Friend = false
+metadata/ExhaustTemp = 700.0
+metadata/FrontTemp = 250.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Target6"]
+mesh = SubResource("BoxMesh_3x6xv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Target6"]
+shape = SubResource("SphereShape3D_3084l")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5986, 9.8016, 0)
+script = ExtResource("2_i28cn")
+target = NodePath("../AIM-9B")
+
+[node name="HUD" parent="Camera3D" instance=ExtResource("4_sac4l")]
+debug = true
+
+[node name="range and angle visualizer left" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_jqub5")
+mesh = SubResource("BoxMesh_34at3")
+
+[node name="range and angle visualizer Right" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.997564, 0, -0.0697565, 0, 1, 0, 0.0697565, 0, 0.997564, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_jqub5")
+mesh = SubResource("BoxMesh_34at3")

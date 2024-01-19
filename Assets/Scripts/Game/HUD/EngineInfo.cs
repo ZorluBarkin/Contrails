@@ -59,6 +59,8 @@ public partial class EngineInfo : VBoxContainer
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if(hud.debug)
+			return;
 		// need to set at the first frame as this has to be after HUD _Ready()
 		if(!engineIndexSet)
 		{

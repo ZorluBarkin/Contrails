@@ -38,6 +38,8 @@ public partial class HUD : Control // Should not be a Singleton
 	[Export] private Label flapsLabel;
 	[Export] private Texture2D[] flapsSymbols;
 
+	[Export] public bool debug = false;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -46,6 +48,9 @@ public partial class HUD : Control // Should not be a Singleton
 
 		if(Settings.instance.seeFPS)
 			seeFPS = true;
+
+		if(debug)
+			return;
 
 		playerVehicle = GameManager.instance.playerVehicle;
 		vehicleRb = GetNode<RigidBody3D>(playerVehicle.GetPath());
@@ -67,6 +72,10 @@ public partial class HUD : Control // Should not be a Singleton
 	public override void _Process(double delta)
 	{
 		UpdateFPSLabel();
+
+		if(debug)
+			return;
+
 		UpdateAircraftInfo();
 	}
 

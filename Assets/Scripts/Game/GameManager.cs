@@ -39,11 +39,14 @@ public partial class GameManager : Node
 
 	// these are all arrays because they are nice to see in editor
 	// if possible make these lists, it will make the methods faster as well
-	[Export] public Node3D[] FriendlyUnitArray = null; // no aircraft
+	[Export] public Node3D[] friendlyUnitArray = null; // no aircraft
 	[Export] public Node3D[] friendlyAircraftArray = null; // if friendly check for META "Friend" then add
 	
 	[Export] public Node3D[] enemyUnitArray = null; // no aircraft
 	[Export] public Node3D[] enemyAircraftArray = null; // else add here
+	public List<Node3D> allAircraft = new List<Node3D>(); // every aircraft for use in non-IFF systems
+
+	public List<Node3D> flareList = new List<Node3D>(); // add all flares in one instance here. Flares destroy themselves.
 	
 	// public Node3D[] neutralAircraftList = null: // civilian aircraft 
 
@@ -67,15 +70,13 @@ public partial class GameManager : Node
 		instance = this;
 
 		mainCamera = FindMainCamera();
-		playerVehicle = FindPlayerVehicle();
-		vehicleControls = FindVehicleControls();
-		fuelManager = FindAircraftFuelManager();
-		mechanization = FindMechanization();
+		//playerVehicle = FindPlayerVehicle();
+		//vehicleControls = FindVehicleControls();
+		//fuelManager = FindAircraftFuelManager();
+		//mechanization = FindMechanization();
 
-		if(!SetUnitLists(ref FriendlyUnitArray, ref friendlyAircraftArray, ref enemyUnitArray, ref enemyAircraftArray))
-		{
+		if(!SetUnitLists(friendlyUnitArray, friendlyAircraftArray, enemyUnitArray, enemyAircraftArray, allAircraft))
 			GD.PrintErr("Game Manager, failed to set units");
-		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -163,7 +164,7 @@ public partial class GameManager : Node
 		if(timer >= updateInterval)
 		{
 			bool infoUpdateSuccess = true;
-			infoUpdateSuccess &= SetUnitLists(ref FriendlyUnitArray, ref friendlyAircraftArray, ref enemyUnitArray, ref enemyAircraftArray);
+			infoUpdateSuccess &= SetUnitLists(friendlyUnitArray, friendlyAircraftArray, enemyUnitArray, enemyAircraftArray, allAircraft);
 			
 			timer = 0f;
 			if(!infoUpdateSuccess)
@@ -172,11 +173,11 @@ public partial class GameManager : Node
 	}
 
 	/// <summary>
-	/// Search for every unit and aircraft, thos should be included in every scene info update
+	/// Search for every unit and aircraft, this should be included in every scene info update
 	/// </summary>
 	/// <returns></returns>
-	private static bool SetUnitLists(ref Node3D[] friendlyUnits, ref Node3D[] friendlyAircraft, 
-									ref Node3D[] enemyUnits, ref Node3D[] enemyAircraft)
+	private static bool SetUnitLists(Node3D[] friendlyUnits, Node3D[] friendlyAircraft, 
+									 Node3D[] enemyUnits, Node3D[] enemyAircraft, List<Node3D> allAircraft)
 	{
 		// Friendly
 		List<Node3D> friendlyUnitList = new List<Node3D>();
@@ -185,6 +186,8 @@ public partial class GameManager : Node
 		// Enemy
 		List<Node3D> enemyUnitList = new List<Node3D>();
 		List<Node3D> enemyAircraftList = new List<Node3D>();
+
+		allAircraft.Clear();
 
 		Node rootNode = instance.GetParent(); // instance.GetParent() will always be RootNode
 		bool operativeSuccess = false; // if this stays false, operation failed.	
@@ -221,6 +224,9 @@ public partial class GameManager : Node
 		enemyUnits = enemyUnitList.ToArray();
 		enemyAircraft = enemyAircraftList.ToArray();
 		
+		allAircraft.AddRange(enemyAircraft);
+		allAircraft.AddRange(friendlyAircraft);
+
 		operativeSuccess |= true;
 		return operativeSuccess;
 	}

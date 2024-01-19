@@ -21,8 +21,8 @@ size = Vector2(1000, 1000)
 
 [node name="DevScene" type="Node3D"]
 
-[node name="Game Manager" parent="." node_paths=PackedStringArray("FriendlyUnitArray", "friendlyAircraftArray", "enemyUnitArray", "enemyAircraftArray") instance=ExtResource("1_vk158")]
-FriendlyUnitArray = []
+[node name="Game Manager" parent="." node_paths=PackedStringArray("friendlyUnitArray", "friendlyAircraftArray", "enemyUnitArray", "enemyAircraftArray") instance=ExtResource("1_vk158")]
+friendlyUnitArray = []
 friendlyAircraftArray = []
 enemyUnitArray = []
 enemyAircraftArray = []
