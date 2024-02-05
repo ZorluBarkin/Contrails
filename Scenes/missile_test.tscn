@@ -25,6 +25,7 @@ friendlyUnitArray = []
 friendlyAircraftArray = []
 enemyUnitArray = []
 enemyAircraftArray = []
+debug = true
 
 [node name="Node" parent="." instance=ExtResource("2_5duqb")]
 
@@ -61,11 +62,11 @@ mesh = SubResource("BoxMesh_3x6xv")
 shape = SubResource("SphereShape3D_3084l")
 
 [node name="Target3" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36301, 9.99988, -3630.48)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.363, 10, -2000)
 gravity_scale = 0.0
 metadata/Aircraft = true
 metadata/Friend = false
-metadata/ExhaustTemp = 1400.0
+metadata/ExhaustTemp = 850.0
 metadata/FrontTemp = 300.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Target3"]
@@ -103,7 +104,7 @@ mesh = SubResource("BoxMesh_3x6xv")
 shape = SubResource("SphereShape3D_3084l")
 
 [node name="Target6" type="RigidBody3D" parent="."]
-transform = Transform3D(0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, 0.34202, -29.108, 40, -900)
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -36.077, 40, -2114.28)
 gravity_scale = 0.0
 metadata/Aircraft = true
 metadata/Friend = false

@@ -231,7 +231,14 @@ public partial class FuelManager : Node
 
 	private void SetFuelConsumptions()
 	{
-		for(int i = 0; i < fuelConsumptions.Length; i++)
-			fuelConsumptions[i] = pistonEngines[i].fuelConsumptionPerSecond;
+		if(isPistonEngine)
+		{
+			for(int i = 0; i < fuelConsumptions.Length; i++)
+				fuelConsumptions[i] = pistonEngines[i].fuelConsumptionPerSecond;
+		}
+		else // jet engine
+		{
+			
+		}			
 	}
 }

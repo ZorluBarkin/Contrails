@@ -7,6 +7,12 @@ using Godot;
 using System;
 using System.Diagnostics;
 
+public enum LandingGearType
+{
+	Kinematic,
+	Animation
+}
+
 public partial class LandingGear : Node
 {
 	public bool actuateGears = false;

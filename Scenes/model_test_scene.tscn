@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bd8wpyh2msgkm"]
+[gd_scene load_steps=9 format=3 uid="uid://bd8wpyh2msgkm"]
 
+[ext_resource type="Script" path="res://Assets/Scripts/Game/DebugCamera.cs" id="1_ip7sr"]
 [ext_resource type="PackedScene" uid="uid://dlk6svxnqyne2" path="res://Assets/Models/Ordinance/Bombs/Mk-81/MK-81 LDGP.glb" id="1_sc5yu"]
 [ext_resource type="PackedScene" uid="uid://ccqkcfoog2li8" path="res://Assets/Models/Ordinance/Bombs/MK-82/MK-82 LDGP.glb" id="2_lfic3"]
 [ext_resource type="PackedScene" uid="uid://d1omqyuaul0ed" path="res://Assets/Models/Ordinance/Bombs/MK-83/MK-83 LDGP.glb" id="3_t8b0u"]
@@ -9,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://qk7pykx2ymp5" path="res://Assets/Models/Ordinance/Retarded Bombs/MK-83 Snakeye/MK-83 Snakeye.glb" id="7_a4bvw"]
 
 [node name="ModelTestScene" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5503, 3.52617, 11.7593)
+script = ExtResource("1_ip7sr")
 
 [node name="MK-81 LDGP" parent="." instance=ExtResource("1_sc5yu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.69895, 0, 0)
@@ -30,3 +35,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17506, 0.197364, 0.0516922
 
 [node name="MK-83 Snakeye" parent="." instance=ExtResource("7_a4bvw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67006, 0.126077, -0.250509)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.850362, -0.526199, 0, 0.526199, 0.850362, 0, 0, 0)

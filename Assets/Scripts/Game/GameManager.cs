@@ -26,8 +26,6 @@ public enum CombatState
 public partial class GameManager : Node
 {
 	public static GameManager instance = null;
-	
-	//public Node3D[] AircraftArray;
 
 	[Export] public CombatState combatState = CombatState.Idle;
 
@@ -61,8 +59,8 @@ public partial class GameManager : Node
 	public FuelManager fuelManager = null;
 	public Mechanization mechanization = null;
 	// may change class the name to controls and change to aircarft inside
-	
 	#endregion
+	[Export] private bool debug = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -70,11 +68,15 @@ public partial class GameManager : Node
 		instance = this;
 
 		mainCamera = FindMainCamera();
-		//playerVehicle = FindPlayerVehicle();
-		//vehicleControls = FindVehicleControls();
-		//fuelManager = FindAircraftFuelManager();
-		//mechanization = FindMechanization();
-
+		
+		if(!debug)
+		{
+			playerVehicle = FindPlayerVehicle();
+			vehicleControls = FindVehicleControls();
+			fuelManager = FindAircraftFuelManager();
+			mechanization = FindMechanization();
+		}
+		
 		if(!SetUnitLists(friendlyUnitArray, friendlyAircraftArray, enemyUnitArray, enemyAircraftArray, allAircraft))
 			GD.PrintErr("Game Manager, failed to set units");
 	}

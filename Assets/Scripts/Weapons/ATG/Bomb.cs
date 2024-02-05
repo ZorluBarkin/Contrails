@@ -101,7 +101,7 @@ public partial class Bomb : RigidBody3D
 			if(!highDragAnimation.Active)
 			{
 				highDragAnimation.CurrentAnimation = animationName;
-				GD.Print(highDragAnimation.CurrentAnimation);
+				//GD.Print(highDragAnimation.CurrentAnimation);
 				highDragAnimation.Active = true;
 				await ToSignal(GetTree().CreateTimer(highDragAnimation.CurrentAnimationLength), SceneTreeTimer.SignalName.Timeout);
 				// do not use highDragAnimation.CurrentAnimation.Length, it returns wrong for parallel animations

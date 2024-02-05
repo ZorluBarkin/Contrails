@@ -3,13 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://dtge6twdqslwf" path="res://Assets/Subscenes/Settings.tscn" id="1_0tgcp"]
 [ext_resource type="PackedScene" uid="uid://cksj26judn1ic" path="res://Assets/Subscenes/HUD/HUD.tscn" id="1_hq76p"]
 [ext_resource type="PackedScene" uid="uid://dvnt5qdvkponl" path="res://Assets/Subscenes/GameManager.tscn" id="1_vk158"]
-[ext_resource type="PackedScene" uid="uid://du3oop0r2q05i" path="res://Assets/Subscenes/Aircraft/USA/B-26K.tscn" id="2_qcfcg"]
 [ext_resource type="Script" path="res://Assets/Scripts/Game/DebugCamera.cs" id="3_nfa7b"]
 [ext_resource type="AudioStream" uid="uid://cqapltawkk7yj" path="res://Assets/Resources/Sounds/Aircraft/USA/R2800 High Speed Running L.ogg" id="7_he4e1"]
 [ext_resource type="PackedScene" uid="uid://vnp7oxef58u3" path="res://Assets/Subscenes/Ordinance/test_bomb.tscn" id="7_s0w1f"]
 [ext_resource type="Script" path="res://Assets/Scripts/Weapons/ATG/Bomb.cs" id="7_xru2j"]
 [ext_resource type="PackedScene" uid="uid://duqlggt3h404u" path="res://Assets/Subscenes/Ordinance/USA/MK-81 LDGP.tscn" id="8_d6q6q"]
 [ext_resource type="PackedScene" uid="uid://cjlik50ggild7" path="res://Assets/Subscenes/Ordinance/USA/MK-81 Snakeye.tscn" id="10_q3lpn"]
+[ext_resource type="PackedScene" uid="uid://bnjjsvxehrknh" path="res://Assets/Subscenes/Aircraft/USA/A-7 Corsair II.tscn" id="11_t3k0b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbvfu"]
 albedo_color = Color(0.45098, 0.403922, 0.219608, 1)
@@ -45,35 +45,13 @@ shape = SubResource("WorldBoundaryShape3D_73ued")
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(0.178424, 0.393925, -0.901658, 0, 0.916363, 0.400349, 0.983954, -0.071432, 0.163501, -17.264, 31.883, 0)
+transform = Transform3D(0.178424, 0.393925, -0.901659, 0, 0.916363, 0.400349, 0.983954, -0.0714319, 0.163501, -7.98234, 7.7249, 5.71756)
 fov = 60.0
 script = ExtResource("3_nfa7b")
-target = NodePath("../MK-81 Snakeye")
+target = NodePath("../A-7 Corsair II")
 metadata/MainCamera = true
 
 [node name="HUD" parent="Camera3D" instance=ExtResource("1_hq76p")]
-
-[node name="B-26K" parent="." instance=ExtResource("2_qcfcg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0)
-metadata/PlayerVehicle = true
-metadata/Friend = true
-
-[node name="Friendly A" parent="." instance=ExtResource("2_qcfcg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0)
-metadata/Friend = true
-
-[node name="Frendly A 2" parent="." instance=ExtResource("2_qcfcg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0)
-metadata/Friend = true
-
-[node name="Enemy V" parent="." instance=ExtResource("2_qcfcg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0)
-metadata/Aircraft = false
-
-[node name="Friend V" parent="." instance=ExtResource("2_qcfcg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0)
-metadata/Friend = true
-metadata/Aircraft = false
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)
@@ -106,3 +84,11 @@ releaseSpeed = 200.0
 [node name="MK-81 Snakeye" parent="." instance=ExtResource("10_q3lpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
 releaseSpeed = 10.0
+
+[node name="A-7 Corsair II" parent="." instance=ExtResource("11_t3k0b")]
+transform = Transform3D(0.781085, 0, -0.624425, 0, 1, 0, 0.624425, 0, 0.781085, 0, 4.99845, 0)
+metadata/PlayerVehicle = true
+metadata/Friend = true
+metadata/Aircraft = true
+
+[editable path="A-7 Corsair II"]

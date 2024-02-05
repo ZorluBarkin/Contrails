@@ -35,6 +35,8 @@ public partial class IRM : AAM
 	// after burning engines have 1400-1500 degrees
 	// special engines (SR-71) have 1600-1700 degrees
 
+	[Export] public bool search = false;
+
 	[Export] public bool locking = false;
 	public bool locked = false;
 	[Export] private float bestLockTemp = 700f; // anything above will give bonus
@@ -62,7 +64,11 @@ public partial class IRM : AAM
 	{
 		forwardVector = Transform.Basis * Vector3.Forward;
 		
-		QueryForTargets();
+		if(search)
+		{
+			QueryForTargets();
+			// Low Growl
+		}
 
 		if (locking)
 		{
@@ -72,13 +78,15 @@ public partial class IRM : AAM
 				return;
 			else
 			{
-				locking = false;
+				//pitch the sound via lock quality
+				//GD.Print(target.Name);
 				locked = true;
 			}
 		}
 		
 		if (locked && launch)
 		{
+			locking = false;
 			float distance = Position.DistanceTo(target.Position);
 
 			if(rearLock)
@@ -152,6 +160,9 @@ public partial class IRM : AAM
 			{
 				temp = CalculateLockQuality((float) targets[i].GetMeta("ExhaustTemp"), Position.DistanceTo(targets[i].Position), 
 									bestLockTemp, bestLockRange, lockRange);
+				
+				//GD.Print(temp);
+
 				if(max <= temp)
 				{
 					max = temp;
