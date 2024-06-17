@@ -1,16 +1,11 @@
-/*  
- * Copyright October 2023 Barkın Zorlu 
- * All rights reserved. 
- */
-
+using Godot;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 public enum WeaponType
 {
     Empty, // a weapon cannot be empty
     GunPod,
-    IR,
+    IRM,
     SARH,
     ARH,
     BeamRider,
@@ -29,7 +24,9 @@ public enum WeaponType
     ExternalFuelTank
 }
 
-public class Weapon
+public interface IWeapon
 {
-    
+    WeaponType weaponType {get;}
+    void Initilize();
+    void Activate();
 }

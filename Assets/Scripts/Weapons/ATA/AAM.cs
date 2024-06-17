@@ -20,11 +20,12 @@ public partial class AAM : RigidBody3D
 
 	public void DoGuidance(RigidBody3D target, float gLimit, float delta) // every missile does propotional Guidance (Every missile leads)
 	{
-		
+		GD.PrintErr("DoGuidance is not implemented!");
 	}
 
 	public void Explode()
 	{
+		GD.PrintErr("Explode is not implemented!");
 	}
 
 }

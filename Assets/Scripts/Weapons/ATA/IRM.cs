@@ -11,23 +11,26 @@ using System.Reflection;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 
-public partial class IRM : AAM
+public partial class IRM : AAM, IWeapon
 {
+	public WeaponType weaponType {get;} = WeaponType.IRM;
+	[Export] private DataIRM data;
+
 	#region Missile Variables
-	[Export] private bool allAspect = false;
-	[Export] private bool caged = false; // only look forward if true
-	[Export] private float seekerLimit = 8f; // degrees
-	[Export] private float aspectAgle = 45f; // degrees
-	[Export] private float burnTime = 2.2f;
-	[Export] private float gLimit = 10f; // how good it can turn
-	[Export] private float selfDestructTime = 26f; // 26 seconds for Aim9-B
-	[Export] private float manueverTime = 20f; //may not implement this, no need // 21 seconds for R3
+	private bool allAspect = false;
+	private bool caged = false; // only look forward if true
+	private float seekerLimit = 8f; // degrees
+	private float aspectAgle = 45f; // degrees
+	private float burnTime = 2.2f;
+	private float gLimit = 10f; // how good it can turn
+	private float selfDestructTime = 26f; // 26 seconds for Aim9-B
+	//[Export] private float manueverTime = 20f; //may not implement this, no need // 21 seconds for R3
 	private Vector3 forwardVector;
 	#endregion
 
 	#region Search and Lock Variables
-	[Export] private float lockRange = 4000f; // meters, Max lock in at this range closer the better lock.
-	[Export] private float launchRange = 9000f; // meters, can be launched not guarenteed to hit
+	private float lockRange = 4000f; // meters, Max lock in at this range closer the better lock.
+	private float launchRange = 9000f; // meters, can be launched not guarenteed to hit
 	private float lockQuality = 0f; // 0-1 percentage, the better the less chance of missing lock in flight
 
 	// high bypass engines have 300-500 degrees
@@ -35,12 +38,12 @@ public partial class IRM : AAM
 	// after burning engines have 1400-1500 degrees
 	// special engines (SR-71) have 1600-1700 degrees
 
-	[Export] public bool search = false;
+	public bool search = false;
 
-	[Export] public bool locking = false;
+	public bool locking = false;
 	public bool locked = false;
-	[Export] private float bestLockTemp = 700f; // anything above will give bonus
-	[Export] private float bestLockRange = 1000f; // anything below will give bonus
+	private float bestLockTemp = 700f; // anything above will give bonus
+	private float bestLockRange = 1000f; // anything below will give bonus
 
 	private bool rearLock = false;
 
@@ -56,7 +59,8 @@ public partial class IRM : AAM
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		localAllAircraft = GameManager.instance.allAircraft;
+		localAllAircraft = GameManager.instance.allAircraft; // this is a very pattern for efficieny
+		Initilize();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -98,6 +102,9 @@ public partial class IRM : AAM
 
 			if(lockQuality == 0)
 				target = null;
+
+			if(lockQuality > 0.9f) // not sure about the top value, needs testing
+				Activate();
 		}
 	}
 
@@ -126,9 +133,10 @@ public partial class IRM : AAM
 		}
 	}
 
-	private float temp = 0f;
-	private float max = 0f;
-	private void LockTarget() // selecting the target
+	private float tempQ = 0f;
+	private float maxQ = 0f;
+
+    private void LockTarget() // selecting the target
 	{
 		// Radar select if missile and plane has it
 		target = null;
@@ -139,17 +147,18 @@ public partial class IRM : AAM
 			{
 				if(forwardVector.Dot(-1 * localAllAircraft[i].GlobalBasis.Z) > 0)
 				{
-					temp = CalculateLockQuality((float) targets[i].GetMeta("FrontTemp"), Position.DistanceTo(targets[i].Position), 
+					tempQ = CalculateLockQuality((float) targets[i].GetMeta("FrontTemp"), Position.DistanceTo(targets[i].Position), 
 												bestLockTemp, bestLockRange, lockRange);
 				}
 				else
 				{
-					temp = CalculateLockQuality((float) targets[i].GetMeta("ExhaustTemp"), Position.DistanceTo(targets[i].Position), 
+					tempQ = CalculateLockQuality((float) targets[i].GetMeta("ExhaustTemp"), Position.DistanceTo(targets[i].Position), 
 												bestLockTemp, bestLockRange, lockRange);
 				}
-				if(max <= temp)
+				
+				if(maxQ <= tempQ)
 				{
-					max = temp;
+					maxQ = tempQ;
 					target = GetNode<RigidBody3D>(targets[i].GetPath());
 				}
 			}
@@ -158,16 +167,16 @@ public partial class IRM : AAM
 		{
 			for(int i = 0; i < targets.Count; i++)
 			{
-				temp = CalculateLockQuality((float) targets[i].GetMeta("ExhaustTemp"), Position.DistanceTo(targets[i].Position), 
+				tempQ = CalculateLockQuality((float) targets[i].GetMeta("ExhaustTemp"), Position.DistanceTo(targets[i].Position), 
 									bestLockTemp, bestLockRange, lockRange);
 				
-				//GD.Print(temp);
+				//GD.Print(temp); // used for debugging
 
-				if(max <= temp)
+				if(maxQ <= tempQ)
 				{
-					max = temp;
+					maxQ = tempQ;
 					rearLock = true;
-					target = GetNode<RigidBody3D>(targets[i].GetPath());
+					target = GetNode<RigidBody3D>(targets[i].GetPath()); // need velocity and position
 				}
 			}
 		}
@@ -175,6 +184,35 @@ public partial class IRM : AAM
 
 	private static float CalculateLockQuality(float targetTemp, float distance, float bestLockTemp, float bestLockRange, float LockRange)
 	{
-		return 1 * (targetTemp / bestLockTemp) * Mathf.Clamp(((LockRange / distance) / (LockRange / bestLockRange)), 0f, 1f);
+		return 1 * (targetTemp / bestLockTemp) * Mathf.Clamp((LockRange / distance) / (LockRange / bestLockRange), 0f, 1f);
 	}
+
+	#region Interface Implementations
+    
+	public void Initilize()
+    {
+		if(data != null)
+		{
+			allAspect 	= data.allAspect;
+			caged 		= data.caged;
+			seekerLimit	= data.seekerLimit;
+			aspectAgle	= data.aspectAgle;
+			burnTime	= data.burnTime;
+			gLimit		= data.gLimit;
+			selfDestructTime = data.selfDestructTime;
+			lockRange 	= data.lockRange;
+			launchRange = data.launchRange;
+			bestLockTemp = data.bestLockTemp;
+			bestLockRange = data.bestLockRange;
+		}
+		else
+			GD.PrintErr($"{this.Name} is missing DataIRM!");
+    }
+
+	public void Activate()
+	{
+        throw new NotImplementedException();
+	}
+
+	#endregion
 }
