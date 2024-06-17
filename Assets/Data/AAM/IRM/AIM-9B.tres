@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bjar1u72vdqlu"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Custom Resources/DataIRM.cs" id="1_48api"]
+
+[resource]
+script = ExtResource("1_48api")
+allAspect = false
+caged = false
+seekerLimit = 8.0
+aspectAgle = 45.0
+burnTime = 2.2
+gLimit = 10.0
+selfDestructTime = 26.0
+lockRange = 4000.0
+launchRange = 9000.0
+bestLockTemp = 700.0
+bestLockRange = 1000.0

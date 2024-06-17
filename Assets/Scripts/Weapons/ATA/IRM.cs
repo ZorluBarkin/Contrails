@@ -6,15 +6,11 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime;
-using System.Runtime.CompilerServices;
 
 public partial class IRM : AAM, IWeapon
 {
 	public WeaponType weaponType {get;} = WeaponType.IRM;
-	[Export] private DataIRM data;
+	[Export] private DataIRM data ;
 
 	#region Missile Variables
 	private bool allAspect = false;
@@ -204,6 +200,7 @@ public partial class IRM : AAM, IWeapon
 			launchRange = data.launchRange;
 			bestLockTemp = data.bestLockTemp;
 			bestLockRange = data.bestLockRange;
+			GD.Print(bestLockTemp);
 		}
 		else
 			GD.PrintErr($"{this.Name} is missing DataIRM!");
