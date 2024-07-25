@@ -14,7 +14,7 @@ public partial class Bomb : RigidBody3D
 	private Node rootNode = null;
 	private Node3D model = null;
 	private Vector3 forwardVector;
-	[Export] public float releaseSpeed = 1f;
+	public float releaseSpeed = 1f; // use [Export] to test it
 	[Export] public float MaxLaunchSpeed {get; private set;} = 340.27f * 1.2f; // 1.2 Mach
 	[Export] public float[] DragMachNumber = {0.95f, 1.05f};
 	[Export] public float[] DragPerMach {get; private set;} = {0.152f, 0.1918f, 0.3460f};

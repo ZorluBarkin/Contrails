@@ -6,40 +6,36 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading;
 
-public partial class IRM : AAM, IWeapon
+public partial class IRM : AAM, IWeapon, IAAM
 {
 	public WeaponType weaponType {get;} = WeaponType.IRM;
-	[Export] private DataIRM data ;
+	[Export] private DataIRM data;
+	[Export] private float lockThreshold = 0.9f;
 
-	#region Missile Variables
+	#region Missile Data
 	private bool allAspect = false;
 	private bool caged = false; // only look forward if true
+	//private bool slaving = false;
 	private float seekerLimit = 8f; // degrees
 	private float aspectAgle = 45f; // degrees
 	private float burnTime = 2.2f;
 	private float gLimit = 10f; // how good it can turn
 	private float selfDestructTime = 26f; // 26 seconds for Aim9-B
 	//[Export] private float manueverTime = 20f; //may not implement this, no need // 21 seconds for R3
-	private Vector3 forwardVector;
-	#endregion
-
-	#region Search and Lock Variables
+	[Export] private float launchToSteerTime = 0.5f;
 	private float lockRange = 4000f; // meters, Max lock in at this range closer the better lock.
 	private float launchRange = 9000f; // meters, can be launched not guarenteed to hit
 	private float lockQuality = 0f; // 0-1 percentage, the better the less chance of missing lock in flight
-
-	// high bypass engines have 300-500 degrees
-	// low bypass engines have 600-700 degrees
-	// after burning engines have 1400-1500 degrees
-	// special engines (SR-71) have 1600-1700 degrees
-
-	public bool search = false;
-
-	public bool locking = false;
-	public bool locked = false;
 	private float bestLockTemp = 700f; // anything above will give bonus
 	private float bestLockRange = 1000f; // anything below will give bonus
+	#endregion
+
+	#region Class Variables 
+	private Vector3 forwardVector;
+	private bool search = false;
 
 	private bool rearLock = false;
 
@@ -49,8 +45,6 @@ public partial class IRM : AAM, IWeapon
 	private RigidBody3D target = null; // make it so if sun is in 10 degrees of missile lock on to it
 	private float targetTemp = 0f;
 	#endregion
-
-	public bool launch = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -67,20 +61,18 @@ public partial class IRM : AAM, IWeapon
 		if(search)
 		{
 			QueryForTargets();
-			// Low Growl
-		}
 
-		if (locking)
-		{
-			LockTarget();
+			// play Low Growl
 
-			if (target == null)
-				return;
-			else
+			if (LockTarget()) // Target Locked
 			{
-				//pitch the sound via lock quality
-				//GD.Print(target.Name);
-				locked = true;
+				// play locked sound
+				// able to launch
+			}
+			else if (target != null)
+			{
+				// growl.pitch * (1 + maxQ)
+				// play growl
 			}
 		}
 		
@@ -112,41 +104,85 @@ public partial class IRM : AAM, IWeapon
 	{
 		targets.Clear();
 
-		// Elination
+		// Elimination
 		for (int i = 0; i < localAllAircraft.Count; i++)
 		{
 			if (forwardVector.Dot((localAllAircraft[i].Position - Position).Normalized()) > MathF.Cos(Mathf.DegToRad(seekerLimit / 2f)))
 			{
 				if (Position.DistanceTo(localAllAircraft[i].Position) < lockRange) // in range
 				{
-					if(!allAspect)
+					if(!allAspect) // Rear Aspect
 						if(forwardVector.Dot(-1 * localAllAircraft[i].GlobalBasis.Z) > Mathf.DegToRad(aspectAgle)) // 45 degrees
 							targets.Add(localAllAircraft[i]);
-					else
+					else // Front Aspect
 						targets.Add(localAllAircraft[i]);
 				}
 			}
 		}
 	}
 
-	private float tempQ = 0f;
-	private float maxQ = 0f;
-
-    private void LockTarget() // selecting the target
+	private static float CalculateLockQuality(float targetTemp, float distance, float bestLockTemp, float bestLockRange, float LockRange)
 	{
-		// Radar select if missile and plane has it
+		return 1 * (targetTemp / bestLockTemp) * Mathf.Clamp((LockRange / distance) / (LockRange / bestLockRange), 0f, 1f);
+	}
+
+	#region IWeapon Interface Implementations
+    
+	public void Initilize()
+    {
+		if(data != null)
+		{
+			allAspect 	= data.allAspect;
+			caged 		= data.caged;
+			//slaving 	= data.slaving;
+			seekerLimit	= data.seekerLimit;
+			aspectAgle	= data.aspectAgle;
+			burnTime	= data.burnTime;
+			launchToSteerTime = data.launchToSteerTime;
+			gLimit		= data.gLimit;
+			selfDestructTime = data.selfDestructTime;
+			lockRange 	= data.lockRange;
+			launchRange = data.launchRange;
+			bestLockTemp = data.bestLockTemp;
+			bestLockRange = data.bestLockRange;
+			GD.Print(bestLockTemp);
+		}
+		else
+			GD.PrintErr($"{this.Name} is missing DataIRM!");
+    }
+
+	public void Activate()
+	{
+		search = true;
+        //throw new NotImplementedException();
+	}
+	#endregion
+
+	#region IAAM Interface Implementations
+
+	private float tempQ = 0f; // declared here as its a little faster
+	private float maxQ = 0f; // declared here as its a little faster
+
+	public bool LockTarget()
+	{
+		bool lockAchieved = false;
 		target = null;
 
+		// Radar select-slaving //there were no radar slaving before 1984 (R73)
+		//if(false /*slaving && Radar.target != null*/)
+
+		//IR self lock by temperature
 		if(allAspect)
 		{
 			for(int i = 0; i < targets.Count; i++)
 			{
+				// Front Aspect
 				if(forwardVector.Dot(-1 * localAllAircraft[i].GlobalBasis.Z) > 0)
 				{
 					tempQ = CalculateLockQuality((float) targets[i].GetMeta("FrontTemp"), Position.DistanceTo(targets[i].Position), 
 												bestLockTemp, bestLockRange, lockRange);
 				}
-				else
+				else // Rear Aspect
 				{
 					tempQ = CalculateLockQuality((float) targets[i].GetMeta("ExhaustTemp"), Position.DistanceTo(targets[i].Position), 
 												bestLockTemp, bestLockRange, lockRange);
@@ -158,6 +194,9 @@ public partial class IRM : AAM, IWeapon
 					target = GetNode<RigidBody3D>(targets[i].GetPath());
 				}
 			}
+
+			if(maxQ > lockThreshold)
+				lockAchieved = true;
 		}
 		else // rear aspect only
 		{
@@ -175,41 +214,18 @@ public partial class IRM : AAM, IWeapon
 					target = GetNode<RigidBody3D>(targets[i].GetPath()); // need velocity and position
 				}
 			}
+
+			if(maxQ > lockThreshold)
+				lockAchieved = true;
 		}
+		return lockAchieved;
 	}
 
-	private static float CalculateLockQuality(float targetTemp, float distance, float bestLockTemp, float bestLockRange, float LockRange)
-	{
-		return 1 * (targetTemp / bestLockTemp) * Mathf.Clamp((LockRange / distance) / (LockRange / bestLockRange), 0f, 1f);
-	}
-
-	#region Interface Implementations
-    
-	public void Initilize()
+	public void Launch()
     {
-		if(data != null)
-		{
-			allAspect 	= data.allAspect;
-			caged 		= data.caged;
-			seekerLimit	= data.seekerLimit;
-			aspectAgle	= data.aspectAgle;
-			burnTime	= data.burnTime;
-			gLimit		= data.gLimit;
-			selfDestructTime = data.selfDestructTime;
-			lockRange 	= data.lockRange;
-			launchRange = data.launchRange;
-			bestLockTemp = data.bestLockTemp;
-			bestLockRange = data.bestLockRange;
-			GD.Print(bestLockTemp);
-		}
-		else
-			GD.PrintErr($"{this.Name} is missing DataIRM!");
+		// launch the missile make this event based
+		if()
+		throw new NotImplementedException();
     }
-
-	public void Activate()
-	{
-        throw new NotImplementedException();
-	}
-
 	#endregion
 }

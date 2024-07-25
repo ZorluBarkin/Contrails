@@ -28,5 +28,5 @@ public interface IWeapon
 {
     WeaponType weaponType {get;}
     void Initilize();
-    void Activate();
+    void Activate(); // activate weapon on pylon, start search in AAMs release in bombs etc.
 }
