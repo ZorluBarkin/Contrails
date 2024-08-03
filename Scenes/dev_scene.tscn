@@ -1,14 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddfne770a8m2b"]
+[gd_scene load_steps=12 format=3 uid="uid://ddfne770a8m2b"]
 
 [ext_resource type="PackedScene" uid="uid://dtge6twdqslwf" path="res://Assets/Subscenes/Settings.tscn" id="1_0tgcp"]
 [ext_resource type="PackedScene" uid="uid://cksj26judn1ic" path="res://Assets/Subscenes/HUD/HUD.tscn" id="1_hq76p"]
 [ext_resource type="PackedScene" uid="uid://dvnt5qdvkponl" path="res://Assets/Subscenes/GameManager.tscn" id="1_vk158"]
 [ext_resource type="Script" path="res://Assets/Scripts/Game/DebugCamera.cs" id="3_nfa7b"]
+[ext_resource type="PackedScene" uid="uid://bhrq451aep6b" path="res://a7 rotated.tscn" id="7_46eic"]
 [ext_resource type="AudioStream" uid="uid://cqapltawkk7yj" path="res://Assets/Resources/Sounds/Aircraft/USA/R2800 High Speed Running L.ogg" id="7_he4e1"]
-[ext_resource type="PackedScene" uid="uid://vnp7oxef58u3" path="res://Assets/Subscenes/Ordinance/test_bomb.tscn" id="7_s0w1f"]
-[ext_resource type="Script" path="res://Assets/Scripts/Weapons/ATG/Bomb.cs" id="7_xru2j"]
-[ext_resource type="PackedScene" uid="uid://duqlggt3h404u" path="res://Assets/Subscenes/Ordinance/USA/MK-81 LDGP.tscn" id="8_d6q6q"]
-[ext_resource type="PackedScene" uid="uid://cjlik50ggild7" path="res://Assets/Subscenes/Ordinance/USA/MK-81 Snakeye.tscn" id="10_q3lpn"]
+[ext_resource type="PackedScene" uid="uid://b2u2rqk2k2o45" path="res://Assets/Subscenes/Ordinance/USA/MK-83 LDGP.tscn" id="9_26tsr"]
 [ext_resource type="PackedScene" uid="uid://bnjjsvxehrknh" path="res://Assets/Subscenes/Aircraft/USA/A-7 Corsair II.tscn" id="11_t3k0b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbvfu"]
@@ -32,6 +30,7 @@ enemyAircraftArray = []
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="Ground" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39576, -0.666588, 0.832842)
 material_override = SubResource("StandardMaterial3D_tbvfu")
 mesh = SubResource("PlaneMesh_hlkvy")
 metadata/IsGround = true
@@ -45,13 +44,26 @@ shape = SubResource("WorldBoundaryShape3D_73ued")
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(0.178424, 0.393925, -0.901659, 0, 0.916363, 0.400349, 0.983954, -0.0714319, 0.163501, -7.98234, 7.7249, 5.71756)
+transform = Transform3D(0.178424, 0.393925, -0.901659, 0, 0.916363, 0.400349, 0.983954, -0.0714319, 0.163501, -7.98234, 1.655, -6.28244)
 fov = 60.0
 script = ExtResource("3_nfa7b")
 target = NodePath("../A-7 Corsair II")
 metadata/MainCamera = true
 
 [node name="HUD" parent="Camera3D" instance=ExtResource("1_hq76p")]
+
+[node name="A-7 Corsair II" parent="." instance=ExtResource("11_t3k0b")]
+transform = Transform3D(1, 0, 0, -2.98023e-08, 1, 0, 0, 0, 1, 8.63672, 22.7025, 8.81206)
+freeze = true
+metadata/PlayerVehicle = true
+metadata/Friend = true
+metadata/Aircraft = true
+
+[node name="A-7 Corsair II" parent="A-7 Corsair II" index="4"]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, -2.2, 0)
+
+[node name="Pylon Left 1" parent="A-7 Corsair II/A-7 Corsair II" index="17"]
+spawn = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)
@@ -68,27 +80,32 @@ volume_db = 2.5
 max_db = 5.0
 max_distance = 4096.0
 
-[node name="TestBomb" parent="." instance=ExtResource("7_s0w1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 75.76, -43.605)
-releaseSpeed = 0.0
+[node name="Node3D" parent="." instance=ExtResource("7_46eic")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5.13736, 6, 4.70202)
 
-[node name="TestBomb2" parent="." instance=ExtResource("7_s0w1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264585, 78.1501, -45.2318)
-mass = 242.0
-script = ExtResource("7_xru2j")
+[node name="Pylon left 1" parent="Node3D/A-7 Corsair II changed parent" index="17"]
+availableOrdinance = Array[PackedScene]([ExtResource("9_26tsr")])
+spawn = true
 
-[node name="MK-81 LDGP" parent="." instance=ExtResource("8_d6q6q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00274, 50, 0)
-releaseSpeed = 200.0
+[node name="Pylon left 2" parent="Node3D/A-7 Corsair II changed parent" index="18"]
+availableOrdinance = Array[PackedScene]([ExtResource("9_26tsr")])
+spawn = true
 
-[node name="MK-81 Snakeye" parent="." instance=ExtResource("10_q3lpn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
-releaseSpeed = 10.0
+[node name="Pylon left 3" parent="Node3D/A-7 Corsair II changed parent" index="19"]
+availableOrdinance = Array[PackedScene]([ExtResource("9_26tsr")])
+spawn = true
 
-[node name="A-7 Corsair II" parent="." instance=ExtResource("11_t3k0b")]
-transform = Transform3D(0.781085, 0, -0.624425, 0, 1, 0, 0.624425, 0, 0.781085, 0, 4.99845, 0)
-metadata/PlayerVehicle = true
-metadata/Friend = true
-metadata/Aircraft = true
+[node name="Pylon Right 1" parent="Node3D/A-7 Corsair II changed parent" index="20"]
+availableOrdinance = Array[PackedScene]([ExtResource("9_26tsr")])
+spawn = true
+
+[node name="Pylon Right 2" parent="Node3D/A-7 Corsair II changed parent" index="21"]
+availableOrdinance = Array[PackedScene]([ExtResource("9_26tsr")])
+spawn = true
+
+[node name="Pylon Right 3" parent="Node3D/A-7 Corsair II changed parent" index="22"]
+availableOrdinance = Array[PackedScene]([ExtResource("9_26tsr")])
+spawn = true
 
 [editable path="A-7 Corsair II"]
+[editable path="Node3D"]

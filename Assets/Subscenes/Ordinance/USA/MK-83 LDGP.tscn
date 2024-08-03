@@ -14,10 +14,14 @@ max_contacts_reported = 1
 contact_monitor = true
 linear_damp = 0.152
 script = ExtResource("1_digtf")
+metadata/WeaponType = 8.0
+metadata/Offset = 0.18
 
 [node name="MK-83 LDGP" parent="." instance=ExtResource("1_66e4v")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.56)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, -0.56)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_eiak6")
+metadata/WeaponType = 8.0
+metadata/Offset = 0.18

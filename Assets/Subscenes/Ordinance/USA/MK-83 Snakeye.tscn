@@ -17,6 +17,7 @@ script = ExtResource("1_h48h0")
 highDrag = true
 highDragAnimation = NodePath("MK-83 Snakeye/AnimationPlayer")
 animationName = "BrakeOpening"
+metadata/WeaponType = 11.0
 
 [node name="MK-83 Snakeye" parent="." instance=ExtResource("2_ge1b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.39735)

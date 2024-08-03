@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 
 public partial class Bomb : RigidBody3D
 {
-	private Node rootNode = null;
+	[Export]private Node rootNode = null;
 	private Node3D model = null;
 	private Vector3 forwardVector;
 	[Export] public float releaseSpeed = 1f;
@@ -55,16 +55,38 @@ public partial class Bomb : RigidBody3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public void BombProcess()
 	{
-		forwardVector = Transform.Basis * Vector3.Forward; // forward vector
-		//if(!dropped && GetMeta("Trigger").AsBool())
+		//forwardVector = Transform.Basis * Vector3.Forward; // forward vector
+		forwardVector = -GlobalBasis.Z;
+
 		if(!dropped && drop)
 		{
 			Freeze = false;
 			dropped = true;
-			Owner = rootNode;
+
+			//Vector3 oldRotation = GlobalRotation;
+			//Vector3 oldPosition = GlobalPosition;
+			//Transform3D oldTransform = GlobalTransform;
+
+			//GD.Print(Mathf.RadToDeg(oldRotation.X) + " " + Mathf.RadToDeg(oldRotation.Y) + " " + Mathf.RadToDeg(oldRotation.Z));
+			
+			//Owner = rootNode;
+			// /Owner.RemoveChild(this);
+			//Owner = null;
+			//rootNode.AddChild(this);
+
+			this.Reparent(rootNode, true);
+
+			//Rotation = oldRotation;
+			//Position = oldPosition;
+			
+			//Transform = oldTransform;
+
+			//GlobalRotation = oldRotation;
+			//GD.Print(GlobalRotationDegrees);
+			
 			if(releaseSpeed == 0)
 				releaseSpeed++;
-			LinearVelocity = forwardVector * releaseSpeed;
+			LinearVelocity = forwardVector * 10f; //releaseSpeed;
 		}
 		else if(dropped)
 		{

@@ -14,6 +14,7 @@ max_contacts_reported = 1
 contact_monitor = true
 linear_damp = 0.152
 script = ExtResource("1_xwm60")
+metadata/WeaponType = 6.0
 
 [node name="MK-81 LDGP" parent="." instance=ExtResource("2_qi1cp")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.18)

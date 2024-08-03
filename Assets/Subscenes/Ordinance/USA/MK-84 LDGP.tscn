@@ -13,6 +13,7 @@ continuous_cd = true
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_xjy0g")
+metadata/WeaponType = 8.0
 
 [node name="MK-84 LDGP" parent="." instance=ExtResource("1_jq8f4")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.349619)

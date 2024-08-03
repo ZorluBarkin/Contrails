@@ -16,7 +16,6 @@ contact_monitor = true
 linear_damp = 0.152
 script = ExtResource("1_y4iqm")
 metadata/WeaponType = 7
-metadata/Trigger = false
 
 [node name="MK-82 LDGP" parent="." instance=ExtResource("2_ltpy8")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.22)
