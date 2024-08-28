@@ -8,7 +8,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 
 public partial class VehicleControls : Node
-{	
+{
 	private PlayerVehicleType playerVehicleType = PlayerVehicleType.Aircraft; // not implemented yet
 
 	[Export] private AircraftDamage aircraftDamage = null;
